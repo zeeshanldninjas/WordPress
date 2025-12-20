@@ -44,9 +44,11 @@ class EXMS_COURSE {
         wp_enqueue_style( 'wp-exams-course', EXMS_ASSETS_URL . 'css/frontend/exms-course.css', [], EXMS::VERSION, null );
 
         // Enqueue PayPal SDK for course payments
-        $exms_options = get_option( 'exms_settings' );
-        $paypal_client_id = isset( $exms_options['paypal_client_id'] ) ? $exms_options['paypal_client_id'] : '';
-        $paypal_currency = isset( $exms_options['paypal_currency'] ) ? $exms_options['paypal_currency'] : 'USD';
+        $exms_payment_options = get_option( 'exms_payment_settings' );
+        $paypal_client_id = isset( $exms_payment_options['paypal_client_id'] ) ? $exms_payment_options['paypal_client_id'] : '';
+        $paypal_currency = isset( $exms_payment_options['paypal_currency'] ) ? $exms_payment_options['paypal_currency'] : 'USD';
+        
+        $course_script_deps = [ 'jquery' ];
         
         $course_script_deps = [ 'jquery' ];
         
@@ -416,8 +418,8 @@ class EXMS_COURSE {
             $course_title = get_the_title( $course_id );
 
             // Get PayPal settings
-            $exms_options = get_option( 'exms_settings' );
-            $paypal_payee_email = isset( $exms_options['paypal_vender_email'] ) ? $exms_options['paypal_vender_email'] : '';
+            $exms_payment_options = get_option( 'exms_payment_settings' );
+            $paypal_payee_email = isset( $exms_payment_options['paypal_vender_email'] ) ? $exms_payment_options['paypal_vender_email'] : '';
 
             ob_start();
             include EXMS_TEMPLATES_DIR . '/frontend/course/buy-course-modelbox-template.php';
