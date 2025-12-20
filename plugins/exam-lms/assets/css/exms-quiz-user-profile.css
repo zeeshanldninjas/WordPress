@@ -1,0 +1,23 @@
+.wpeq-close-type-quiz-boxes {
+	display: flex;	
+}
+.wpeq-close-type-quiz-box {
+	width: 34%;
+	margin-right: 15px;
+}
+.wpeq-close-type-quiz-box select {
+	width: 100%;
+	height: 200px !important;
+}
+.wpeq-cq-options {
+	width: 3% !important;
+	height: 46px;
+    margin: auto 0;
+}
+.wpeq-cq-options-icon {
+	cursor: pointer;
+	margin-top: 15px;
+}
+.wpeq-enrolled {
+	text-decoration: line-through;
+}

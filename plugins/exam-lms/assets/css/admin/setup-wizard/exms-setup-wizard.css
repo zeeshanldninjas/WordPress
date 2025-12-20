@@ -1,0 +1,1142 @@
+#wpadminbar,
+#wpfooter,
+#adminmenumain {
+  display: none;
+}
+
+#wpcontent {
+  margin: 0;
+  padding: 0;
+}
+
+#wpbody-content {
+    padding-bottom: 65px;
+    width: 100%;
+    overflow: hidden;
+}
+
+html.wp-toolbar {
+  padding: 0;
+  background: #ffffff;
+}
+#wpwrap {
+    background: #ffffff;
+}
+
+/* Style for setup page */ 
+.exms-setup-wrapper {
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.exms-setup-wizard-field-error {
+    border: 1px solid red !important;
+    outline: 1px solid red !important;
+}
+
+.exms-setup-wrapper .exms-logo-parent {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #E4E3E4;
+}
+
+.exms-logo-child {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exms-setup-wrapper .exms-logo img {
+    width: 60%;
+}
+
+.exms-setup-wrapper .exms-logo-links {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.exms-setup-wrapper .exms-logo-links a {
+    padding: 10px 25px;
+    font-size: 14px;
+    color: #000;
+    font-weight: 400;
+    text-underline-offset: 2px;
+}
+
+.exms-setup-wrapper .exms-logo-links a:first-child {
+    border-right: 1px solid #E4E3E4;
+}
+
+.exms-content-wrapper {
+    text-align: center;
+    padding: 25px 0;
+}
+
+.exms-setup-start {
+    width: 100%;
+    max-width: 1100px;
+    padding: 40px 0;
+    margin: 0 auto;
+    border: 1px solid #E4E3E4;
+    box-shadow: 6px 6px 19px 0px #0000000F;
+    border-radius: 10px;
+    margin-bottom: 35px;
+}
+
+.exms-setup-wrapper .exms-side-logo {
+    float: right;
+}
+
+.exms-clear-both {
+    clear: both;
+}
+
+.exms-content-wrapper .exms-welcom-wpexam {
+    font-size: 48px;
+    color: #525252;
+    font-weight: 600;
+    letter-spacing: 0px;
+}  
+
+.exms-content-wrapper .exms-content-desc {
+    width: 50%;
+    margin: auto;
+    font-size: 16px;
+    text-align: center;
+}
+
+.exms-setup-buttons {
+    margin-top: 4%;
+    text-align: center;
+}
+
+.exms-congrs-icon img {
+    width: 150px;
+}
+
+.exms-form-footer .exms-back-setup,
+.exms-form-footer .exms-next-setup,
+.exms-form-footer .exms-finish-setup,
+.exms-form-footer .exms-skip-setup {
+    font-weight: 500;
+    border: unset;
+    background: unset;
+    text-decoration: underline;
+    cursor: pointer;
+    margin-right: 2%;
+    color: #000000;
+}
+
+.exms-exit-setup {
+    border: unset;
+    background: unset;
+    text-decoration: underline;
+    cursor: pointer;
+    color: #000000;
+}
+
+.exms-setup-buttons .exms-start-setup,
+.exms-validate-license {
+    font-weight: 400;
+    cursor: pointer;
+    padding: 8px 20px;
+    border-radius: 27px;
+    color: #ffffff;
+    background: #552CA8;
+    outline: 3px solid #553EA61C;
+    outline-offset: 4px;
+    font-size: 15px;
+    border: none;
+}
+
+/******* Step 1 of wizard page *******/
+.exms-setup-license {
+    text-align: left;
+    margin: auto;
+    width: 60%;
+}
+
+.exms-setup-course {
+    border: 1px solid #D9DDFD;
+    border-radius: 15px;
+    padding: 30px 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.exms-setup-course-child {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    position: relative;
+    top: -25px;
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.exms-course-structure {
+    width: 30%;
+    height: 260px;
+    border: 1px solid #E4E3E4;
+    border-radius: 13px;
+    padding: 0;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    overflow: hidden;
+}
+
+.exms-course-structure:nth-child(4),
+.exms-course-structure:nth-child(5), 
+.exms-course-structure:nth-child(6) {
+    margin-top: 20px;
+}
+
+.exms-course-structure.active {
+    border-color: #552CA8;
+}
+
+.exms-course-structure h4 {
+    padding: 14px 12px 12px 12px;
+}
+
+.exms-course-structure-heading {
+    border-bottom: 1px solid #E4E3E4;
+    height: 50px;
+    padding: 0 14px 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exms-course-structure-heading span {
+    color: #552CA8;
+}
+
+.exms-course-structure-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding: 6px 12px;
+    max-height: 190px;
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #552CA8 transparent;
+}
+
+.exms-course-structure-steps::-webkit-scrollbar {
+    width: 6px;
+}
+
+.exms-course-structure-steps::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.exms-course-structure-steps::-webkit-scrollbar-thumb {
+    background-color: #552CA8;
+    border-radius: 6px;
+}
+
+.exms-course-structure-steps:has(:not(:last-child)) {
+    overflow-y: auto;
+}
+
+.exms-course-structure-steps p {
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 5px 0;
+    background-color: #D9DDFD6B;
+    color: #552CA8;
+}
+
+.exms-course-structure-steps p:nth-child(1) {
+    width: 90%;
+}
+
+.exms-course-structure-steps p:nth-child(2) {
+    width: 80%;
+}
+
+.exms-course-structure-steps p:nth-child(3) {
+    width: 70%;
+}
+
+.exms-course-structure-steps p:nth-child(4) {
+    width: 60%;
+}
+
+
+.exms-setup-p1,
+.exms-setup-p3,
+.exms-setup-p4,
+.exms-setup-p5 {
+    display: none;
+}
+
+.exms-setup-p2 {
+    display: none;
+}
+
+.exms-setup-license .exms-lets-start {
+    font-size: 24px;
+    /*margin-top: 6%;*/
+}
+
+.exms-setup-label {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.exms-license-desc {
+    padding-top: 2%;
+}
+
+.exms-setup-license-form .exms-input-wrap {
+    padding: 2% 0;
+}
+
+.exms-setup-license-form .exms-form-label {
+    display: block;
+    font-weight: 600;
+    padding: 2% 0;
+    color: #000000;
+    font-size: 14px;
+}
+
+.exms-setup-license-form .exms-email-input,
+.exms-setup-license-form .exms-license-input {
+    width: 100%;
+    border: unset;
+    outline: 1px solid #d4d4d4;
+    border-radius: unset;
+}
+
+.exms-content-wrapper .wp-person a:focus .gravatar, 
+.exms-content-wrapper a:focus, 
+.exms-content-wrapper a:focus .media-icon img, 
+.exms-content-wrapper a:focus .plugin-icon {
+    box-shadow: none;
+    outline: none;
+}
+
+.exms-validate-msg {
+    font-weight: 600;
+    color: #e41d1d;
+    padding-top: 8px;
+}
+
+.exms-form-footer {
+    margin: 0 4% 4% 2%;
+    display: none;
+}
+
+/**** Step 1 - setup course parent div  ****/
+.exms-structure-heading {
+    font-weight: 600;
+    font-size: 20px;
+    margin-bottom: 6%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exms-structure-heading h2 {
+    font-size: 20px;
+}
+
+.exms-structure-button {
+    background-color: #fff;
+    border: 1px solid #D9D9D9;
+    font-size: 15px;
+    padding: 10px 18px;
+    color: #552CA8;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.exms-structure-button:hover {
+    color: #552CA8;
+}
+.exms-back-next-wrap {
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: -70px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    border-top: 1px solid #E4E3E4;
+}
+
+.exms-step-button-child {
+    width: 80%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+}
+
+/* Styling for buttons inside the footer */
+.exms-form-footer .exms-back-setup-wrap,
+.exms-form-footer .exms-next-setup-wrap,
+.exms-form-footer .exms-finish-setup-wrap,
+.exms-form-footer .exms-skip-setup-wrap {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 8px 15px;
+    border-radius: 5px;
+}
+
+.exms-form-footer .exms-back-setup-wrap {
+    flex: 1;
+    text-align: left;
+}
+
+/* Wrapper for next and skip to align them side by side */
+.exms-next-skip-wrap {
+    display: flex;
+    gap: 10px;
+    flex: 1;
+    justify-content: flex-end;
+}
+
+/* Hide the Finish button initially */
+#exms-finish-setup-wrap {
+    display: none;
+}
+
+.exms-form-footer .exms-next-setup-wrap, .exms-form-footer .exms-skip-setup-wrap, .exms-form-footer .exms-finish-setup-wrap {
+    float: right;
+}
+
+.exms-skip-setup-wrap {
+    top: 167px !important;
+    left: 60px !important;
+}
+
+.exms-flex-content-btn{
+    display: flex;
+    align-items: center;
+}
+
+.exms-flex-content-btn input {
+    text-decoration: none !important;
+}
+
+.exms-back-btn,
+.exms-next-setup-wrap {
+    padding: 10px 15px;
+    border: 1px solid #D9D9D9;
+    border-radius: 4px;
+    color: #552CA8;
+}
+
+.exms-back-btn input,
+.exms-skip-setup {
+    color: #552CA8 !important;
+}
+
+.exms-next-setup-wrap,
+.exms-finish-setup-wrap,
+.exms-finish-setup,
+.exms-next-setup {
+    background-color: #552CA8 !important;
+    color: #fff !important;
+}
+
+.exms-footer-pages {
+    display: flex;  
+    justify-content: center;
+    position: relative;
+}
+
+.exms-footer-pages > div:first-child {
+    margin-left: unset;
+}
+
+.exms-footer-pages > div {
+    position: relative;
+    margin-left: 160px;
+    z-index: 2;
+}
+
+.exms-progress-bar {
+    position: absolute;
+    width: 200px;
+    height: 8px;
+    border-bottom: 2.5px solid #EFF0F6;
+    left: 50%;
+    top: 14%;
+    transform: translate( 0, -50% );
+    z-index: -1;
+}
+
+.exms-form-pages {
+    width: 80%;
+    margin: 0 auto;
+    padding: 10px 0;
+}
+
+.exms-no {
+    padding: 5px 10px 5px 10px;
+    border-radius: 50%;
+    color: #000;
+    font-weight: bold;
+    margin-right: 6px;
+    background: #EFF0F6;
+}
+
+.exms-no-text {
+    display: block;
+    padding-top: 10px;
+    white-space: nowrap;
+    font-weight: 600;
+    color: #000;
+}
+
+.exms-create-post-wrap {
+    margin-top: 20px;
+    float: right;
+    margin-bottom: 20px;
+}
+
+.exms-post-add-new {
+    width: 20%;
+    border-radius: 5px;
+    color: #ffffff;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    padding: 6px;
+    background: #552CA8;
+    text-decoration: none;
+    font-size: 16px;
+}
+
+.exms-modalbox-add-new {
+    margin-right: 10px;
+    padding: 6px 18px;
+    font-size: 14px;
+}
+
+.exms-post-add-new>span {
+    color: #ffffff;
+}
+
+.exms-post-add-new:hover {
+    color: #ffffff;
+    background: #552CA8;
+}
+
+.exms-add-post-title-wrap {
+    margin: 0px 0 16px 32px;
+}
+
+.exms-add-post-title-wrap .exms-add-post-title-add,
+.exms-add-post-title-wrap .exms-add-post-title-remove {
+    width: 70px;
+    height: 35px;
+    padding: 5px 0;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 5px;
+}
+
+.exms-add-post-title-wrap .exms-add-post-title-remove {
+    background: #fff;
+    color: #552CA8;
+}
+
+.exms-add-post-title-wrap .exms-add-post-title-add {
+    background: #552CA8;
+    color: #fff;
+}
+
+.exms-add-post-title-wrap .exms-add-post-title-input {
+    width: 70%;
+    height: 40px;
+    border: unset;
+    outline: 1px solid #D9DDFD;
+}
+
+.exms-post-margin {
+    margin-left: 4px;
+    margin-top: 8px;
+}
+
+.exms_settings_wrapper .exms-post-types-html {
+    width: 86%;
+    margin: 4% auto;
+}
+
+.jconfirm-holder {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 350px;
+    transform: translate(-50%, -50%);
+}
+
+.jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
+    overflow: unset !important;
+}
+
+.exms-post-types-exists {
+    padding: 10px 20px 10px 20px;
+    cursor: pointer;
+}
+
+.exms-post-types-exists:hover {
+    box-shadow: 2px 1px 4px #f1f1f1;
+}
+
+.exms-setup-created-post-types .exms-post-type-list-wrap {
+    margin: 5px 0;
+    padding: 10px 15px;
+    cursor: pointer;
+    border: 1px solid #D9D9D9;
+}
+
+.exms-setup-created-post-types .exms-post-type-list {
+    display: flex;
+    align-items: center;
+    justify-content: normal;
+}
+
+.exms-post-type-name {
+    font-weight: 600;
+    width: 100%;
+}
+
+.exms-post-type-edit {
+    margin-right: 16px;
+    cursor: pointer;
+    color: #553EA6;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.exms-post-type-delete {
+    cursor: pointer;
+    color: #E01616;
+    font-weight: 600;
+    margin-right: 20px;
+}
+
+.exms-post-type-edit:hover,
+.exms-post-type-delete:hover  {
+    text-decoration: none;
+}
+
+.exms-post-type-expand {
+    box-shadow: 0 4px 18px 0 #00000021;
+    border-radius: 50%;
+    padding: 6px;
+}
+
+.exms-setup-hidden {
+    display: none;
+}
+
+.exms-post-type-edit-wrap .exms-inline-post-type-input {
+    border: unset;
+    outline: 1px solid #d4d4d4;
+    border-radius: 2px;
+    width: 70%;
+}
+
+.exms-post-type-edit-wrap .exms-inline-save-post-type,
+.exms-post-type-edit-wrap .exms-inline-cancel-post-type {
+    padding: 4px;
+    border-radius: 4px;
+    width: 56px;
+    cursor: pointer;
+    margin: unset;
+    font-weight: lighter;
+}
+
+.exms-post-type-edit-wrap .exms-inline-save-post-type {
+    background: #2271b1;
+    color: #ffffff;
+    border: 1px solid #2271b1;
+    margin: 0 10px;
+}
+
+.exms-post-type-edit-wrap .exms-inline-cancel-post-type {
+    background: #d4d4d4;
+    color: #000000;
+    border: 1px solid #a5a2a2;
+}
+
+/* ============ style page 3 ===============  */
+.exms-setup-payment {
+    border: 1px solid #D9DDFD; 
+    box-shadow: none; 
+    overflow: hidden;  
+    padding: 40px 50px;
+    width: 88%;
+    height: 305px;
+}
+
+.exms-payment-setup {
+    border: 1px solid #D9D9D9;
+    border-radius: 10px;
+    padding: 10px 20px;
+    display: flex;
+    margin: 15px 0;
+    justify-content: space-between;
+    align-items: center;
+    width: 94%;
+}
+
+.exms-payment-setup-child img {
+    width: 70px;
+}
+
+.exms-payment-setup-child p {
+    font-size: 15px;
+    color: #000;
+}
+
+.exms-paypal-button,
+.exms-stripe-button {
+    color: #552CA8 !important;
+    border: 1px solid #D9D9D9;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.exms-setup-wizard-stripe {
+    display: none;
+}
+.exms-setup-wizard-paypal .exms-setting-lable,
+.exms-setup-wizard-stripe .exms-setting-lable {
+    padding-left: 0;
+}
+
+/* ============ style page 3 ===============  */
+
+/* ============ style page settings ========= */
+.exms-setup-settings {
+    border: 1px solid #D9DDFD; 
+    box-shadow: none;
+    padding: 10px 15px;
+    color: #000;
+    height: 365px;
+}
+
+.exms-general-setting-option {
+    padding: 5px 0;
+}
+
+.exms-general-setting-option2 {
+    padding: 5px 0;
+    line-height: 2;
+}
+
+.exms-info {
+    color: #525252;
+    font-size: 13px;
+}
+
+.dashicons-info {
+    color: #525252;
+    font-size: 16px;
+}
+.exms-info .dashicons-info {
+    padding: 6px 0 0 0
+}
+
+.exms-dashboard-page-setting {
+    line-height: 2;
+}
+
+.exms-dashboard-page-setting select {
+    width: 100%;
+    height: 50px;
+    padding: 10px 15px;
+    font-size: 15px;
+    color: #666666;
+    border: 1px solid #D9D9D9;
+}
+/* ============ style page settings ========= */
+
+/* ============ style page labels ========= */
+.exms-setup-label {
+    border: 1px solid #D9DDFD; 
+    box-shadow: none;
+    padding: 10px 15px;
+    width: 96%;
+}
+/* ============ style page labels ========= */
+
+/* Course structure for backend */
+.exms-course-structures-wrap {
+    width: 86%;
+    margin: auto;
+    padding: 20px 0 40px 0;
+}
+.exms-course-structures-wrap .exms-structure-heading {
+    margin: 1% auto 2% auto;
+}
+.exms-course-structures-wrap .exms-post-types-html {
+    margin: auto;
+    width: 100%;
+}
+
+/* Course structure for backend */
+
+/** Add swich checkbox style */ 
+.exms-setup-report {
+    border: 1px solid #D9DDFD; 
+    box-shadow: none;
+    padding: 35px;
+    width: 92%;
+    position: relative;
+    height: 320px;
+}
+
+.exms-trake-code-option {
+    position: absolute;
+    top: 18px;
+    right: 18%;
+}
+
+.switch input,
+.wpeq-checkbox {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+/* Label & Description */
+.exms-track-desc {
+    font-weight: 600;
+    font-size: 15px;
+    margin-bottom: 10px;
+    padding-right: 60px;
+}
+
+.exms-track-note {
+    font-style: italic;
+    font-size: 14px;
+    color: #525252;
+    line-height: 1.6;
+    margin-top: 0;
+    padding: 10px 0;
+}
+
+.exms-track-note .dashicons {
+    font-size: 16px;
+    color: #525252;
+    vertical-align: middle;
+    margin-right: 6px;
+}
+/** End swich checkbox style */
+
+/* ======= Modalbox template styling ======== */
+#exms-payment-modal,
+#exms-course-structure-modal,
+#exms-edit-course-structure-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #553EA638;
+    z-index: 1100;
+}
+
+#exms-payment-modal-form,
+#exms-course-structure-modal-form,
+#exms-edit-course-structure-modal-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #fff;
+    border-radius: 8px;
+    max-width: 400px;
+    width: 90%;
+}
+
+#exms-payment-modal-form,
+#exms-course-structure-modal-form,
+#exms-edit-course-structure-modal-form {
+    max-width: 600px;
+    width: 90%;
+    max-height: 80%;
+    overflow-y: auto;
+}
+
+.payment-heading,
+.course-structure-heading {
+    border-bottom: 1px solid #D9DDFD;
+    padding: 0 30px;
+}
+
+#exms-payment-modal-form h2,
+#exms-course-structure-modal-form h2,
+#exms-edit-course-structure-modal-form h2 {
+    font-size: 20px;
+}
+
+#exms-payment-modal-form p,
+#exms-course-structure-modal-form p,
+#exms-edit-course-structure-modal-form p {
+    margin-bottom: 15px;
+}
+
+#exms-payment-close-btn,
+#exms-course-structure-close-btn,
+#exms-edit-course-structure-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    color: #000;
+    font-weight: 500;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+/* ======= Payment integration settings styling ======= */
+.exms-settings-row-child {
+    display: flex;
+    flex-direction: column;
+}
+
+.exms-settings-row-child,
+.exms-settings-row-child2 {
+    padding: 0 20px;
+}
+
+.exms-payment-update-button {
+    padding: 15px 30px;
+    border-top: 1px solid #e4e4e4;
+    display: flex;
+    justify-content: flex-end;
+    position: sticky;
+    bottom: 0;
+    background: #fff;
+}
+
+.exms-payment-update-button button {
+    background-color: #552CA8;
+    color: #fff;
+    padding: 8px 16px;
+    border-radius: 3px;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.exms-success-messages {
+    display: none;
+    position: fixed;
+    top: 20px;
+    right: 10px;
+    background-color: red;
+    z-index: 1111;
+    color: #fff;
+    background: #55C;
+    padding: 10px 25px;
+    border-radius: 3px;
+}
+
+.exms-success-close {
+    margin-right: 10px;
+    border: 1px solid #fff;
+    padding: 5px 11px 7px 10px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.exms-save-button {
+    padding: 0 25px;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.exms-save-button a {
+    margin: 1em 0;
+    padding: 5px 18px;
+    border-radius: 4px;
+    border: none;
+    outline: none;
+    border: 1px solid #D9D9D9;
+    background-color: #fff;  
+    text-decoration: none;  
+    color: #525252;
+}
+
+.exms-edit-structure-steps-name {
+    padding: 20px 70px 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.exms-edit-structure-steps-name input {
+    border: 1px solid #E4E3E4;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #525252;
+}
+
+.exms-save-structure-steps-name {
+    position: sticky;
+    bottom: 10px;
+    display: flex;
+    justify-content: flex-end;
+    padding: 6px 30px;
+    background-color: #fff;
+}
+
+.exms-save-structure-steps-name a {
+    text-decoration: none;
+    color: #525252;
+    border: 1px solid #E4E3E4;
+    padding: 6px 16px;
+    border-radius: 4px;
+}
+
+.exms-custom-post-type-name-input {
+    border: 1px solid #E4E3E4 !important;
+    padding: 6px 12px;
+    border-radius: 4px;
+    color: #525252; 
+    width: -webkit-fill-available; 
+    margin: 3px 12px;
+    height: 40px;
+}
+
+.exms-load::before {
+  content: "\f463";
+  font-family: "Dashicons";
+  display: inline-block;
+  animation: exms-spin 1s linear infinite;
+  transform: scaleX(-1);
+}
+
+.exms-load {
+  font-size: 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@keyframes exms-spin {
+  0% { transform: scaleX(-1) rotate(0deg); }
+  100% { transform: scaleX(-1) rotate(-360deg); }
+}
+
+.exms-success-message {
+  display: none;
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+  padding: 15px 20px;
+  margin-bottom: 15px;
+  border-radius: 4px;
+  position: absolute;
+  right: 16px;
+  top: 10px;
+  font-size: 14px;
+  width: 88%;
+  text-align: center;
+  animation: slideDownFade 0.4s ease-out;
+}
+
+.exms-success-message .close-btn {
+    position: absolute;
+    right: 10px;
+    top: 50%;
+    font-size: 22px;
+    border-radius: 50%;
+    background-color: red;
+    transform: translateY(-50%);
+    cursor: pointer;
+    padding: 6px 8px 6px 8px;
+    font-weight: bold;
+    color: #fff;
+}
+
+@keyframes slideDownFade {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.exms-inline-edit-step {
+    margin-bottom: 6px !important; 
+    display: block !important;
+}
+
+.step-edit-buttons {
+    margin-top: 10px;
+}
+
+.save-step-changes {
+    background-color: #552CA8 !important;
+    color: #fff !important;
+    border: none !important;
+}
+
+.delete-custom-structure {
+    color: rgb(255, 0, 0) !important;
+}
+
+/****************** Next button loader on setup wizard when ajax runs ******************/
+.exms-flex-content-btn.loading .dashicons-arrow-right-alt {
+	display: none;
+}
+
+.exms-flex-content-btn.loading::after,
+.exms-update-button.loading::after {
+	content: "\f463";
+	font-family: "Dashicons";
+	display: inline-block;
+	animation: spin 1s linear infinite;
+	margin-left: 10px;
+	font-size: 18px;
+	vertical-align: middle;
+}
+
+.exms-flex-content-btn.loading,
+.exms-update-button.loading {
+	pointer-events: none;
+	opacity: 0.7;
+}
+
+@keyframes spin {
+	from { transform: rotate(0deg); }
+	to   { transform: rotate(360deg); }
+}

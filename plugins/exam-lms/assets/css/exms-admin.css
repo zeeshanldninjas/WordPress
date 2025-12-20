@@ -1,0 +1,895 @@
+.toplevel_page_exms_menu .wp-submenu li a[href="admin.php?page=exms_user_report"],
+.toplevel_page_exms_menu .wp-submenu li a[href="admin.php?page=exms_quiz_report"],
+.toplevel_page_exms_menu .wp-submenu li a[href="admin.php?page=exms-setup-wizard"] {
+    display: none !important;
+}
+.filter-show {
+    display: inline-block;
+} 
+.exms-info {
+    padding: 3px 0;
+    display: flex;
+    align-items: center;
+}
+.exms-instruction-message {
+    margin: 0;
+    padding: 4px 0;
+    color: #595959;
+    font-weight: 400;
+}
+
+.exms-disbaled-message {
+    display: none;
+}
+
+div.exms-instruction-message {
+    display: flex;
+    align-items: center;
+    background-color: #D9DDFD6B;
+    border-left: 4px solid #552CA8;
+    padding: 10px 12px;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+div.exms-instruction-message .exms-instruction-icon {
+    display: flex;
+    flex-direction: column;
+    padding: 0 8px 0 0;
+    color: #552CA8;
+}
+div.exms-instruction-message .exms-instruction-text p {
+    margin: 0;
+}
+.exms-row {
+    padding: 10px 0px;
+    align-items: flex-start;
+}
+.exms-logo {
+    margin: 20px 0;
+}
+.exms-25 {
+    width: 25%;
+}
+.exms-50 {
+    width: 50%;
+}
+.exms-100 {
+    width: 100%;
+}
+.exms-quiz-settings-row {
+    padding: 14px 22px 15px 22px; 
+}
+.exms-payment-settings-row {
+    padding: 14px 22px 0px 22px;  
+}
+.exms-question-settings-row {
+    display: flex;
+    flex-direction: column;
+    padding: 14px 22px 15px 22px; 
+}
+.exms-title {
+    width: 100%;
+    font-weight: bold;
+}
+.exms-data {
+    width: 70%;
+    padding: 12px 0;
+}
+.exms-quiz-message-content {
+    width: 100%;
+}
+.timer-div {
+    padding: 12px 0 0 0;
+}
+.exms-label-padding {
+    padding: 5px;
+}
+.exms-timer-icon {
+    vertical-align: middle;
+}
+input[type=date], 
+input[type=datetime-local], 
+input[type=datetime], 
+input[type=email], 
+input[type=month], 
+input[type=number], 
+input[type=password],
+input[type=tel],
+input[type=text], 
+input[type=time], 
+input[type=url], 
+input[type=week],
+select.exms-reattempts-quiz-opts,
+select.exms-question-display-option,
+select.exms-points-dropdown,
+select.exms-question-result-summary {
+    padding: 8px;
+    line-height: 2;
+    min-height: 30px;
+    width: 100%;
+    border: 1px solid #DCE2E7;
+    border-radius: 5px;
+    margin: 0;
+}
+
+.exms-search-box {
+    padding: 0 8px !important;
+    line-height: 2 !important;
+    min-height: 30px !important;
+    width: auto !important;
+    background-color: transparent !important;
+    border:1px solid #8c8f94 !important;
+}
+input[type="number"]:focus {
+    border: none;
+    outline: none;
+    box-shadow: none;
+}
+.exms-question-settings-row input[type=date], 
+.exms-question-settings-row input[type=datetime-local], 
+.exms-question-settings-row input[type=datetime], 
+.exms-question-settings-row input[type=email], 
+.exms-question-settings-row input[type=month], 
+.exms-question-settings-row .exms-question-point, 
+.exms-question-settings-row input[type=password], 
+.exms-question-settings-row input[type=search], 
+.exms-question-settings-row input[type=tel],
+.exms-question-settings-row input[type=text], 
+.exms-question-settings-row input[type=time], 
+.exms-question-settings-row input[type=url], 
+.exms-question-settings-row input[type=week],
+.exms-question-settings-row select {
+    padding: 8px;
+    line-height: 2;
+    min-height: 30px;
+    width: 60%;
+    border: 1px solid #DCE2E7;
+    border-radius: 5px;
+    margin: 0;
+}
+.exms-question-settings-row #wp-exms_hint-wrap,
+.exms-question-settings-row #wp-exms_corr_ans_msg-wrap,
+.exms-question-settings-row .exms-time-input,
+.exms-question-settings-row #wp-exms_incorr_ans_msg-wrap {
+    padding: 8px;
+    line-height: 2;
+    min-height: 30px;
+    width: 60%;
+    border-radius: 5px;
+    margin: 0;
+    border: none;
+}
+.exms-question-settings-row .exms-timer-row{
+    line-height: 2;
+    min-height: 30px;
+    width: 60%;
+    border-radius: 5px;
+    margin: 0;
+    border: none;
+    outline: none;
+}
+table.wpeq-ques-timer-table {
+    display: none;
+    position: absolute;
+    margin-left: 100px;
+    background: #fff;
+    padding: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    z-index: 100;
+}
+td.wpeq-ques-sel-timer-value {
+    font-size: 15px;
+    font-weight: 700;
+}
+td.wpeq-ques-timer-button-td {
+    text-align: end; 
+}
+
+.exms-quiz-price-row,
+.exms-quiz-subs-row,
+.p-deduct-on-failing,
+.p-deduct-on-wrg-answer,
+.exms-quiz-points-deduct-row,
+.exms-quiz-points-wrong-answer-row,
+.exms-question-points-row,
+.div_reattps_opts,
+.exms-reattempt-row,
+.exms-filter-dates,
+.exms-quiz-close-row,
+.exms-price-row,
+.exms-subs-row,
+.exms-close-row {
+    display: none;  
+}
+.exms-reattempts-quiz-opts, 
+.exms-reattempts-number,
+.exms_reattempt_type_value,
+.exms_points_duducts_f,
+.exms_points_duducts_wrng,
+.exms-quiz-price-field,
+.exms-quiz-close-field {
+    height: 40px;
+    width: 190px;
+/*    margin-left: 40px;*/
+}
+.exms_quiz_points,
+.exms-points-dropdown,
+.exms-price-field,
+.exms-subscription-field {
+    height: 40px;
+    width: 190px;   
+}
+.exms-main-field,
+.wpeq-question-type-dropdown,
+.exms-question-point,
+.exms-question-display-option {
+    width: 230px;
+    height: 40px;
+}
+.wpeq-question-type-dropdown,
+.exms-question-point {
+    margin-left: 11px;
+}
+.exms-timer-row {
+    margin-bottom: 10px;
+}
+.exms-taxonomy-iframe {
+    width: 100%;
+    height: 1000px;
+    z-index: 10;
+    position: relative;
+}
+.exms-ajax-loader {
+    width: 30px;
+    position: absolute;
+    left: 50%;
+    top: 30%;
+    transform: translate( -50%, -50% );
+}
+.exms-selector-main {
+    display: flex;
+    justify-content: space-around;
+    margin: 20px 0px;
+}
+.exms-selector-row {
+    padding: 5px;
+    cursor: pointer;
+    margin: 5px;
+    box-shadow: 1px 1px 6px 2px #cccc;
+    max-height: 20px;
+}
+.exms-unassigned-box,
+.exms-assigned-box {
+    width: 40%;
+    box-shadow: 0px 0px 2px 1px #ccc;
+    display: flex;
+    padding: 10px;
+    border-radius: 5px;
+    flex-wrap: wrap;
+    max-height: 100px;
+    overflow-y: scroll;
+    position: relative;
+}
+.exms-assign-icon {
+    font-size: 16px;
+    vertical-align: middle;
+}
+.exms-selector-main h2 {
+    width: 10%;
+}
+.exms-assign-error {
+    background: #b13333;
+    color: white;
+    box-shadow: none;
+}
+.exms-set-setting-image,
+.exms-remove-image {
+    border: unset;
+    background: unset;
+    color: #135e96;
+    cursor: pointer;
+    text-align: left;
+    margin-top: 15px;
+    text-decoration: underline;
+}
+.exms-save-image-value img {
+    max-height: 250px;
+    width: 100%;
+}
+.exms-ptype-wrapper {
+    background: white;
+    width: 200px;
+    padding-bottom: 14px;
+    display: inline-flex;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+.exms-ptype-wrapper .exms-point-type-box {
+    padding-left: 15px;
+    padding-top: 5px;
+}
+.exms-profile-point-toggle {
+    cursor: pointer;
+    color: blue;
+    font-size: 15px;
+    margin-left: 140px;
+}
+.exms-profile-point-toggle:hover {
+    text-decoration: underline;
+}
+.exms-new-balance{
+    display: none;
+    padding: 0 15px 0 0;
+}
+.exms-new-balance .exms-balance-title{
+    font-size: 16px;
+    font-weight: 600;
+    padding: 10px 0;
+}
+.exms-balance {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+    padding-top: 6px;
+}
+.exms-thumbnail-img {
+    height: 32px;
+    width: 32px;
+    padding-right: 8px;
+}
+.new-balance-save {
+    margin-top: 13px;
+}
+.point-balances {
+    float: left;
+    width: 205px;
+}
+.exms-exams-logo {
+    margin-top: 30px;
+}
+.exms-ep-logo {
+    font-size: 25px;
+}
+.exms-ep-title {
+    position: relative;
+    left: 1%;
+    font-weight: 500;
+    font-size: 16px;
+}
+.exms-filter-report-field {
+    width: 250px;
+    max-width: 250px;
+}
+
+.exms-seach-form {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.exms-filters-fields {
+    display: flex;
+    gap: 5px;
+    flex-wrap: wrap;
+    flex-direction: column;
+}
+
+.exms-filters-fields select,
+.exms-filters-fields input[type="date"],
+.exms-hierarchy-field select,
+.exms-course-hierarchy-field select,
+.exms-date-field input[type="date"] {
+    padding: 5px;
+    width: 200px;
+    max-width: 200px;
+    box-sizing: border-box;
+    border: 1px solid #8c8f94;
+}
+
+.exms-filter-btn {
+    color: #fff;
+    background-color: #552CA8;
+    border: none;
+    outline: none;
+    padding: 11px 24px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.exms-filter-field {
+    border-bottom: 1px solid #ECEDF0;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.exms-dynamic-field {
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+
+.exms-course-hierarchy-field,
+.exms-hierarchy-field,
+.exms-date-field,
+.exms-custom-date-field {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+    align-items: center;
+}
+.exms-custom-date-field {
+    gap: 5px;
+}
+
+.exms-custom-date-field input {
+    width: 285px !important;
+    padding: 5px;
+    box-sizing: border-box;
+    border: 1px solid #8c8f94;
+}
+
+.exms-course-hierarchy-field select,
+.exms-hierarchy-field select {
+    width: 200px;
+}
+
+span.select2-selection {
+    /*height: 40px;*/
+}
+.enable-info{
+    margin-top: -21px;
+    margin-left: 14%;
+}
+.exms-seach-form input[type="date"] {
+    padding: 4px 5px;
+    margin: 2px 0;  
+}
+.exms-main-error {
+    text-align: center;
+    font-size: 25px;
+    margin-top: 50px;
+}
+
+.exms-quiz-chart {
+    max-height: 400px;
+    max-width: 400px;
+}
+.exms-admin-q-row {
+    justify-content: space-between;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+.exms-report-data-table {
+    width: 99%;
+}
+.exms-transaction-data-table {
+    padding: 0 30px;
+}
+#wpedatafetch {
+    border: 1px solid #d4d4d4;
+    position: absolute;
+    z-index: 1080;
+    max-width: 228px;
+    background: #ffffff;
+    max-height: 100px;
+    overflow-y: auto;
+}
+.exms-tags-search-result {
+    cursor: pointer;
+    list-style: none;
+    width: 228px;
+    max-width: 228px;
+    margin: 5px 0;
+}
+.exms-tags-search-result li {
+    margin: 0;
+    cursor: pointer;
+    padding-left: 10px;
+}
+.exms-tags-search-result li:hover {
+    background: #2271b1;
+    color: #ffffff;
+}
+.exms-search-tags {
+    position: relative;
+    top: 4px;
+}
+.exms-tags {
+    list-style: none;
+    background: #e5e5e5;
+    padding: 10px;
+    border-radius: 16%;
+    white-space: nowrap;
+    margin-left: 5px;
+    position: relative;
+    cursor: pointer;
+    line-height: 3;
+}
+.exms-attachement-loader {
+    display: none;
+    vertical-align: middle;
+}
+.exms-tags::after {
+    content: 'x';
+    color: #222222;
+    font-weight: 600;
+    font-size: 18px;
+    position: absolute;
+    top: -25px;
+    right: 0px;
+}
+.exms-assign-icon2 {
+    cursor: pointer;
+    position: absolute;
+    right: 4px;
+    top: 0;
+    transform: rotate( 90deg );
+}
+.exms-assign-animation {
+    animation: wpeMove 0.3s;
+    animation-iteration-count: infinite;
+}
+@keyframes wpeMove {
+    
+    from {
+        transform: rotate( 90deg );
+    }
+    to {
+        transform: rotate( 250deg );
+    }
+}
+.exms-link-icon {
+    vertical-align: sub;
+}
+.exms-spinner-loader {
+    z-index: 1;
+}
+.exms-badge-box {
+    text-align: center;
+    width: 100%;
+}
+.exms-badge-image {
+    height: 80px;
+    width: 120px;
+}
+.exms-badge-box img {
+    height: 80px;
+}
+.exms-badges-wrapper {
+    background: white;
+    width: 120px;
+    padding: 5px 0px;
+    display: inline-block;
+    margin-right: 5px;
+    margin-top: 5px;
+}
+.form-control .exms-select2 {
+    width: 200px !important;
+    padding: 0 !important;
+}
+.select2-search, .select2-search--inline {
+    margin: 0 !important;
+}
+
+.exms-show,
+.exms-quiz-reattempt-row,
+.exms-quiz-points-row,
+.exms-display-content,
+.exms-quiz-points-rows {
+    display: block;
+}
+.exms-hide {
+    display: none;
+}
+
+/******* quiz and parent post tab settings css *******/
+.exms-setting-tab-wrapper{
+    padding: 10px 5px;
+    height: auto;
+    min-height: 350px;
+}
+.exms-group-setting-tab-wrapper{
+    padding: 10px 5px;
+}
+.exms-tab-button {
+    width: 20%;
+    margin: 20px 0 20px 20px;
+    float: left;
+}
+.exms-tab-title {
+    width: 100%;
+    margin: 2px 0;
+    background: #fff;
+    padding: 14px;
+    cursor: pointer;
+    border: unset;
+    border-radius: 4px;
+    text-align: left;
+    overflow: hidden;
+}
+.exms-icon {
+    padding-right: 10px;
+}
+.exms-active-tab {
+    background: #D9DDFD40;
+    border-left: 4px solid #552CA8;
+}
+.exms-tab-content {
+    margin-left: 24%;
+    border: 1px solid #D1D9E0;
+    border-radius: 7px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+}
+.exms-quiz-setting-content,
+.exms-quiz-achievement-content,
+.exms-quiz-message-content,
+.exms-quiz-result-content,
+.exms-course-video-content,
+.exms-progress-type-content {
+    display: none; 
+}
+.exms-sub-title {
+    padding: 10px 0;
+    font-weight: bold;
+}
+.exms-row .exms-remove-padding {
+    padding: 10px 0;
+}
+.exms-sub-info {
+    padding: 10px 0;
+}
+.wpeq-sel-time-btn {
+    height: 40px;
+}
+.exms-add-certificate {
+    border: unset;
+    outline: 1px solid #d4d4d4;
+    padding: 4px 10px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+/** end quiz tab css **/
+
+
+/************* Point type metabox css ****************/
+.exms-point-type-lable {
+    font-weight: 600;
+    width: 130px;
+    display: inline-block;
+}
+.exms-point-type-rows {
+    padding: 20px 0 20px 12px;
+    font-size: 14px;
+    border-bottom: 1px solid #d4d4d4;
+}
+.exms-point-type-rows.exms-remove-border {
+    border-bottom: unset;
+}
+.exms-point-type-input {
+    width: 40%;
+}
+/************* Point type metabox css ****************/
+
+/* Payement Transaction */
+.exms-delete-transaction,
+.exms-delete-certificate,
+.exms-certificate-repeater span {
+    cursor: pointer;
+}
+
+/* Payement Transaction */
+
+/** certificate css **/
+.exms-certificates {
+    width: 79%;
+    height: 42px;
+}
+.exms-certificate-repeater {
+    margin: 10px 10px 10px 0;
+}
+.exms-certificate-repeater span{
+    margin: 11px 0 0 2px;
+    color: red;
+}
+.exms-cert-img {
+    float: left;
+    width: 25%;
+    text-align: center;
+    cursor: pointer;
+}
+.exms-cert-img img{
+    width: 90% !important;
+    margin-top: 8px;
+}
+.exms-updated-dertificate {
+    background-color: lightgray;
+}
+.exms-certificate-design-row {
+    margin-top: 10px;
+}
+.exms-certificate-design-row textarea {
+    width: 400px;
+    margin-left: 10px;
+}
+.exms-certificate-title {
+    margin-top: 20px;
+}
+/*** pdf template design ****/
+#exms-pdf-template-wrap {
+    margin: 0 auto;
+    text-align: center;
+    background-size: 100% 100%;
+}
+.exms-pdf-content {
+    font-size: 15px;
+    font-family: 'Roboto';
+    padding: 50px 40px 0 40px;
+}
+.exms-pdf-title {
+    font-size: 24px;
+    padding: 3px;
+    font-family: fantasy;
+}
+.exms-pdf-iner-title {
+    font-size: 20px;
+    padding: 1px;
+    font-family: fantasy;
+}
+.exms-pdf-user-name {
+    font-size: 25px;
+    padding: 5px;
+    font-family: 'dashicons';
+}
+#exms-pdf-template-wrap {
+    display: none;
+}
+.exms-pdf-date img{
+    width: 80px;
+}
+/*** end pdf template design ****/
+
+/* Admin course progress detail */
+.exms-progress-post-wrap.exms-progress-wrap-padding {
+    padding: 4px 16px;
+    display: none;
+}
+.exms-progress-post-check {
+    display: none;
+}
+.exms-progress-post-title {
+    font-weight: 600;
+    font-size: 14px;
+    width: 210px;
+}
+.exms-progress-post-wrap .exms-remove-child-style {
+    font-weight: unset;
+}
+.exms-progress-post-wrap .exms-progress-icon {
+    padding-right: 4px;
+    cursor: pointer;
+    position: relative;
+    top: 2px;
+}
+.exms-progress-content {
+    padding: 2px 0px;
+}
+.exms-progress-detail-wrap .exms-progress-detail,
+.exms-progress-detail-wrap .exms-progress-title {
+    background: unset;
+    border: unset;
+    color: #2271b1;
+    font-weight: 600;
+    text-decoration: underline;
+    cursor: pointer;
+}
+.exms-progress-detail-wrap .exms-progress-title {
+    display: inline-block;
+    width: 100px;
+}
+.exms-progress-post-wrap .exms-progress-detail {
+    width: unset;
+}
+.exms-progress-edit-wrap {
+    font-weight: 600;
+}
+
+/* end Admin course progress detail */
+
+.exms-certificate-design-row .exms-title-input,
+.exms-certificate-design-row .exms-name-input {
+    width: 400px;
+    margin-left: 10px;
+    height: 50px;
+    border: unset;
+    border: 1px solid #d4d4d4;
+    margin-top: 8px;
+}
+.exms-certificate-remove {
+    color: red;
+    float: right;
+    cursor: pointer;
+}
+.exms-certificate-btn {
+    margin: 30px 0 10px 10px;
+}
+.exms-t-f-size,
+.exms-u-f-size {
+    width: 70px;
+    margin-top: 8px;
+}
+.exms-pdf-page-size,
+.exms-pdf-orientation {
+    width: 235px;
+    height: 41px;
+    border: unset;
+    outline: 1px solid #d4d4d4;
+}
+.exms-certificate-sign-wrap {
+    width: 37%;
+}
+/****************************Frontend blocks********************************/
+
+
+/****************************End Frontend blocks********************************/
+
+.exms-notice-error, .exms-notice-success {
+    padding: 10px 15px;
+    margin: 10px 10px 0 0;
+    width: 96%;
+    background: var(--theme-white-color);
+    border: 1px solid #c3c4c7;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, .04);
+  }
+
+  .exms-notice-error {
+    background-color: #F0F0F1;
+  }
+  
+  .exms-notice-success, 
+  .exms-para-content {
+    display: none;
+  }
+  
+  .exms-notice-success {
+    border-left: 4px solid #00a32a;
+  }
+  .exms-notice-error {
+    border-left: 4px solid #ff0000;
+  }
+  
+  .exms-notice-error, .exms-notice-success {
+    font-size: 13px;
+  }
+
+  .exms-drag-icon {
+    font-size: 20px;
+    cursor: pointer;
+    user-select: none;
+    border: none;
+    outline: none;
+    background: none;
+    color: #552CA8;
+}
+
+.exms-post-title a {
+    text-decoration: underline;
+    outline: none;
+}
+
+.exms-img-parent {
+    display: flex;
+    align-items: center;
+}
+
+/*********** Select2 styling in reports settings ****************/
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    line-height: 38px !important;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    height: 38px !important;
+}

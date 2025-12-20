@@ -1,0 +1,221 @@
+.rating-stars {
+  display: table;
+  position: relative;
+  font-size: 30px;
+  color: #ccc; /* Empty star color */
+}
+
+.rating-stars::before {
+  content: '★★★★★';
+}
+
+.rating-stars .filled-stars {
+  position: absolute;
+  top: 0;
+  left: 0;
+  color: #f5c518; /* Filled star color */
+  overflow: hidden;
+  white-space: nowrap;
+  pointer-events: none;
+}
+.exms-course-users,
+.exms-course-lesson {
+  margin-top: 5px;
+}
+
+.progress-container {
+  width: 100%;
+  max-width: 90%;
+  background-color: #eee;
+  border-radius: 20px;
+  overflow: hidden;
+  height: 10px;
+  box-shadow: inset 0 0 5px rgba(0,0,0,0.1);
+}
+
+.progress-bar {
+  height: 100%;
+  background-color: #553c9a !important;
+  width: 75%;
+  transition: width 0.4s ease-in-out;
+}
+.exms-course-listing-main-wrapper {
+  margin: unset !important;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap !important;
+}
+.exms-course-listing-wrapper {
+  width: 28%;
+  margin-top: 10px;
+  border: 2px solid #e4e4e4;
+  border-radius: 12px;
+  margin-right: 4%;
+}
+.exms-course-listing-thumbnail,
+.exms-course-listing-main-wrapper {
+  width: 100%;
+}
+.exms-course-listing-thumbnail-wrapper{
+  overflow: hidden;
+  border-radius: 12px 12px 0 0;
+  height: 200px;
+  object-fit: cover;
+  background-color: #cccccc;
+}
+.rating-stars,
+.filled-stars,
+.course-part-wrapper,
+.course-title,
+.course-info {
+  padding: 10px !important;
+}
+
+.course-part-main-wrapper hr,
+.progress-container {
+  margin: 10px;
+}
+.course-lesson,
+.course-students {
+  font-size: 12px;
+}
+.course-part-wrapper,
+.course-info {
+  display: flex;
+  justify-content: space-between;
+}
+.exms-middle {
+  vertical-align: bottom;
+}
+.course-info {
+  padding-bottom: 10px;
+}
+/** search bar css **/
+.search-bar-wrapper {
+  max-width: 92%;
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+}
+
+.search-bar-container {
+  width: 400px;
+  display: flex;
+  border: 2px solid #6b46c1;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.search-bar-container input[type="text"] {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  font-size: 16px;
+  outline: none;
+}
+
+.search-bar-container button {
+  background-color: #6b46c1;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+.search-bar-container button:hover {
+  background-color: #553c9a;
+}
+/** end search bar css **/
+
+/** start pagination css **/
+.exms-course-listing-pagination {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+  max-width: 92%;
+  justify-content: flex-end;
+}
+
+.page-numbers {
+  padding: 8px 12px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+.page-numbers:hover {
+  background: #f2f2f2;
+}
+
+.page-numbers.current {
+  border: 2px solid #6b46c1;
+  color: #6b46c1;
+  font-weight: bold;
+}
+
+.page-numbers.disabled {
+  color: #aaa;
+  background: #f1f1f1;
+  pointer-events: none;
+  border-color: #ddd;
+}
+
+.page-numbers.dots {
+  pointer-events: none;
+  color: #888;
+}
+
+.course-assign{
+  color: #552CA8;
+  font-weight: 700;
+}
+
+.course-enroll-btn{
+  padding: 10px 15PX;
+  color: white;
+  border-radius: 5px;
+  background-color: #552CA8;
+  border: none;
+  outline: none;
+}
+/** end pagination css **/
+
+/** responsive design **/
+
+@media (max-width: 1000px) {
+  .exms-course-listing-wrapper {
+    width: 45%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 700px) {
+  .exms-course-listing-wrapper {
+    width: 100%;
+    margin-bottom: 10px;
+  }
+}
+
+@media (max-width: 460px) {
+
+  .search-bar-container input[type="text"] {
+    max-width: 73%;
+    min-width: 58%;
+  }
+
+  .search-bar-container button {
+    padding: 12px;
+  }
+}
+
+@media (min-width: 1000px) {
+  .exms-course-listing-main-wrapper {
+    flex-wrap: nowrap;
+  }
+}

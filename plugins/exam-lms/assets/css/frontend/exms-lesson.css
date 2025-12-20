@@ -1,0 +1,409 @@
+:root {
+  --primary-color: #552CA8;
+  --secondary-color: #f57224;
+  --accent-color: #f78000;
+  --border-color: #C0C5F3;
+  --light-bg: #fbfbff;
+  --light-border: #dfe1f8;
+  --gray-text: #333;
+  --progress-bg: #e0e0e0;
+  --badge-bg: #f0f0f0;
+  --color-white: #fff;
+  --border-radius: 12px;
+  --transition: all 0.3s ease;
+}
+.exms-legacy-step-wrapper a:focus,
+.exms-legacy-step-wrapper button:focus {
+  outline: unset !important;
+}
+.exms-legacy-step-wrapper {
+  margin: auto;
+  max-width: 1200px;
+  font-weight: 400;
+  padding: 40px 0;
+}
+
+.exms-legacy-step-title {
+  font-weight: 700;
+  text-align: left;
+  margin: 0 0 20px;
+  font-size: 28px;
+  color: var(--gray-text);
+}
+
+.exms-legacy-page-wrapper {
+  display: flex;
+}
+
+.exms-legacy-page-left {
+  flex: 0 0 68%;
+  margin-right: 25px;
+}
+
+.exms-legacy-page-right {
+  flex: 0 0 30%;
+}
+
+.exms-legacy-thumbnail-wrapper {
+  width: 100%;
+  height: auto;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.exms-legacy-thumbnail {
+  width: 100%;
+  display: block;
+  border-radius: 15px;
+  aspect-ratio: 16 / 9;
+}
+
+.exms-legacy-video-wrapper {
+    position: relative;
+    padding-bottom: 56.25%;
+    height: 0;
+    overflow: hidden;
+    max-width: 100%;
+}
+
+.exms-legacy-video-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+}
+.exms-legacy-info-tabs {
+  display: flex;
+  gap: 40px;
+  border-bottom: 2px solid var(--border-color);
+  margin: 30px 0 20px;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.exms-legacy-info-tabs button {
+  background: none;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 15px;
+  padding: 15px 5px;
+  color: var(--gray-text);
+  flex: 0 0 auto;
+  white-space: nowrap;
+  transition: var(--transition);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.exms-legacy-info-tabs .active-tab {
+  border-bottom: 4px solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+.exms-legacy-info-tabs::-webkit-scrollbar {
+  height: 4px;
+}
+
+.exms-legacy-info-tabs::-webkit-scrollbar-thumb {
+  background: var(--progress-bg);
+  border-radius: 2px;
+}
+
+/*legacy breadcrumb*/
+.exms-legacy-breadcrumb-header {
+  background-color: var(--light-bg);
+  border: 1px solid var(--light-border);
+  border-radius: var(--border-radius);
+  padding: 16px;
+  font-family: var(--font-family);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.legacy-breadcrumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--gray-text);
+}
+
+.legacy-breadcrumb a {
+  text-decoration: none;
+  color: var(--primary-color);
+  transition: var(--transition);
+}
+
+.legacy-breadcrumb a:hover {
+  color: var(--secondary-color);
+}
+
+.breadcrumb-separator {
+  margin: 0 8px;
+  color: var(--gray-text);
+  opacity: 0.6;
+}
+
+.mark-complete-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  margin: 0;
+}
+
+.exms-mark-step-complete-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 10px 16px;
+    font-size: 15px;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    border: none;
+    background: var(--primary-color);
+    color: #fff;
+    transition: all 0.3s ease;
+}
+
+.exms-mark-step-complete-btn .dashicons {
+    font-size: 18px;
+    line-height: 1;
+}
+
+.exms-mark-step-complete-btn:hover {
+    background: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(122, 36, 226, 0.4);
+}
+
+.exms-mark-step-complete-btn.completed {
+    background: #e6ffed;
+    color: #067d3a;
+    border: 2px solid #a6f0c6;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 600;
+    text-align: center;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.08);
+}
+.exms-mark-step-complete-btn.completed .dashicons {
+    color: #ffffff;
+    background: #067d3a;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+}
+
+/*left panel*/
+.exms-legacy-course {
+    background: var(--color-white);
+    border-radius: var(--border-radius);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+    padding: 20px;
+    margin: auto;
+    border: 1px solid var(--light-border);
+}
+
+.exms-legacy-course__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.exms-legacy-course__icon {
+    background: var(--light-bg);
+    padding: 12px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px; 
+    border: 1px solid;
+    color: var(--primary-color);
+}
+
+.exms-legacy-course__title {
+    font-weight: bold;
+    font-size: 16px;
+    color: var(--gray-text);
+}
+
+.exms-legacy-course__progress {
+    margin-top: 15px;
+}
+
+.exms-legacy-course__progress-text {
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--gray-text);
+}
+
+.exms-legacy-course__progress-text span {
+    font-weight: normal;
+    color: gray;
+    font-size: 13px;
+}
+
+.exms-legacy-course__progress-bar {
+    margin: 8px 0;
+    height: 8px;
+    background: var(--progress-bg);
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.exms-legacy-course__progress-fill {
+    width: 0%;
+    background: var(--secondary-color);
+    height: 100%;
+    transition: var(--transition);
+}
+
+.exms-legacy-course__lesson-count {
+    font-size: 12px;
+    color: gray;
+}
+
+.exms-legacy-course__section-title {
+    margin-top: 20px;
+    font-weight: bold;
+    font-size: 14px;
+    color: var(--gray-text);
+}
+
+.exms-legacy-course__lesson {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid var(--light-border);
+    padding: 10px;
+    margin-top: 8px;
+    border-radius: 6px;
+    cursor: pointer;
+    background: var(--color-white);
+    transition: var(--transition);
+}
+
+.exms-legacy-course__lesson--active {
+    background: var(--primary-color);
+    color: var(--color-white);
+    border: none;
+}
+
+.exms-legacy-course__lesson-left {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Arrow styling */
+.exms-legacy-course__arrow {
+    font-family: dashicons;
+    font-size: 18px;
+    transition: transform 0.3s ease;
+    color: inherit;
+}
+
+.exms-legacy-course__lesson--active .exms-legacy-course__arrow {
+    transform: rotate(90deg);
+}
+
+.exms-legacy-course__lesson-title {
+    font-size: 13px;
+    color: inherit;
+}
+.exms-popup-overlay {
+    position: fixed;
+    top:0; left:0;
+    width:100%; height:100%;
+    background: rgba(0,0,0,0.6);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:9999;
+}
+.exms-popup-box {
+    background:#fff;
+    border-radius:12px;
+    padding:25px;
+    width:350px;
+    text-align:center;
+    box-shadow:0 5px 20px rgba(0,0,0,0.2);
+    animation: fadeInUp 0.3s ease;
+}
+.exms-popup-box h3 {
+    margin:0 0 10px;
+    font-size:20px;
+    color:var(--primary-color); 
+}
+.exms-popup-box p {
+    font-size:15px;
+    margin-bottom:20px;
+}
+.popup-actions {
+    display:flex;
+    justify-content:space-around;
+}
+.popup-btn {
+    padding:10px 18px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-weight:600;
+    transition:0.3s;
+}
+.popup-btn.confirm {
+    background: var( --primary-color );
+    color:#fff;
+}
+.popup-btn.cancel {
+    background:#ddd;
+}
+.popup-btn:hover {
+    transform: scale(1.05);
+}
+@keyframes fadeInUp {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+/* For large tablets & small laptops: 1024px */
+@media (max-width: 1024px) {
+  .exms-legacy-step-wrapper {
+    padding: 1.5rem;
+  }
+  .exms-legacy-page-wrapper {
+    flex-direction: column;
+  }
+  .exms-legacy-page-left {
+    margin: 0;
+  }
+  .exms-legacy-page-left,
+  .exms-legacy-page-right {
+    flex: 1 1 100%;
+  }
+  .exms-legacy-info-tabs {
+    gap: 20px;
+  }
+}
+
+/* Tablets: 768px */
+@media (max-width: 768px) {
+  .exms-legacy-step-wrapper {
+    padding: 1rem 1.25rem;
+  }
+}
+
+/* Mobile: 480px and below */
+@media (max-width: 480px) {
+  .exms-legacy-step-wrapper {
+    padding: 1rem;
+  }
+}

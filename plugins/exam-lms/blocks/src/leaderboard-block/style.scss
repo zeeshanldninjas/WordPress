@@ -1,0 +1,138 @@
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+--ldngt-backcolor-global
+--ldngt-height-global
+--ldngt-width-global
+--ldngt-color-global
+--ldngt-wrapper-classes-global
+--ldngt-wrapper-id-global
+--ldngt-isbold-global
+--ldngt-isitalic-global
+--ldngt-decoration-global
+--ldngt-fontsize-global
+--ldngt-fontfamily-global
+--ldngt-bordersize-global
+--ldngt-borderstyle-global
+--ldngt-bordercolor-global
+--ldngt-borderradius-global
+--ldngt-hoffset-global
+--ldngt-voffset-global
+--ldngt-shadowcolor-global
+--ldngt-shadowinset-global
+--ldngt-paddingunit-global
+--ldngt-padding-top-global
+--ldngt-padding-right-global
+--ldngt-padding-bottom-global
+--ldngt-padding-left-global
+--ldngt-marginunit-global
+--ldngt-margin-top-global
+--ldngt-margin-right-global
+--ldngt-margin-bottom-global
+--ldngt-margin-left-global
+--ldngt-hideonmobile-global
+--ldngt-hidetablet-global
+--ldngt-hideondesktop-global
+--ldngt-background-image-local
+ */
+.ldngt-spacer-wrapper{
+	background-color: var(--ldngt-backcolor-global);
+	color: var(--ldngt-color-global);
+	@if var(--ldngt-width-global) {
+		width: calc( var(--ldngt-width-global) - var(--ldngt-margin-right-global) - var(--ldngt-margin-left-global) - var(--ldngt-margin-left-global) - var(--ldngt-borderleft-global) - var(--ldngt-borderright-global) );
+		max-width: var(--ldngt-width-global);
+	}
+
+	@if var(--ldngt-height-global) {
+		height: var(--ldngt-height-global);
+		max-height: var(--ldngt-height-global);
+	}
+	@if var(--ldngt-isbold-global) {
+		font-weight: bold;
+	}
+	
+	@if var(--ldngt-isitalic-global) {
+		font-style: italic;
+	}
+	@if var(--ldngt-decoration-global) {
+		text-decoration: var(--ldngt-decoration-global);
+	}
+	@if var(--ldngt-fontfamily-global) {
+		font-family: var(--ldngt-fontfamily-global);
+	}
+	@if var(--ldngt-fontsize-global) {
+		font-size: var(--ldngt-fontsize-global);
+	}
+
+	@if var(--ldngt-borderleft-global) and var(--ldngt-borderleft-global) and var(--ldngt-borderleft-global) {
+		border-left: var(--ldngt-borderleft-global) var(--ldngt-borderstyle-global) var(--ldngt-bordercolor-global);
+	} 
+	@if var(--ldngt-borderbottom-global) and var(--ldngt-borderbottom-global) and var(--ldngt-borderbottom-global) {
+		border-bottom: var(--ldngt-borderbottom-global) var(--ldngt-borderstyle-global) var(--ldngt-bordercolor-global);
+	} 
+	@if var(--ldngt-borderright-global) and var(--ldngt-borderright-global) and var(--ldngt-borderright-global) {
+		border-right: var(--ldngt-borderright-global) var(--ldngt-borderstyle-global) var(--ldngt-bordercolor-global);
+	} 
+	@if var(--ldngt-bordertop-global) and var(--ldngt-bordertop-global) and var(--ldngt-bordertop-global) {
+		border-top: var(--ldngt-bordertop-global) var(--ldngt-borderstyle-global) var(--ldngt-bordercolor-global);
+	} 
+	@if var(--ldngt-borderradiusbottom-global) {
+		border-bottom-right-radius: var(--ldngt-borderradiusbottom-global);
+	}
+	@if var(--ldngt-borderradiusright-global) {
+		border-top-right-radius: var(--ldngt-borderradiusright-global);
+	}
+	@if var(--ldngt-borderradiustop-global) {
+		border-top-left-radius: var(--ldngt-borderradiustop-global);
+	}
+	@if var(--ldngt-borderradiusleft-global) {
+		border-bottom-left-radius: var(--ldngt-borderradiusleft-global);
+	}
+	
+	@if var(--ldngt-hoffset-global) and var(--ldngt-voffset-global) and var(--ldngt-shadowcolor-global) {
+		box-shadow: var(--ldngt-hoffset-global) var(--ldngt-voffset-global) var(--ldngt-shadowcolor-global) var(--ldngt-shadowinset-global);
+	} else {
+		box-shadow:0 12px 15px 0 rgba(0,0,0,.24),0 17px 50px 0 rgba(0,0,0,.19);
+	} 
+
+	@if var(--ldngt-padding-top-global) {
+		padding-top: var(--ldngt-padding-top-global);
+	}
+
+	@if var(--ldngt-padding-right-global) {
+		padding-right: var(--ldngt-padding-right-global);
+	}
+
+	@if var(--ldngt-padding-bottom-global) {
+		padding-bottom: var(--ldngt-padding-bottom-global);
+	}
+
+	@if var(--ldngt-padding-left-global) {
+		padding-left: var(--ldngt-padding-left-global);
+	}
+	
+	@if var(--ldngt-margin-top-global) {
+		margin-top: var(--ldngt-margin-top-global);
+	}
+
+	@if var(--ldngt-margin-right-global) {
+		margin-right: var(--ldngt-margin-right-global);
+	}
+
+	@if var(--ldngt-margin-bottom-global) {
+		margin-bottom: var(--ldngt-margin-bottom-global);
+	}
+
+	@if var(--ldngt-margin-left-global) {
+		margin-left: var(--ldngt-margin-left-global);
+	}
+	
+	@if var(--ldngt-background-image-local) {
+		background-repeat: repeat;
+		background-image: var(--ldngt-background-image-local);
+	}
+}

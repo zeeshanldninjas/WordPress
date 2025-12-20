@@ -1,0 +1,193 @@
+input.custom_radio {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.wpeq-quiz-type-group {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  overflow: hidden;
+  gap: 0;
+}
+.wpeq-general-type-group {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  border: 1px solid #D9D9D9;
+  border-radius: 8px;
+  overflow: hidden;
+  gap: 0;
+}
+label.custom_radio_label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #808080;
+  border-right: 1px solid #D9D9D9;
+  cursor: pointer;
+  transition: all 0.25s ease;
+  height: 80px;
+  position: relative;
+  background: #fff;
+}
+label.custom_radio_label:last-of-type {
+  border-right: none;
+}
+label.custom_radio_label::after {
+  content: "";
+  display: block;
+  width: 18px;
+  height: 18px;
+  margin-top: 8px;
+  border: 3px solid #C5C5C5;
+  border-radius: 50%;
+  background: transparent;
+  transition: border-color 0.3s;
+}
+input.custom_radio:checked + label.custom_radio_label {
+  background: #F4F4FF;
+  border-right: none;
+  color: #552CA8;
+  font-weight: 600;
+}
+input.custom_radio:checked + label.custom_radio_label::after {
+  border-color: #552CA8;
+}
+
+/*********** Post type radio button as switch styling ***********/
+.toggle_radio {
+  position: absolute;
+  opacity: 0;
+  pointer-events: none;
+}
+.toggle-switch {
+  display: inline-flex;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #D1D9E0;
+  border-radius: 9999px;
+  overflow: hidden;
+  margin: 10px 0 0 0;
+}
+.payment-toggle-switch {
+  display: inline-flex;
+  position: relative;
+  background-color: #fff;
+  border: 1px solid #D1D9E0;
+  border-radius: 9999px;
+  overflow: hidden;
+}
+.toggle_label {
+  padding: 6px 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #525252;
+  background-color: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  z-index: 1;
+  position: relative;
+  flex: 1;
+  padding: 8px 24px;
+  text-align: center;
+}
+.toggle_radio:checked + .toggle_label {
+  background-color: #D1D9E0;
+  color: #525252;
+  z-index: 2;
+  padding: 8px 24px;
+  border-radius: 9999px;
+  box-shadow: 0 0 0 1px #D1D9E0 inset;
+}
+
+/*********** Input field type=[Time] styling ***********/
+.exms-timer-inputs {
+  display: flex;
+  gap: 2px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.exms-time-box {
+  display: flex;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.exms-time-input {
+  width: 60px;
+  padding: 0.5rem;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  height: 40px;
+}
+
+.exms-time-label {
+  background: #d3dce6;
+  color: #333;
+  padding: 0.5rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 40px;
+}
+
+.wpeq-reset-btn {
+  color: #7b61ff;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+}
+
+
+input.custom_radio2 {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.custom_radio_label2 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 20px 0 0;
+  font-size: 14px;
+  font-weight: 500;
+  color: #808080;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  flex: 1;
+  height: 48px;
+}
+
+label.custom_radio_label2::before {
+  content: "";
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 3px solid #C5C5C5;
+  border-radius: 50%;
+  margin-right: 8px;
+  box-sizing: border-box;
+  background-color: white;
+}
+
+input.custom_radio2:checked + label.custom_radio_label2::before {
+  border-color: #552CA8;
+  background: #fff;
+}
+
+/********** Quiz timer class **********/
+.exms-quiz-timer-fields {
+  padding: 10px 0 0 0;
+}

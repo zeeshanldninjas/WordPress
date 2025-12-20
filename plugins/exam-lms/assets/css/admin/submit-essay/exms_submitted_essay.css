@@ -1,0 +1,61 @@
+.content.column-content {
+  white-space: break-spaces;
+}
+.exms-delete-essay,
+.exms-view-essay,
+.exms-essay-approve {
+  cursor: pointer;
+}
+.exms-essay-bulk-actions {
+    position: absolute;
+    margin-top: 5px;
+}
+.exms-essay-content {
+    width: 90%;
+    margin: 0px auto;
+    border: 1px solid #d4d4d4;
+    height: 200px;
+}
+.exms-update-rows label,
+.exms-view-rows label {
+  font-weight: 700;
+}
+.exms-view-essay-form {
+  margin-top: 25px;
+}
+#TB_ajaxContent .exms-essay-ques,
+#TB_ajaxContent .exms-essay-ans {
+  padding: 10px;
+  margin: 0 50px;
+  font-weight: 500;
+  text-align: justify;
+  overflow: auto;
+}
+.exms-doted {
+  color: #2271b7;
+  font-size: 25px;
+}
+.exms-submit-essay-table {
+  padding: 0 20px 0 0px;
+}
+.exms-essay-filters-options {
+  float: right;
+  padding: 0 20px;
+}
+.exms-e-f-by-name,
+.exms-hide-essay,
+.exms-e-f-by-q-id {
+  display: none;
+}
+.exms-show-essay {
+  display: inline;
+}
+select.exms-filter-options {
+  vertical-align: unset;
+}
+.exms-essay-title {
+    margin: 30px 0 10px 0;
+}
+.exms-submit-essay-table h2 {
+  display: inline;
+}

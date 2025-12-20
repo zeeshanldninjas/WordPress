@@ -1,0 +1,1164 @@
+/* Overlay */
+.exms-overlay,
+.exms-student-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.6);
+    z-index: 9998;
+}
+
+/* Modal Box */
+.exms-reports-modal,
+.exms-student-reports-modal {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 8px 30px rgba(0,0,0,0.5);
+    z-index: 9999;
+    width: 1350px;
+    max-width: 90%;
+    height: 600px;
+    overflow-y: scroll;
+    animation: fadeInScale 0.3s ease-out;
+}
+
+.exms-reports-modal-content,
+.exms-student-reports-modal-content {
+    position: relative;
+    padding: 25px;
+}
+
+.exms-reports-modal-content h2,
+.exms-student-reports-modal-content h2 {
+    margin: 0;
+    padding: 0;
+}
+
+.exms-reports-header,
+.exms-student-reports-header,
+.exms-user-history-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 10px;
+}
+
+/* Close Button */
+.exms-modal-close,
+.exms-student-modal-close,
+.exms-user-history-modal-close,
+.exms-file-sidebar-close,
+.exms-download-file {
+    width: 28px;
+    height: 32px;
+    background: #fff;
+    box-shadow: 0 4px 18px 0 #00000021;
+    color: #000;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+}
+
+.exms-file-sidebar-close {
+    position: absolute;
+    top: 35px;
+    left: -50px;
+    width: 40px;
+    height: 40px;
+}
+
+.exms-download-file {
+    position: absolute;
+    top: 85px;
+    left: -50px;
+    width: 40px;
+    height: 40px;
+    text-decoration: none;
+}
+
+.exms-download-file:hover {
+    color: #000;
+    text-decoration: none;
+}
+
+.exms-modal-close:hover,
+.exms-file-sidebar-close:hover,
+.exms-download-file:hover {
+    background: #ddd;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+
+.exms-report-action,
+.exms-student-report-action {
+    cursor: pointer;
+}
+
+.tablenav-pages .current-page {
+    padding: 0;
+    line-height: none;
+    min-height: auto;
+    width: auto;
+    border-radius: 0px;
+    margin: 0;
+}
+
+.exms-custom-pagination {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.tablenav .tablenav-pages {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.pagination-links {
+    display: flex;
+    gap: 5px;
+    align-items: center;
+}
+
+.exms-quiz-report-result,
+.exms-student-report-result {
+    display: flex;
+    justify-content: space-between;
+    gap: 40px;
+    margin: 10px 0;
+}
+
+.exms-quiz-report-details {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+}
+.exms-student-report-details {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.exms-detail {
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F2FF;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 20px 10px;
+    min-width: 230px;
+}
+
+.exms-student-detail {
+    display: flex;
+    flex-direction: column;
+    background-color: #F4F2FF;
+    font-size: 14px;
+    border-radius: 8px;
+    padding: 20px 10px;
+    min-width: 368px;
+}
+
+.exms-detail .exms-label,
+.exms-student-detail .exms-student-label {
+    color: #777;
+    display: inline-block;
+}
+
+.exms-detail .exms-date-label {
+    font-weight: 600;
+    min-width: 35px;
+    display: inline-block;
+}
+
+.exms-detail span,
+.exms-student-detail span {
+    font-weight: 400;
+}
+
+.exms-report-values,
+.exms-student-report-values {
+    font-weight: 500 !important;
+    font-size: 14px;
+    color: #000;
+}
+
+
+.exms-date {
+    font-weight: 500;
+    color: #111;
+}
+
+.exms-file-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.5);
+	z-index: 9999;
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity 0.3s ease;
+}
+
+/* Show overlay when active */
+.exms-file-overlay.active {
+	opacity: 1;
+	visibility: visible;
+}
+.exms-file-sidebar {
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 50%;
+    height: 100%;
+    background: #fff;
+    box-shadow: -3px 0 10px rgba(0,0,0,0.2);
+    transition: right 0.3s ease;
+    z-index: 9999;
+    display: flex;
+    flex-direction: column;
+}
+
+.exms-file-sidebar.active {
+    right: 0;
+}
+
+.exms-file-sidebar-content {
+    padding: 20px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+    margin-top: 15px;
+}
+
+.exms-file-frame {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.exms-sidebar-close {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.exms-add-comment {
+    font-size: 12px;
+    text-decoration: underline !important;
+    float: right;
+}
+
+.exms-comment-form {
+    margin-top: 15px;
+}
+
+.exms-comment-form textarea {
+    width: 100%;
+}
+.exms-attempts-table,
+.exms-student-course-details-table {
+    width: 100%;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: 15px;
+    background: #fff;
+    border: none !important;
+}
+
+.exms-attempts-table thead,
+.exms-student-course-details-table thead {
+    background: #F4F2FF;
+    border: none !important;
+}
+
+.exms-attempts-table thead th,
+.exms-student-course-details-table thead th {
+    padding: 12px 15px;
+    text-align: left;
+    font-size: 14px;
+    font-weight: 500;
+    color: #999;
+    border: none !important;
+}
+
+.exms-attempts-table tbody tr,
+.exms-student-course-details-table tbody tr {
+    border: none !important;
+}
+
+.exms-attempts-table tbody tr:nth-child(even),
+.exms-student-course-details-table tbody tr:nth-child(even) {
+    background: #fafbff;
+}
+
+.exms-attempts-table td,
+.exms-student-course-details-table td {
+    padding: 12px 15px;
+    color: #444;
+    font-size: 14px;
+    vertical-align: middle;
+    border-bottom: 1px solid #ddd;
+}
+
+.exms-attempts-table thead th:nth-child(7),
+.exms-attempts-table tbody td:nth-child(7),
+.exms-student-course-details-table thead th:nth-child(7),
+.exms-student-course-details-table tbody td:nth-child(7) {
+    min-width: 110px; 
+}
+
+/* File link */
+.exms-file-preview {
+    color: #4a6cf7;
+    font-weight: 500;
+    text-decoration: underline !important;
+}
+.exms-file-preview:hover {
+    color: #4a6df7d8;
+}
+
+/* Comment button */
+.exms-add-comment {
+    background: #f1f3ff;
+    color: #4a6cf7;
+    padding: 5px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    cursor: pointer;
+    display: inline-block;
+    transition: 0.2s ease;
+    text-decoration: none !important;
+}
+.exms-add-comment:hover {
+    background: #dbe2ff;
+}
+
+.exms-status {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 12px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.exms-wrong {
+    background: #ffe5e5;
+    color: #e63946;
+}
+
+.exms-correct {
+    background: #e5fff0;
+    color: #06a84f;
+}
+
+.exms-inprogress {
+    background: #fff8e5;
+    color: #dba800;     
+}
+
+.exms-not-started {
+    background: #e5f0ff;
+    color: #0073e6;      
+}
+
+/* Buttons */
+.exms-btn {
+    border: none;
+    border-radius: 12px;
+    padding: 5px 12px;
+    font-size: 13px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+/* Accept button */
+.exms-accept {
+    background: #e5fff0;
+    color: #06a84f;
+}
+.exms-accept:hover {
+    background: #d0ffe7;
+}
+
+/* Decline button */
+.exms-decline {
+    background: #ffeaea;
+    color: #d62828;
+}
+.exms-decline:hover {
+    background: #ffcccc;
+}
+
+/************** Commnet popup****************/
+.exms-comments-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 30, 30, 0.5);
+  display: none; 
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.exms-comments-modal.active {
+  display: flex;
+}
+
+
+/* Centered Comment Box */
+.exms-comments-content {
+  background: #fff;
+  width: 600px;
+  max-height: 90vh;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  position: relative;
+}
+
+/* Header */
+.exms-comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background: #f4f2ff;
+  border-bottom: 1px solid #e0e0e0;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+.exms-comment-header h2 {
+  font-size: 16px;
+  margin: 0;
+  color: #333;
+}
+
+.exms-comment-modal-close {
+  cursor: pointer;
+  font-size: 18px;
+  color: #999;
+}
+
+/* New Comment Box */
+.exms-new-comment {
+  padding: 15px 20px;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.exms-new-comment textarea {
+  width: 100%;
+  min-height: 80px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  padding: 10px;
+  resize: vertical;
+  font-size: 14px;
+}
+
+.exms-comment-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.exms-action-btn {
+  background: transparent;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+  margin-right: 8px;
+}
+
+.exms-comment-file {
+  opacity: 0;
+  position: absolute;
+  cursor: pointer;
+  width: 20px;
+}
+
+/* Submit button */
+.exms-comment-submit {
+  background: #6a5acd; /* purple */
+  color: #fff;
+  border: none;
+  padding: 8px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.exms-comment-submit:hover {
+  background: #5946c7;
+}
+
+/* Comment List */
+.exms-comment-list {
+  flex: 1;
+  overflow-y: auto;
+  padding: 15px 20px 10px 20px;
+}
+
+.exms-comment-item {
+  background: #fafbff;
+  border: 1px solid #eee;
+  border-radius: 6px;
+  padding: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+.exms-load-more {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  background: #f4f2ff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #666;
+  font-size: 14px;
+}
+
+.exms-save-message {
+    background: #e5fff0;
+    color: #06a84f;
+    padding: 5px 10px;
+    margin: 5px 20px 18px 20px;
+    display: none;
+}
+.exms-unsave-message {
+    background: #ffeaea;
+    color: #d62828;
+    padding: 5px 10px;
+    margin: 5px 20px 18px 20px;
+    display: none;
+}
+
+/* ==========================
+   WP Exams Report Table
+   ========================== */
+
+.wp-exams_page_exms-reports .tablenav.top,
+.wp-exams_page_exms-reports table.wp-list-table tfoot th,
+.wp-exams_page_wp-exams-settings .tablenav.top,
+.wp-exams_page_wp-exams-settings table.wp-list-table tfoot th {
+    display: none;
+}
+
+.wp-exams_page_exms-reports .exms-report-data-header,
+.wp-exams_page_wp-exams-settings .exms-report-data-header {
+    border: 1px solid #ddd;
+    border-bottom: none;
+    background-color: #fff;
+    margin-top: 10px;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    padding: 5px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.exms-report-content-btn {
+    display: flex;
+    gap: 10px;
+}
+
+.wp-exams_page_exms-reports .exms-report-data-header h3,
+.wp-exams_page_wp-exams-settings .exms-report-data-header h3 {
+    font-weight: 700;
+    color: #552CA8;
+}
+
+.exms-download-btn,
+.exms-student-download-btn {
+    background-color: #552CA8;
+    color:#fff;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.exms-download-btn:hover,
+.exms-student-download-btn:hover {
+    background-color: #fff;
+    color:#552CA8;
+    border: 1px solid #552CA8;
+}
+
+
+.exms-email-btn span {
+    color:#552CA8; 
+}
+
+.exms-email-btn {
+    border: 1px solid #552CA8;
+    color:#000;
+    padding: 8px 16px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.exms-email-btn:hover span {
+    color:#fff; 
+}
+
+.exms-email-btn:hover {
+    color:#fff;
+    background-color: #552CA8;
+}
+
+/* Reports Table */
+.wp-exams_page_exms-reports .wp-list-table,
+.wp-exams_page_wp-exams-settings .wp-list-table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    background: #fff;
+    border: 1px solid #ddd;
+    overflow: hidden;
+}
+
+/* Table Header */
+.wp-exams_page_exms-reports .wp-list-table thead th,
+.wp-exams_page_wp-exams-settings .wp-list-table thead th {
+    background: #f5f2ff;
+    color: #6E6893;
+    font-weight: 600;
+    padding: 14px 16px;
+    border-bottom: 1px solid #e4e1f6;
+    text-transform: uppercase;
+    font-size: 13px;
+}
+
+/* Table Row */
+.wp-exams_page_exms-reports .wp-list-table tbody tr,
+.wp-exams_page_wp-exams-settings .wp-list-table tbody tr {
+    border-bottom: 1px solid #f0eef9;
+    transition: background 0.2s ease-in-out;
+}
+.wp-exams_page_exms-reports .wp-list-table tbody tr:hover,
+.wp-exams_page_wp-exams-settings .wp-list-table tbody tr:hover {
+    background: #faf9ff;
+}
+
+/* Table Cells */
+.wp-exams_page_exms-reports .wp-list-table td,
+.wp-exams_page_wp-exams-settings .wp-list-table td {
+    padding: 10px 16px;
+    vertical-align: middle;
+    font-size: 14px;
+    border-bottom: 1px solid #e4e1f6;
+    color: #333;
+}
+
+.wp-exams_page_exms-reports .wp-list-table td a,
+.wp-exams_page_wp-exams-settings .wp-list-table td a {
+    color: #333;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* Checkbox Styling */
+.wp-exams_page_exms-reports .wp-list-table th.check-column input[type="checkbox"],
+.wp-exams_page_exms-reports .wp-list-table td.check-column input[type="checkbox"],
+.wp-exams_page_wp-exams-settings .wp-list-table th.check-column input[type="checkbox"],
+.wp-exams_page_wp-exams-settings .wp-list-table td.check-column input[type="checkbox"] {
+    min-width: 18px;
+    height: 18px;
+    border: 2px solid #c7bff7;
+    border-radius: 4px;
+    cursor: pointer;
+    margin: 0;
+}
+
+.exms_action .exms-action-col {
+    color: #6E6893 !important;
+}
+
+/* Actions Column */
+.wp-exams_page_exms-reports .exms-report-action,
+.wp-exams_page_wp-exams-settings .exms-report-action {
+    color: #555;
+    font-weight: 500;
+    text-decoration: none;
+}
+
+.wp-exams_page_exms-reports .exms-report-action:hover,
+.wp-exams_page_wp-exams-settings .exms-report-action:hover {
+    color: #552CA8;
+}
+
+
+/* Wrapper */
+.exms-percentage-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  min-width: 100%;
+}
+
+.exms-percentage-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.exms-pass {
+  background: #e8f9f0;
+  color: #1d9b65;
+}
+.exms-fail {
+  background: #fde8e8;
+  color: #e33c3c;
+}
+
+.exms-status-badge {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 2px 16px 2px 12px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.exms-status-badge::before {
+    content: "";
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+.exms-status-badge.exms-pass::before {
+    background-color: green;
+}
+
+.exms-status-badge.exms-fail::before {
+    background-color: red;
+}
+
+
+/* Percentage Value */
+.exms-percentage-value {
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Progress Bar */
+.exms-percentage-bar {
+  position: relative;
+  width: 100%;
+  height: 4px;
+  background: #f0eef9;
+  border-radius: 6px;
+  overflow: hidden;
+}
+.exms-percentage-fill {
+  height: 100%;
+  background-color: #552CA8;
+  border-radius: 6px;
+  transition: width 0.4s ease-in-out;
+}
+
+/* Bottom pagination row */
+.wp-exams_page_exms-reports .tablenav.bottom,
+.wp-exams_page_wp-exams-settings .tablenav.bottom {
+    background: #f5f2ff;
+    padding: 12px 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 0 0 10px 10px;
+    font-size: 14px;
+    color: #333;
+    position: relative;
+    margin: 0;
+    border: 1px solid #ddd;
+    border-top: none;
+}
+
+/* hide bulk actions & items count */
+.wp-exams_page_exms-reports .tablenav.bottom .bulkactions,
+.wp-exams_page_exms-reports .tablenav.bottom .tablenav-paging-text,
+.wp-exams_page_wp-exams-settings .tablenav.bottom .bulkactions,
+.wp-exams_page_wp-exams-settings .tablenav.bottom .tablenav-paging-text {
+    display: none !important;
+}
+
+.wp-exams_page_exms-reports .tablenav.bottom .displaying-num,
+.wp-exams_page_wp-exams-settings .tablenav.bottom .displaying-num {
+    color: #666;
+    font-size: 12px;
+}
+.wp-exams_page_exms-reports .tablenav.bottom .tablenav-pages,
+.wp-exams_page_wp-exams-settings .tablenav.bottom .tablenav-pages {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-weight: 500;
+}
+
+/* arrows (left/right) */
+.wp-exams_page_exms-reports .tablenav.bottom .tablenav-pages .button,
+.wp-exams_page_wp-exams-settings .tablenav.bottom .tablenav-pages .button {
+    background: #fff;
+    border: 1px solid #ddd;
+    color: #666;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 14px;
+    min-width: 32px;
+    text-align: center;
+    transition: all 0.2s ease-in-out;
+}
+.wp-exams_page_exms-reports .tablenav.bottom .tablenav-pages .button:hover:not(.disabled),
+.wp-exams_page_wp-exams-settings .tablenav.bottom .tablenav-pages .button:hover:not(.disabled) {
+    background: #5b3cc4;
+    color: #fff;
+    border-color: #5b3cc4;
+}
+.wp-exams_page_exms-reports .tablenav.bottom .tablenav-pages .disabled,
+.wp-exams_page_wp-exams-settings .tablenav.bottom .tablenav-pages .disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+
+/* arrows ko right align karne ke liye absolute */
+.wp-exams_page_exms-reports .tablenav.bottom .tablenav-pages,
+.wp-exams_page_wp-exams-settings .tablenav.bottom .tablenav-pages {
+    position: absolute;
+    right: 16px;
+}
+
+/************ Filters Popup***************/
+.exms-search-content button {
+    border: 1px solid #C0C5F3;
+    border-radius: 4px;
+    padding: 8px 12px;
+    outline: none;
+    letter-spacing: 1px;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.exms-search-content button span {
+    color: #552CA8;
+}
+
+.exms-search-content {
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 10px;
+    position: relative;
+}
+.exms-search-wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: #F4F2FF !important;
+    padding: 3px 16px;
+    width: 400px;
+    border-radius: 6px;
+    border: 1px solid #C0C5F3;
+}
+
+.exms-search-wrapper .dashicons-search {
+    color: #6E6893;
+    pointer-events: none;
+}
+
+.exms-search-input::placeholder,
+.exms-student-search-input::placeholder {
+    color: #6E6893;
+    opacity: 1;
+}
+
+.exms-search-input,
+.exms-student-search-input {
+    color: #6E6893;
+    padding-left: 30px;
+    border: none !important;
+    background: none !important;
+    outline: none !important;
+    width: 400px;
+}
+
+.exms-search-input:focus,
+.exms-student-search-input:focus {
+	border: none !important;
+	outline: none !important;
+	box-shadow: none !important;
+}
+
+.exms-search-form {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(30, 30, 30, 0.5);
+  display: none; 
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+}
+
+.exms-search-form.active {
+  display: flex;
+}
+
+
+.exms-search-modal-form {
+  background: #fff;
+  width: 600px;
+  min-height: 50vh;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+  position: relative;
+  padding: 6px 14px;
+}
+
+
+.exms-filter-modal-wrapper  {
+    border-bottom: 1px solid #ECEDF0;
+    padding-bottom: 10px;
+    margin-bottom: 15px;
+}
+
+.exms-filter-modal-close {
+    width: 28px;
+    height: 32px;
+    background: #fff;
+    box-shadow: 0 4px 18px 0 #00000021;
+    color: #000;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 28px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: 600;
+    float: right;
+}
+.select2-container {
+  z-index: 10001 !important;
+  border: 1px solid #ECEDF0 !important;
+  width: 285px !important;
+}
+
+.exms-filter-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    width: 100%;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #ECEDF0;
+}
+
+.exms-filter-options h4 {
+    margin: 0 0 8px 0;
+    font-size: 14px;
+}
+
+.exms-filter-reset-btn {
+    border: none;
+    outline: none;
+    background: none;
+    color: #552CA8;
+    cursor: pointer;
+}
+
+.exms-filter-reports {
+    border: 1px solid #ECEDF0 !important;
+}
+
+.exms-all-filter-reset-btn {
+    background-color: #F3F0FF;
+    color: #552CA8;
+    border: none;
+    outline: none;
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.exms-filter-option-btn {
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    gap: 10px;
+}
+
+.exms-filter-options-update {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+}
+
+.exms-back-report {
+    border: none;
+    outline: none;
+    background-color: #f3f7f9;
+    padding: 8px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.exms-user-history-header,
+.exms-user-history-content {
+    display: none;
+}
+
+.exms-user-history-load-more {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding: 10px;
+}
+
+.exms-user-history-load-more button {
+    width: 200px;
+    cursor: pointer;
+    color: #552CA8;
+    border: 1px solid #552CA8;
+    background-color: transparent;
+    padding: 10px;
+    border-radius: 4px;
+    transition: 0.5s;
+}
+
+.exms-user-history-load-more button:hover {
+    background-color: #552CA8;
+    color: #fff;
+}
+
+.user-history-link {
+    font-size: 12px;
+}
+
+.exms-quiz-pass.pass { color: #06a84f; } 
+.exms-quiz-pass.fail { color: #e63946; } 
+
+.exms-quiz-message {
+    border: 1px solid #552CA8;
+    background-color: #F4F2FF;
+    padding: 10px 15px;
+    border-radius: 4px;
+}
+
+
+/* Tablet screens (below 1360px) */
+@media (max-width: 1360px) {
+    .exms-detail {
+        min-width: 180px;
+        padding: 15px;
+        font-size: 13px;
+    }
+
+    .exms-reports-modal {
+        width: 1000px;
+        height: 550px;
+    }
+}
+
+/* Medium devices (below 1024px) */
+@media (max-width: 1024px) {
+    .exms-detail {
+        min-width: 160px;
+        padding: 12px;
+        font-size: 13px;
+    }
+
+    .exms-reports-modal {
+        width: 90%;
+        height: 500px;
+    }
+}
+
+/* Mobile landscape (below 768px) */
+@media (max-width: 768px) {
+    .exms-detail {
+        flex-direction: column;
+        min-width: 100%;
+        font-size: 12px;
+        padding: 10px;
+    }
+
+    .exms-reports-modal {
+        width: 95%;
+        height: 450px;
+    }
+}
+
+/* Mobile portrait (below 480px) */
+@media (max-width: 480px) {
+    .exms-detail {
+        min-width: 97%;
+        font-size: 12px;
+        padding: 8px;
+        border-radius: 6px;
+    }
+
+    .exms-reports-modal {
+        width: 95%;
+        height: 400px;
+    }
+}

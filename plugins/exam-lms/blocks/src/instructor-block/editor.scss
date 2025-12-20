@@ -1,0 +1,96 @@
+/********************** Review onetime/pagination/slider ***********************/
+
+.ldnft-reviews-onetime-wrap,
+.ldnft-reviews-pagination-wrap {
+  width: 100%;
+  padding-bottom: 20px;
+}
+.ldnft-reviews-slider-wrapper {
+  width: 100%;
+}
+.ldnft-reviews-onetime-wrap .ldnft-review-profile-img img,
+.ldnft-reviews-pagination-wrap .ldnft-review-profile-img img,
+.ldnft-reviews-slider-wrapper .ldnft-review-profile-img img {
+  width: 50px;
+}
+.ldnft-reviews-onetime-wrap .ldnft-review-client-name,
+.ldnft-reviews-pagination-wrap .ldnft-review-client-name,
+.ldnft-reviews-slider-wrapper .ldnft-review-client-name {
+  font-weight: 600;
+  font-size: 20px;
+  text-transform: capitalize;
+}
+.ldnft-rating-div .ldnft-rate-count {
+  padding: 10px 0;
+  display: inline-block;
+}
+.ldnft-rating-div .ldnft-rating-star,
+.ldnft-reviews-onetime-wrap .ldnft-rating-star span,
+.ldnft-reviews-pagination-wrap .ldnft-rating-star span,
+.ldnft-reviews-slider-wrapper .ldnft-rating-wrapper .ldnft-rating-star span {
+  color: orange;
+  padding: 10px 0;
+}
+.ldnft-reviews-onetime-wrap .ldnft-reviews-title-wrapper,
+.ldnft-reviews-pagination-wrap .ldnft-reviews-title-wrapper,
+.ldnft-reviews-slider-wrapper .ldnft-reviews-title-wrapper {
+  font-style: italic;
+  font-weight: 500;
+}
+.ldnft-reviews-slider-wrapper .ldnft-reviews-profile-wrap {
+  display: flex;
+  margin: 10px 0 0 10px;
+}
+.ldnft-reviews-slider-wrapper .ldnft-review-client-name {
+  display: flex;
+  align-items: center;
+  margin-left: 10px;
+}
+.ldnft-reviews-slider-wrapper .ldnft-slider-feedback-wrap {
+  margin: 0 60px ;
+}
+.ldnft-reviews-wrapper .ldnft-load-more-btn {
+  padding: 10px 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.ldnft-reviews-wrapper .ldnft-animated-loader::after {
+    display: inline-block;
+    animation: doted steps(1,end) 2s infinite;
+    content: '';
+}
+@keyframes doted {
+    0%   { content: ''; }
+    20%  { content: '.'; }
+    40%  { content: '..'; }
+    60%  { content: '...'; }
+    80%  { content: '....'; }
+    100% { content: ''; }
+}
+.ldnft-reviews-slider-wrapper .ldnft-slider-feedback-wrap .ldnft-reviews-description-wrapper {
+  padding: 10px 0;
+}
+.ldnft-reviews-wrapper .bx-viewport {
+  height: 100% !important ;
+}
+.ldnft-reviews-wrapper .bx-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/********************** / Review onetime/pagination/slider ***********************/
+
+/********************** Checkout Shortcode ***********************/
+
+#ldnft-purchase {
+  display: inline-block;
+  padding: 10px 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+#ldnft-purchase span {
+  display: inline-block;
+  margin-top: -5px;
+}
+
+/********************** / Checkout Shortcode *********************/

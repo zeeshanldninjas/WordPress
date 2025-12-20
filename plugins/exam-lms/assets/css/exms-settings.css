@@ -1,0 +1,724 @@
+.wpeq-hide {
+    display: none;
+}
+.wpeq-settings-tabs-row {
+	width: 98%;
+}
+.exms-add-background {
+    background: #ffffff;
+    width: 98%;
+    border-radius: 5px;
+}
+.wpeq-checkbox {
+    width: 24px !important;
+    height: 24px !important;
+}
+
+.wpeq-checkbox::before{
+    background: #0085ba !important;
+    border-radius: 5px;
+    width: 27px !important;
+    height: 27px !important;
+    font-size: 25px !important;
+}
+
+.wpeq-checkbox:checked::after {
+    content: "✔";
+    color: white;
+    position: relative;
+    font-size: 19px;
+    bottom: 14px;
+    right: 1px;
+}
+
+.wpeq-checkbox2 {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.wpeq-checkbox2::before{
+    background: #552CA8 !important;
+    border-radius: 5px;
+    width: 24px !important;
+    height: 24px !important;
+    font-size: 25px !important;
+}
+
+.wpeq-checkbox2:checked::after {
+    content: "✔";
+    color: white;
+    position: relative;
+    font-size: 18px;
+    bottom: 14px;
+    right: -1px;
+}
+.wpeq-settings-tabs {
+	display: flex;
+    margin-top: 24px;
+    border-bottom: 1px solid #ccc;
+    padding: 7px 0px;
+}
+.wpeq-settings-tabs a {
+    z-index: 1080;
+    text-decoration: none;
+    color: black;
+    padding: 10px 14px;
+    margin-top: 10px;
+    background: #cfd2d5c4;
+    margin-right: 5px;
+    border-radius: 5px;
+    border-bottom-left-radius: 0px;
+    border-bottom-right-radius: 0px;
+    margin-bottom: -8px;
+}
+.wpeq-payment-modes-select-label {
+    padding-right: 6px;
+}
+.wpeq-settings-tabs .dashicons {
+    line-height: unset;
+    font-size: 16px;
+    cursor: pointer;
+    float: left;
+}
+a.exms-active-tab {
+    padding: 10px 14px;
+    background: #f0f0f1 !important;
+    color: black;
+    border: 1px solid #ccc;
+    font-weight: 600;
+    border-bottom: none;
+}
+.select2-container--default .select2-selection--single {
+    height: 40px !important;
+}
+.exms-quiz-selection span.select2-container {
+    width: 350px !important;
+}
+/*.select2-container .select2-selection--single .select2-selection__rendered {
+    padding: 6px 0px;
+    color: black;
+}
+
+.select2-container--default .select2-selection--single .select2-selection__arrow {
+    top: 7px !important;
+}*/
+.wpeq-settings-tab-data {
+    width: 100%;
+    max-width: 98%;
+}
+.exms-add-tab-padding {
+    padding: 14px 0px 14px 16px;
+    background: #fafafa;
+    font-size: 15px;
+    height: 20px;
+    border-bottom: 1px solid #cfd2d5c4;
+    color: black;
+}
+.exms-sub-tabs {
+    display: flex;
+}
+.exms-sub-tabs li {
+    margin: 0px 5px;
+    font-size: 14px;
+}
+.exms-sub-tabs li a {
+    color: black;
+   text-decoration: none;
+}
+.exms-active-sub-tab {
+    font-weight: 700;
+    color: #552CA8 !important;
+    text-decoration: none;
+}
+.exms-email-content textarea {
+    position: relative;
+    left: 3.3%;
+    width: 40%;
+    border: unset;
+    outline: 1px solid #d4d4d4;
+}
+.exms-email-content .exms-set-setting-image {
+    position: absolute;
+    left: 56%;
+}
+
+.exms-display-upload-btn .exms-set-setting-image {
+    background-color: #552CA8 !important;
+    color: #fff !important;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 0;
+}
+.exms-email-logo-wrap {
+    width: 68.5%;
+    margin: auto;
+    padding-bottom: 10px;
+    position: relative;
+    top: -18px;
+}
+.exms-setting-data2 .exms-save-image-value img,
+.exms-setting-data .exms-save-image-value img {
+    width: unset!important;
+    position: relative;
+    bottom: 16px;
+}
+.exms-setting-data2 .exms-save-image-value,
+.exms-setting-data .exms-save-image-value {
+    position: relative;
+    right: 32%;
+}
+.exms-display-link-text {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+}
+
+/** checkbox css **/
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 32px;
+  height: 18px;
+}
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: -1px;
+  left: 0;
+  right: -8px;
+  bottom: 0;
+  background-color: #E4E3E4;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider2 {
+    position: absolute;
+    cursor: pointer;
+    top: 3px;
+    left: 0;
+    right: -8px;
+    bottom: 0;
+    background-color: #E4E3E4;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: -6px;
+  bottom: -1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: 1px solid #E4E3E4;
+}
+
+.slider2:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: -6px;
+  bottom: -1px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border: 1px solid #E4E3E4;
+}
+
+input:checked + .slider {
+  background-color: #552CA8;
+}
+
+input:checked + .slider2 {
+  background-color: #552CA8;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #E4E3E4;
+}
+
+input:focus + .slider2 {
+  box-shadow: 0 0 1px #E4E3E4;
+}
+input:checked + .slider:before {
+  -webkit-transform: translateX(28px);
+  -ms-transform: translateX(28px);
+  transform: translateX(28px);
+}
+
+input:checked + .slider2:before {
+  -webkit-transform: translateX(28px);
+  -ms-transform: translateX(28px);
+  transform: translateX(28px);
+}
+
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider2.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+.slider2.round:before {
+  border-radius: 50%;
+}
+/* end checkbox css */
+
+.exms-mail-table {
+    display: none;
+}
+.exms-showe-mail-option {
+    display: block;
+}
+.exms-setting-heading {
+    font-size: 20px;
+    font-weight: 700;
+    padding: 0 0 20px 30px;   
+}
+
+.exms-mail-table p:first-child {
+    padding-bottom: 26px;
+}
+.exms-btn-wrap-css {
+    padding-bottom: 30px;
+    padding-left: 32px;
+}
+.exms-setting-datas {
+    background-color: transparent;
+}
+.exms-setting-datas .exms-setting-submit {
+    margin-top: 10px;
+}
+
+/* style for email tab */
+.exms-setting-lable {
+    color: #222;
+    float: left;
+    font-weight: 600;
+    vertical-align: top;
+    width: 30%;
+    font-weight: 700;
+    max-width: 160px;
+    font-size: 14px;
+}
+
+.exms-setting-lable+.exms-setting-data2,
+.exms-setting-lable+.exms-setting-data {
+    float: left;
+}
+
+.exms-setting-data {
+    max-width: 100%;
+    padding: 0px 8px 20px 0;
+    vertical-align: middle;
+    margin-right: 20px;
+}
+.exms-email-setting-data {
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    padding: 8px 8px 20px 0;
+    vertical-align: middle;
+    width: 70%;
+}
+.exms-setup-setting-data {
+    display: flex;
+    padding: 8px 8px 4px 0;
+    vertical-align: middle;
+    width: 60%;
+}
+
+.exms-setting-data2 {
+    line-height: 2;
+    max-width: 100%;
+    padding: 8px 8px 16px 0;
+    vertical-align: middle;
+    width: 100%;
+    margin-right: 20px;
+}
+
+.exms-setting-data2 input,
+.exms-setting-data input,
+.exms-setting-data2 select,
+.exms-setting-data select,
+.exms-setting-data2 textarea,
+.exms-setting-data textarea {
+    width: 100%;
+    max-width: 100%;
+    border: unset;
+    outline: 1px solid #E4E3E4;
+    color: #565656;
+    font-weight: 400;
+    height: 45px;
+}
+
+.exms-setting-data2 input[type="checkbox"],
+.exms-setting-data input[type="checkbox"] {
+    border: inset 2px #EBE9ED;
+    border-right: solid 1px #CCCCCC;
+    border-bottom: solid 1px #CCCCCC;
+    outline: unset;
+}
+.exms-email-settings-wrap .exms-settings-row:after {
+    content: '';
+    clear: both;
+    display: block;
+    width: 100%;
+}
+.exms-email-settings-wrap {
+    margin: 0;
+    position: relative;
+    padding: 0 8px;
+    background-color: #fff;
+    width: 100%;
+    max-width: 98%;
+}
+.exms-settings-container {
+    clear: both;
+    position: relative;
+    padding: 20px 16px;
+    width: 50%;
+}
+.exms-tags-settings {
+    width: auto;
+}
+.exms-payment-parent {
+    width: auto;
+}
+.exms-display-upload-btn {
+    padding-top: 8px;
+}
+/* style email tags box  */
+.exms-tags-wrap {
+    position: absolute;
+    right: 0;
+    top: 14px;
+    width: 30%;
+    z-index: 1080;
+    padding: 20px 0;
+}
+.exms-tags-wrap .exms-tags-title {
+    color: #552CA8;
+    font-weight: 700;
+    cursor: pointer;
+}
+.exms-tags-wrap .exms-available-tags ul strong {
+    font-weight: 700;
+    padding: 8px 0;
+    font-size: 14px;
+}
+.exms-tags-wrap .exms-available-tags ul li {
+    padding: 8px 0 0 0;
+}
+.exms-tags-wrap .exms-available-tags code {
+    font-weight: lighter;
+}
+/* end email tags box */
+
+/* start quiz tags box */
+.exms-quiz-wrap {
+    position: absolute;
+    right: 0;
+    top: 25px;
+    width: 30%;
+    z-index: 1080;
+    padding: 20px 0;
+}
+.exms-quiz-wrap .exms-tags-title {
+    color: #552CA8;
+    font-weight: 700;
+    cursor: pointer;
+}
+.exms-quiz-wrap .exms-available-tags ul strong {
+    font-weight: 700;
+    padding: 8px 0;
+    font-size: 14px;
+}
+.exms-quiz-wrap .exms-available-tags ul li {
+    padding: 8px 0 0 0;
+}
+.exms-quiz-wrap .exms-available-tags code {
+    font-weight: lighter;
+}
+/* end quiz tags box */
+
+/* end styel for email tab */
+
+/** General tab css **/
+.exms_settings_wrapper {
+    background: white;
+    margin-right: 2%;
+    border: 1px solid #cfd2d5c4;
+}
+.exms-tab-data-heading {
+    padding: 14px;
+    background: #fafafa;
+    font-size: 15px;
+    height: 20px;
+    margin-right: 2%;
+    border: 1px solid #cfd2d5c4;
+    color: black;
+}
+.exms-flex {
+    display: inline-flex;
+    width: 100%;
+}
+.exms-setting {
+    width: 180px;
+    font-weight: 500;
+    padding: 10px 10px 10px 15px;
+}
+/** end general tab css **/
+.exms-quiz-row {
+    display: none;
+}
+.exms-reattempt-quiz-option {
+    display: block;
+}
+.exms-select-dashboard {
+    width: 195px;
+    height: 36px;
+    max-width: 195px;
+}
+
+/* Taxonomy css */
+.exms-taxonomy-wrap {
+    width: 100%;
+    display: inline-flex;
+}
+.exms-texonomy-form {
+    width: 35%;
+}
+.exms-texonomy-form .exms-setting-data2,
+.exms-texonomy-form .exms-setting-data {
+    width: 100%;
+    padding: 20px 0px 0px 30px;
+    width: 95%;
+}
+.exms-texonomy-form .exms-setting-lable {
+    padding: 20px 0px 0px 30px;
+}
+.exms-texonomy-form .div-info {
+    padding: 0px;
+}
+.exms-taxonomy-data-table {
+    width: 65%;
+    padding: 0 30px;
+}
+.exms-edit-taxonomy,
+.exms-delete-taxonomy,
+.exms-quick-edit-taxonomy {
+    cursor: pointer;
+}
+.exms-thickbox-content,
+.exms-essay-thickbox,
+.exms-view-essay {
+    display: none;
+}
+.exms-update-texonomy-form label {
+    font-weight: bold;
+}
+.exms-update-texonomy-form input {
+    margin-left: 150px;
+    border: unset;
+    outline: 1px solid #d4d4d4;
+    width: 56%;
+}
+.exms-update-texonomy-form input[type="button"] {
+    width: 20%;
+}
+.exms-taxonomy-id a {
+    font-weight: 600;
+}
+.exms-quick-form {
+    margin: 15px 0 25px 0;
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+}
+.exms-quick-edit-row {
+    position: relative;
+}
+.exms-quick-edit-row input[type="text"] {
+    width: 89.7%;
+    margin-bottom: 7px;
+    border: unset;
+    outline: 1px solid #d4d4d4;
+    position: absolute;
+    left: 10%;
+    height: 35px;
+}
+.exms-category-filter form {
+    display: inline-block;
+}
+.exms-taxonomy-data-table .tablenav {
+    float: right;
+    margin-top: 0;
+    padding: 0;
+}
+.exms-taxonomy-data-table {
+    margin-top: 27px;
+}
+.exms-select-taxonomy-id {
+    margin-bottom: 4px;
+}
+.exms-category-filter {
+    float: right;
+}
+.exms-quick-edit-cancel, 
+.exms-quick-edit-update {
+    width: 15%;
+}
+.exms-quick-edit-cancel {
+    float: left;
+}
+.exms-quick-edit-update {
+    float: right;
+}
+.exms-quick-loader {
+    display: none;
+    position: absolute;
+    top: 50%;
+    z-index: 1080;
+    transform: translate( -50%, 50% );
+    left: 50%;
+}
+.exms-quick-heading {
+    font-weight: 600;
+}
+/* End taxonomy css */
+
+/* Import and export */
+.exms-import-export {
+    margin-top: 15px;
+}
+.exms-import-export input[type="submit"] {
+    width: 25%;
+}
+.exms-dashboard-page-setting .exms-settings-row {
+    clear: both;
+    display: flex !important;
+    justify-content: center;
+    padding: 5px 0;
+}
+
+.exms-email-settings-row {
+    clear: both;
+    display: flex !important;
+    flex-direction: column;
+    padding: 5px 0;
+}
+.exms-setup-settings-row {
+    clear: both;
+    display: flex !important;
+    justify-content: center;
+}
+
+.exms-dashboard-page-setting {
+    width: 77%;
+}
+
+.exms-label-setup-page {
+    width: 100%;
+}
+.exms-import .exms-settings-container,
+.exms-export .exms-settings-container {
+    background: #ffffff;
+    overflow: hidden;
+}
+.exms-import .exms-add-tab-padding,
+.exms-export .exms-add-tab-padding {
+    margin: 0;
+    font-weight: 600;
+}
+.exms-essay-title,
+.exms-export {
+    margin-top: 25px;
+}
+.exms-export .exms-setting-data2,
+.exms-export .exms-setting-data {
+    position: relative;
+}
+.exms-essay-title h2 {
+    display: inline;
+}
+.import-btn {
+    vertical-align: middle;
+}
+.export-btn {
+    vertical-align: sub;
+}
+.exms-export-loader {
+    position: absolute;
+    z-index: 99999;
+    left: 50%;
+    top: 30%;
+    transform: translate(-50%, -50%);
+    width: 25px;
+    display: none;
+}
+
+.exms_selected_page {
+    margin-top: 10px;
+    width: 350px;
+    height: 30px;
+    outline: 1px solid #2271b1;
+    max-height: 100px;
+}
+
+.exms-btn-submit {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    text-align: center;
+    cursor: pointer;
+    margin-top: 30px;
+    transition: background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.exms-btn-submit:hover {
+    background-color: #0b5ed7;
+    border-color: #0a58ca;
+}
+/* End import and export  */
+
+.exms-settings-tab-label,
+.exms-settings-tab {
+    padding: 0 !important;
+    margin: 0 0 5px 0 !important;
+}
+
+.exms-settings-tab-row {
+    margin-bottom: 8px;
+}
+
+.exms-update-description-paragraph {
+    display: flex;
+    flex-direction: column;
+}
+
+#TB_ajaxContent p {
+    padding: 0 0px 5px 0px !important;
+}
+
+.exms-update-texonomy-form h3 {
+    margin: 10px 0 0 0;
+}

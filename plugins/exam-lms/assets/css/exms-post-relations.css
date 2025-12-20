@@ -1,0 +1,135 @@
+.exms-assign-text {
+    width: 100px;
+    margin-left: 10px;
+}
+.wpeq-range-input-title-div {
+    padding: 5px 0;
+}
+.exms-setup-wizard-link {
+    padding: 10px 0;
+}
+
+/* ============ Style Post relation metabox ============= */
+.exms-clear-both {
+    clear: both;
+}
+.exms-assign-heading-wrap {
+    width: 100%;
+}
+.exms-assign-heading-left,
+.exms-assign-heading-right {
+    font-weight: 600;
+    font-size: 16px;
+    padding-bottom: 20px;
+    width: 48%;
+    padding: 10px 0 16px 4px;
+}
+.exms-assign-heading-left {
+    float: left;
+}
+.exms-assign-heading-right {
+    float: right;
+    margin-left: 2%;
+}
+.exms-sortable-box-wrap {
+    width: 100%;
+}
+.exms-sortable-box-wrap .exms-post-search-input {
+    width: 100%;
+    border-radius: unset;
+    border: 1px solid #d4d4d4;
+    padding: 8px 10px;
+    border-top: unset;
+    border-left: unset;
+    border-radius: unset;
+    margin-bottom: 4px;
+}
+.exms-sortable-box-wrap .exms-assign-box-left,
+.exms-sortable-box-wrap .exms-assign-box-right {
+    width: 47%;
+    margin-bottom: 10px;
+    min-height: 30px;
+    padding: 5px;
+}
+.exms-input-sortable-wrap {
+    border: 1px solid #d4d4d4;
+}
+.exms-sortable-box-wrap .exms-assign-box-left {
+    float: left;
+}
+.exms-sortable-box-wrap .exms-assign-box-right {
+    float: right;
+    margin-left: 2%;
+}
+.exms-sortable-items-wrap {
+    overflow: auto;
+    height: 250px;
+}
+.exms-sortable-item {
+    background: #f1f1f1 url(https://www.phpflow.com/demo/drag_and%20drop_jquery_ui/dragListicon.png?ezimgfmt=ng%3Awebp%2Fngcb6)10px 15px no-repeat;
+    cursor: move;
+    display: block;
+    margin-bottom: 6px;
+    padding: 10px 6px 10px 24px;
+    color: #5a5a5a;
+    font-size: 12px;
+}
+.multiple-sortable-selected {
+  background-color: #dbdbdb;
+  color: #222;
+}
+.exms-sortable-box-wrap .exms-post-search-input:focus {
+    outline: unset;
+    border-bottom: 1px solid #d4d4d4;
+    border-color: unset;
+    box-shadow: unset;
+}
+.exms-sortable-pagination-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 12px;
+}
+.exms-sortable-pagination-wrap .dashicons {
+    cursor: pointer;
+}
+.exms-sortable-pagination-wrap input {
+    border: unset;
+    background: unset;
+}
+.exms-sortable-pagination-wrap .exms-sortable-paginate {
+    cursor: pointer;
+    display: inline-flex;
+    color: #2271b1;
+    font-weight: 600;
+}
+.exms-sortable-pages {
+    font-weight: 600;
+}
+.exms-input-sortable-wrap {
+    background: #ffffff;
+}
+.exms-post-not-found {
+    font-weight: 600;
+    padding: 10px;
+}
+.exms-sortable-ui-link {
+    color: #5a5a5a;
+}
+.exms-sortable-ui-link:hover {
+    color: #5a5a5a;
+}
+.jconfirm-holder {
+    padding-top: 40px;
+    padding-bottom: 40px;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    width: 350px;
+    transform: translate(-50%, -50%);
+}
+.jconfirm .jconfirm-box div.jconfirm-content-pane .jconfirm-content {
+    overflow: unset !important;
+}
+
+/* ============ End style post relation metabox ============= */    

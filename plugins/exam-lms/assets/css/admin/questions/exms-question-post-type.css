@@ -1,0 +1,219 @@
+/**
+ * Question post type options metabox CSS
+ */
+.exms-row {
+    display: flex;
+    padding: 20px 0px;
+}
+.exms-title {
+    width: 20%;
+}
+.exms-data {
+    width: 70%;
+}
+input.wpeq-ques-ans-points {
+	width: 11%;
+}
+.exms-q-row {
+    padding: 10px 0px;
+}
+div.wpeq-info-bar {
+	font-style: oblique;
+}
+div.wpeq-info-bar span.wpeq-info-icon {
+	color: #9e9e9e;
+    margin-right: 5px;
+}
+.wpeq-show {
+	display: block !important;
+}
+.exms-icon {
+	cursor: pointer;
+	font-size: 24px;
+    color: #767780;
+    margin-left: 10px;
+}
+.exms-q-collapse,
+.exms-q-expand,
+.wpeq-del-ans {
+    float: right;
+}
+.wpeq-answer-editor-popup {
+	display: none;
+	position: fixed;
+    top: 15%;
+    padding: 50px;
+    width: 70%;
+    background: #f1f1f1;
+    z-index: 10000;
+    height: 400px;
+    box-shadow: 2px 1px 12px 4px #e3e3e3;
+}
+.wpeq-hidden-ans-cont {
+    display: none;
+}
+.select2-container--default .select2-selection--multiple {
+    border: 1px solid #aaa !important;
+}
+.exms-answer-editor {
+    width: 100%;
+}
+.exms-matrix-ans {
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0px;
+}
+.exms-matrix-ans-label {
+    margin: auto 0;
+    font-weight: bold;
+}
+.exms-q-row .wp-editor-tools {
+    margin-top: 20px;
+}
+
+/**
+ * Question post type answers metabox CSS
+ */
+.wpeq-answer-div {
+    margin: 20px 0;
+    width: 100%;
+    z-index: 5;
+    border: 1px solid #DCE2E7;
+    border-radius: 5px;
+}
+.exms-answers-container {
+    width: 100%;
+}
+.exms-answers-heading {
+    background-color: #D9DDFD6B;
+    color: #552CA8;
+    border-top-left-radius: 6px;
+    border-top-right-radius: 6px;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 500;
+    display: flex;
+    justify-content: space-between;
+}
+.wpeq-draggable {
+    box-shadow: 2px 4px 18px 10px transparent;
+    transition: box-shadow 0.6s ease;
+}
+.wpeq-draggable:hover {
+	cursor: move;
+    box-shadow: 2px 4px 18px 10px #f1f1f1;
+}
+.wpeq-answer-div-over {
+	box-shadow: 1px 2px 2px 2px #006799 !important;
+}
+.wp-editor-tools {
+    margin-top: 5px;
+}
+.wpeq-add-answer-btn {
+    border-radius: 5px;
+    color: #fff !important;
+    background-color: #552CA8 !important;
+}
+
+.wpeq-answer-row {
+    display: flex;
+    align-items: center;
+    padding: 0px 12px;
+    margin: 10px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #fff;
+    border-radius: 6px;
+    gap: 10px;
+    border: 1px solid #DCE2E7;
+}
+
+.wpeq-drag-icon {
+    font-size: 18px;
+    color: #552CA8;
+    cursor: move;
+    padding-right: 6px;
+}
+
+.exms-textarea-ans {
+    flex: 1;
+    padding: 8px 10px;
+    border: none;
+    border-left: 1px solid #DCE2E7;
+    border-right: 1px solid #DCE2E7;
+    resize: none;
+    font-size: 14px;
+    min-height: 36px;
+    background: #f9f9f9;
+    border-radius: 0;
+}
+
+.wpeq-radio-wrapper {
+    padding: 12px 16px 10px 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-right: 1px solid #DCE2E7;
+}
+
+.wpeq-radio-wrapper input[type=checkbox] {
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    border: 4px solid #D1D9E0;
+}
+.wpeq-radio-label {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 28px;
+    height: 16px;
+}
+
+.wpeq-custom-radio {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    cursor: pointer;
+    z-index: 2;
+}
+
+.wpeq-radio-style {
+    width: 20px;
+    height: 20px;
+    border: 4px solid #ccc;
+    border-radius: 50%;
+    background: #fff;
+    position: relative;
+    z-index: 1;
+    transition: border-color 0.3s ease;
+}
+
+.wpeq-custom-radio:checked + .wpeq-radio-style {
+    border-color: #552CA8;
+}
+
+.wpeq-custom-radio:checked + .wpeq-radio-style::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    position: absolute;
+    top: 2px;
+    left: 2px;
+}
+
+.exms-sorting-delete {
+    color: #FF0000;
+    cursor: pointer;
+}
+
+.exms-free-choice-ans {
+    width: 100%;
+    border: 1px solid #DCE2E7;
+    outline: none;
+    border-radius: 5px;
+    padding: 10px 8px;
+}

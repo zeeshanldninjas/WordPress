@@ -1,0 +1,82 @@
+/*!****************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./blocks/src/leaderboard-block/style.scss ***!
+  \****************************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied both on the front of your site
+ * and in the editor.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+/**
+--ldngt-backcolor-global
+--ldngt-height-global
+--ldngt-width-global
+--ldngt-color-global
+--ldngt-wrapper-classes-global
+--ldngt-wrapper-id-global
+--ldngt-isbold-global
+--ldngt-isitalic-global
+--ldngt-decoration-global
+--ldngt-fontsize-global
+--ldngt-fontfamily-global
+--ldngt-bordersize-global
+--ldngt-borderstyle-global
+--ldngt-bordercolor-global
+--ldngt-borderradius-global
+--ldngt-hoffset-global
+--ldngt-voffset-global
+--ldngt-shadowcolor-global
+--ldngt-shadowinset-global
+--ldngt-paddingunit-global
+--ldngt-padding-top-global
+--ldngt-padding-right-global
+--ldngt-padding-bottom-global
+--ldngt-padding-left-global
+--ldngt-marginunit-global
+--ldngt-margin-top-global
+--ldngt-margin-right-global
+--ldngt-margin-bottom-global
+--ldngt-margin-left-global
+--ldngt-hideonmobile-global
+--ldngt-hidetablet-global
+--ldngt-hideondesktop-global
+--ldngt-background-image-local
+ */
+.ldngt-spacer-wrapper {
+  background-color: var(--ldngt-backcolor-global);
+  color: var(--ldngt-color-global);
+  width: calc(var(--ldngt-width-global) - var(--ldngt-margin-right-global) - var(--ldngt-margin-left-global) - var(--ldngt-margin-left-global) - var(--ldngt-borderleft-global) - var(--ldngt-borderright-global));
+  max-width: var(--ldngt-width-global);
+  height: var(--ldngt-height-global);
+  max-height: var(--ldngt-height-global);
+  font-weight: bold;
+  font-style: italic;
+  -webkit-text-decoration: var(--ldngt-decoration-global);
+          text-decoration: var(--ldngt-decoration-global);
+  font-family: var(--ldngt-fontfamily-global);
+  font-size: var(--ldngt-fontsize-global);
+  border-left: var(--ldngt-borderleft-global) var(--ldngt-borderstyle-global) var(--ldngt-bordercolor-global);
+  border-bottom: var(--ldngt-borderbottom-global) var(--ldngt-borderstyle-global) var(--ldngt-bordercolor-global);
+  border-right: var(--ldngt-borderright-global) var(--ldngt-borderstyle-global) var(--ldngt-bordercolor-global);
+  border-top: var(--ldngt-bordertop-global) var(--ldngt-borderstyle-global) var(--ldngt-bordercolor-global);
+  border-bottom-right-radius: var(--ldngt-borderradiusbottom-global);
+  border-top-right-radius: var(--ldngt-borderradiusright-global);
+  border-top-left-radius: var(--ldngt-borderradiustop-global);
+  border-bottom-left-radius: var(--ldngt-borderradiusleft-global);
+  box-shadow: var(--ldngt-hoffset-global) var(--ldngt-voffset-global) var(--ldngt-shadowcolor-global) var(--ldngt-shadowinset-global);
+  padding-top: var(--ldngt-padding-top-global);
+  padding-right: var(--ldngt-padding-right-global);
+  padding-bottom: var(--ldngt-padding-bottom-global);
+  padding-left: var(--ldngt-padding-left-global);
+  margin-top: var(--ldngt-margin-top-global);
+  margin-right: var(--ldngt-margin-right-global);
+  margin-bottom: var(--ldngt-margin-bottom-global);
+  margin-left: var(--ldngt-margin-left-global);
+  background-repeat: repeat;
+  background-image: var(--ldngt-background-image-local);
+}
+.ldngt-spacer-wrapper else {
+  box-shadow: 0 12px 15px 0 rgba(0, 0, 0, 0.24), 0 17px 50px 0 rgba(0, 0, 0, 0.19);
+}
+
+/*# sourceMappingURL=style-index.css.map*/
