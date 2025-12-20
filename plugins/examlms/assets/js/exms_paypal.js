@@ -228,9 +228,24 @@
 		}
 		EXMSpaypal.init();
 
-		// Expose course PayPal initialization globally
-		window.initCoursePayPalButton = function() {
-			EXMSpaypal.createCourseOrderWithPaypal();
-		};
+		// Make EXMSpaypal available globally for course PayPal button
+		window.EXMSpaypal = EXMSpaypal;
 	});
+
+	// Expose course PayPal initialization globally (outside document ready)
+	window.initCoursePayPalButton = function() {
+		// Check if PayPal SDK is loaded
+		if (typeof paypal === 'undefined') {
+			console.error('PayPal SDK not loaded yet');
+			return false;
+		}
+		
+		// Check if EXMSpaypal is available
+		if (typeof window.EXMSpaypal !== 'undefined' && typeof window.EXMSpaypal.createCourseOrderWithPaypal === 'function') {
+			window.EXMSpaypal.createCourseOrderWithPaypal();
+		} else {
+			console.error('EXMSpaypal.createCourseOrderWithPaypal not available');
+		}
+	};
+
 } )( jQuery );

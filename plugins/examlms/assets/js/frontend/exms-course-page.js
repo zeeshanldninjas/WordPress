@@ -269,6 +269,15 @@
                                 // Trigger PayPal button rendering
                                 if (typeof window.initCoursePayPalButton === 'function') {
                                     window.initCoursePayPalButton();
+                                } else {
+                                    // Retry after a short delay if function not available yet
+                                    setTimeout(function() {
+                                        if (typeof window.initCoursePayPalButton === 'function') {
+                                            window.initCoursePayPalButton();
+                                        } else {
+                                            console.error('initCoursePayPalButton function not available');
+                                        }
+                                    }, 500);
                                 }
                             }
 
