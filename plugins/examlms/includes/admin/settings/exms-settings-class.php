@@ -1684,7 +1684,7 @@ class EXMS_Settings {
 				do_action( 'exms_add_settings_tabs_data' ); ?>
                 
 			</div>
-			<?php wp_nonce_field( 'wpeq_save_settings_form', 'wpeq_save_form' ); ?>
+			<?php wp_nonce_field( 'exms_save_settings_form', 'exms_save_form' ); ?>
 			<input type="hidden" id="exms_tab_form" name="exms_tab" value="<?php echo isset( $_GET['tab'] ) ? $_GET['tab'] : 'general'; ?>" />
             <input type="hidden" id="exms_tab_type" name="exms_tab_type" value="<?php echo isset( $_GET['tab_type'] ) ? $_GET['tab_type'] : ''; ?>" />
 			<input type="hidden" name="action" value="wpeq_save_settings" />
