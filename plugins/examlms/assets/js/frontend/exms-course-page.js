@@ -267,6 +267,8 @@
                                 }
 
                                 // Initialize PayPal button directly
+                                console.log('Attempting to initialize PayPal button...');
+                                console.log('PayPal SDK available:', typeof paypal !== 'undefined');
                                 initCoursePayPalButton();
                             }
 
@@ -321,7 +323,10 @@
         function initCoursePayPalButton() {
             // Check if PayPal SDK is loaded
             if (typeof paypal === 'undefined') {
-                console.error('PayPal SDK not loaded yet');
+                console.log('PayPal SDK not loaded yet, retrying in 1 second...');
+                setTimeout(function() {
+                    initCoursePayPalButton();
+                }, 1000);
                 return false;
             }
 
