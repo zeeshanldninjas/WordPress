@@ -266,10 +266,8 @@
                                     $( '#exms-paypal-payee' ).val( response.paypal_payee );
                                 }
 
-                                // Trigger PayPal button rendering
-                                if (typeof window.initCoursePayPalButton === 'function') {
-                                    window.initCoursePayPalButton();
-                                }
+                                // Initialize PayPal button directly
+                                initCoursePayPalButton();
                             }
 
                             else {
@@ -318,6 +316,82 @@
             },
 
         };
+
+        // PayPal course payment function
+        function initCoursePayPalButton() {
+            // Check if PayPal SDK is loaded
+            if (typeof paypal === 'undefined') {
+                console.error('PayPal SDK not loaded yet');
+                return false;
+            }
+
+            // Check if PayPal button container exists
+            if (!$('#exms-paypal-button-container').length) {
+                console.error('PayPal button container not found');
+                return false;
+            }
+
+            let courseID = $('#exms-course-id').val();
+            let price = $('#exms-course-price').val();
+            let courseTitle = $('#exms-course-title').val();
+            let payeeEmail = $('#exms-paypal-payee').val();
+            let userID = EXMS.user_id || 0;
+
+            if (!courseID || !price || !payeeEmail) {
+                console.error('Missing required data for PayPal payment');
+                return false;
+            }
+
+            paypal.Buttons({
+                createOrder: (data, actions) => {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: price
+                            },
+                            payee: {
+                                email_address: payeeEmail
+                            },
+                            description: 'Purchase of ' + courseTitle
+                        }]
+                    });
+                },
+
+                onApprove: (data, actions) => {
+                    return actions.order.capture().then(function(orderData) {
+
+                        let ajaxData = {
+                            'action': 'exms_save_course_paypal_transactions',
+                            'security': EXMS.security,
+                            'user_id': userID,
+                            'course_id': courseID,
+                            'price': price,
+                            'order_data': orderData
+                        };
+
+                        jQuery.post(EXMS.ajaxURL, ajaxData, function(resp) {
+
+                            let response = JSON.parse(resp);
+                            if (response.status == 'false' || response.status == 'error') {
+                                alert(response.message || 'Payment failed. Please try again.');
+                            } else {
+                                alert('Payment completed successfully! You are now enrolled in the course.');
+                                location.reload(true);
+                            }
+                        }).fail(function() {
+                            alert('Payment processing failed. Please contact support.');
+                        });
+
+                    });
+                },
+
+                onError: function(err) {
+                    console.error('PayPal error:', err);
+                    alert('Payment failed. Please try again or contact support.');
+                }
+            }).render('#exms-paypal-button-container');
+        }
+
         EXMSCoursePage.init();
     });
 })( jQuery );

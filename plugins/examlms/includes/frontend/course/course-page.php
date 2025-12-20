@@ -43,6 +43,15 @@ class EXMS_COURSE {
         wp_enqueue_style( 'dashicons' );
         wp_enqueue_style( 'wp-exams-course', EXMS_ASSETS_URL . 'css/frontend/exms-course.css', [], EXMS::VERSION, null );
 
+        // Enqueue PayPal SDK for course payments
+        $exms_options = get_option( 'exms_settings' );
+        $paypal_client_id = isset( $exms_options['paypal_client_id'] ) ? $exms_options['paypal_client_id'] : '';
+        $paypal_currency = isset( $exms_options['paypal_currency'] ) ? $exms_options['paypal_currency'] : 'USD';
+        
+        if ( ! empty( $paypal_client_id ) ) {
+            wp_enqueue_script( 'paypal-sdk', 'https://www.paypal.com/sdk/js?disable-funding=credit,bancontact,blik,eps,giropay,ideal,mercadopago,mybank,p24,sepa,sofort,venmo,card&client-id=' . $paypal_client_id . '&currency=' . $paypal_currency, [], null, false );
+        }
+
         wp_enqueue_script( 'wp-exams-course-js', EXMS_ASSETS_URL . 'js/frontend/exms-course-page.js', [ 'jquery' ], '', true );
 
         wp_localize_script( 'wp-exams-course-js', 'EXMS', [ 
