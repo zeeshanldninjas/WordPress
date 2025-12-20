@@ -399,7 +399,7 @@ class EXMS_COURSE {
             }
 
             // Get course price from database
-            $course_info = exms_get_course_info( $course_id );
+            $course_info = exms_get_post_settings( $course_id );
             $course_price = isset( $course_info['parent_post_price'] ) ? intval( $course_info['parent_post_price'] ) : 0;
             $course_title = get_the_title( $course_id );
 
