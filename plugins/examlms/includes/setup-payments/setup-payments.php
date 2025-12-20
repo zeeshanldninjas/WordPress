@@ -38,7 +38,9 @@ class EXMS_Setup_Payments {
      */
     private function hooks() {
 
-        add_action( 'wp_ajax_exms_save_paypal_transactions', [ $this, 'exms_save_paypal_transactions' ] );   
+        add_action( 'wp_ajax_exms_save_paypal_transactions', [ $this, 'exms_save_paypal_transactions' ] );
+        add_action( 'wp_ajax_exms_save_course_paypal_transactions', [ $this, 'exms_save_course_paypal_transactions' ] );
+        add_action( 'wp_ajax_nopriv_exms_save_course_paypal_transactions', [ $this, 'exms_save_course_paypal_transactions' ] );
     }
 
     /**
@@ -115,6 +117,79 @@ class EXMS_Setup_Payments {
         echo json_encode( $response );
         wp_die();
     }
+
+    /**
+     * Save PayPal Payment Transactions for Courses
+     */
+    public function exms_save_course_paypal_transactions() {
+
+        check_ajax_referer( 'exms_ajax_nonce', 'security' );
+
+        $response = [];
+
+        $course_id = isset( $_POST['course_id'] ) ? intval( $_POST['course_id'] ) : 0;
+        if( empty( $course_id ) ) {
+
+            $response['status'] = 'error';
+            $response['message'] = __( 'Course ID not found.', 'exms' );
+            echo json_encode( $response );
+            wp_die();
+        }
+
+        $user_id = isset( $_POST['user_id'] ) ? intval( $_POST['user_id'] ) : get_current_user_id();
+        if( empty( $user_id ) ) {
+
+            $response['status'] = 'error';
+            $response['message'] = __( 'User ID not found.', 'exms' );
+            echo json_encode( $response );
+            wp_die();
+        }
+
+        $price = isset( $_POST['price'] ) ? intval( $_POST['price'] ) : 0;
+        if( empty( $price ) ) {
+
+            $response['status'] = 'error';
+            $response['message'] = __( 'Price not found.', 'exms' );
+            echo json_encode( $response );
+            wp_die();
+        }
+
+        $order_data = isset( $_POST['order_data'] ) ? $_POST['order_data'] : '';
+        if( empty( $order_data ) ) {
+
+            $response['status'] = 'error';
+            $response['message'] = __( 'Order data not found.', 'exms' );
+            echo json_encode( $response );
+            wp_die();
+        }
+
+        // Save transaction to database
+        EXMS_Payment_Func::exms_insert_into_payment_transaction( $order_data, $user_id, $course_id, $price );
+
+        // Enroll user in the course
+        $post_type = get_post_type( $course_id );
+        $enrollment_result = EXMS_PR_Fn::exms_enroll_user_to_content(
+            $user_id,
+            $course_id,
+            $post_type,
+            $user_id,
+            'enrolled',
+            0,
+            current_time( 'timestamp' ),
+            ''
+        );
+
+        if( $enrollment_result ) {
+            $response['status'] = 'success';
+            $response['message'] = __( 'Payment completed and you are now enrolled!', 'exms' );
+        } else {
+            $response['status'] = 'success';
+            $response['message'] = __( 'Payment completed successfully!', 'exms' );
+        }
+
+        echo json_encode( $response );
+        wp_die();
+    }
 }
 
 EXMS_Setup_Payments::instance();
@@ -132,4 +207,4 @@ function exms_remove_user_quiz_subscription( $args ) {
     $post_id = $args['post_id'] ? $args['post_id'] : 0;
 
     echo exms_unenroll_user_on_post( $user_id, $post_id );
-}   
+}

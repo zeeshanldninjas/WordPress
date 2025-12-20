@@ -251,6 +251,25 @@
                                 if( response.user_email ) {
                                     $( '#paypal-email, #stripe-email' ).val( response.user_email );
                                 }
+
+                                // Populate course data for PayPal
+                                if( response.course_id ) {
+                                    $( '#exms-course-id' ).val( response.course_id );
+                                }
+                                if( response.course_price ) {
+                                    $( '#exms-course-price' ).val( response.course_price );
+                                }
+                                if( response.course_title ) {
+                                    $( '#exms-course-title' ).val( response.course_title );
+                                }
+                                if( response.paypal_payee ) {
+                                    $( '#exms-paypal-payee' ).val( response.paypal_payee );
+                                }
+
+                                // Trigger PayPal button rendering
+                                if (typeof window.initCoursePayPalButton === 'function') {
+                                    window.initCoursePayPalButton();
+                                }
                             }
 
                             else {

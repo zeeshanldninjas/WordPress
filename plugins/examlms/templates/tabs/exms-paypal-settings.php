@@ -160,6 +160,20 @@ $client_id = isset( $paypal_settings['paypal_client_id'] ) ? $paypal_settings['p
             </div>
         </div>
         <!-- End payment email -->
+
+        <!-- PayPal Client ID -->
+        <div class="exms-settings-row">
+            <div class="exms-settings-row-child">
+                <div class="exms-setting-lable">
+                    <label><?php _e( 'PayPal Client ID', 'exms' ); ?></label>
+                </div>
+                <div class="exms-setting-data2">
+                    <input type="text" class="wpeq-input-field exms-paypal-client-id" name="exms_paypal_client_id" placeholder="<?php _e( 'PayPal Client ID', 'exms' ); ?>" value="<?php echo $client_id; ?>" />
+                    <p class="exms-instruction-message"><?php _e( 'Enter your PayPal Client ID from PayPal Developer Dashboard.', 'exms' ); ?></p>
+                </div>
+            </div>
+        </div>
+        <!-- End PayPal Client ID -->
         <div class="exms-settings-row2 ">
             <label>
                 <?php _e( '<b>Note:</b> Please, fill in all of the mandatory fields.', 'exms' ); ?>

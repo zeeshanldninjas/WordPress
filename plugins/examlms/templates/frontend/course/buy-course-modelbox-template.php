@@ -22,7 +22,13 @@ if( ! defined( 'ABSPATH' ) ) exit;
                     <label for="paypal-email"><?php _e( 'Email', 'exms' ); ?></label>
                     <input type="email" id="paypal-email" name="paypal_email" required />
                 </div>
-                <button type="submit" class="exms-submit-btn"><?php _e( 'Proceed with PayPal', 'exms' ); ?></button>
+                <!-- Hidden fields for course data -->
+                <input type="hidden" id="exms-course-id" name="course_id" value="" />
+                <input type="hidden" id="exms-course-price" name="course_price" value="" />
+                <input type="hidden" id="exms-course-title" name="course_title" value="" />
+                <input type="hidden" id="exms-paypal-payee" name="paypal_payee" value="" />
+                <!-- PayPal button container -->
+                <div id="exms-paypal-button-container"></div>
             </form>
         </div>
 

@@ -48,6 +48,7 @@ class EXMS_COURSE {
         wp_localize_script( 'wp-exams-course-js', 'EXMS', [ 
             'ajaxURL'                       => admin_url( 'admin-ajax.php' ),
             'security'                      => wp_create_nonce( 'exms_ajax_nonce' ),
+            'user_id'                       => get_current_user_id(),
             'course_detail_icon_right'            => EXMS_ASSETS_URL . 'imgs/rightbar-right-arrow.svg',            
             'course_detail_icon_left'            => EXMS_ASSETS_URL . 'imgs/rightbar-left-arrow.svg',            
         ] );
@@ -397,16 +398,29 @@ class EXMS_COURSE {
                 $user_email = $current_user->user_email;
             }
 
+            // Get course price from database
+            $course_info = exms_get_course_info( $course_id );
+            $course_price = isset( $course_info['parent_post_price'] ) ? intval( $course_info['parent_post_price'] ) : 0;
+            $course_title = get_the_title( $course_id );
+
+            // Get PayPal settings
+            $exms_options = get_option( 'exms_settings' );
+            $paypal_payee_email = isset( $exms_options['paypal_vender_email'] ) ? $exms_options['paypal_vender_email'] : '';
+
             ob_start();
             include EXMS_TEMPLATES_DIR . '/frontend/course/buy-course-modelbox-template.php';
             $popup_html = ob_get_clean();
 
             wp_send_json( array(
-                'status'      => 'show_payment_popup',
-                'message'     => __( 'Please choose a payment method to proceed.', 'exms' ),
-                'popup_html'  => $popup_html,
-                'user_name'   => $user_full_name,
-                'user_email'  => $user_email,
+                'status'         => 'show_payment_popup',
+                'message'        => __( 'Please choose a payment method to proceed.', 'exms' ),
+                'popup_html'     => $popup_html,
+                'user_name'      => $user_full_name,
+                'user_email'     => $user_email,
+                'course_id'      => $course_id,
+                'course_price'   => $course_price,
+                'course_title'   => $course_title,
+                'paypal_payee'   => $paypal_payee_email,
             ) );
         }
 

@@ -1407,6 +1407,9 @@ class EXMS_Settings {
                     if( isset( $_POST['exms_paypal_payee_email'] ) ) {
                         $payment_data['paypal_vender_email'] = sanitize_email( $_POST['exms_paypal_payee_email'] );
                     }
+                    if( isset( $_POST['exms_paypal_client_id'] ) ) {
+                        $payment_data['paypal_client_id'] = sanitize_text_field( $_POST['exms_paypal_client_id'] );
+                    }
                 } else {
                     $payment_data['paypal_transaction_mode'] = 'sandbox';
                     $payment_data['checkour_mode'] = '';
