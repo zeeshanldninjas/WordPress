@@ -137,12 +137,58 @@ class EXMS_Setup_Payments {
         }
 
         $user_id = isset( $_POST['user_id'] ) ? intval( $_POST['user_id'] ) : get_current_user_id();
+        
+        // If user is not logged in, try to create/find user from PayPal data
         if( empty( $user_id ) ) {
-
-            $response['status'] = 'error';
-            $response['message'] = __( 'User ID not found.', 'exms' );
-            echo json_encode( $response );
-            wp_die();
+            $order_data = isset( $_POST['order_data'] ) ? $_POST['order_data'] : '';
+            
+            if( !empty( $order_data ) && isset( $order_data['payer']['email_address'] ) ) {
+                $payer_email = sanitize_email( $order_data['payer']['email_address'] );
+                $payer_name = '';
+                
+                // Get payer name from PayPal data
+                if( isset( $order_data['payer']['name']['given_name'] ) && isset( $order_data['payer']['name']['surname'] ) ) {
+                    $payer_name = sanitize_text_field( $order_data['payer']['name']['given_name'] . ' ' . $order_data['payer']['name']['surname'] );
+                }
+                
+                // Check if user already exists with this email
+                $existing_user = get_user_by( 'email', $payer_email );
+                
+                if( $existing_user ) {
+                    $user_id = $existing_user->ID;
+                } else {
+                    // Create new user account
+                    $username = sanitize_user( $payer_email );
+                    $password = wp_generate_password();
+                    
+                    $user_id = wp_create_user( $username, $password, $payer_email );
+                    
+                    if( !is_wp_error( $user_id ) && !empty( $payer_name ) ) {
+                        // Set display name
+                        wp_update_user( array(
+                            'ID' => $user_id,
+                            'display_name' => $payer_name
+                        ) );
+                        
+                        // Split name into first and last name
+                        $name_parts = explode( ' ', $payer_name, 2 );
+                        if( count( $name_parts ) >= 1 ) {
+                            update_user_meta( $user_id, 'first_name', $name_parts[0] );
+                        }
+                        if( count( $name_parts ) >= 2 ) {
+                            update_user_meta( $user_id, 'last_name', $name_parts[1] );
+                        }
+                    }
+                }
+            }
+            
+            // If still no user ID, return error
+            if( empty( $user_id ) || is_wp_error( $user_id ) ) {
+                $response['status'] = 'error';
+                $response['message'] = __( 'Unable to identify or create user account.', 'exms' );
+                echo json_encode( $response );
+                wp_die();
+            }
         }
 
         $price = isset( $_POST['price'] ) ? intval( $_POST['price'] ) : 0;
