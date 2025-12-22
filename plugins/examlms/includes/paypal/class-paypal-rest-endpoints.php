@@ -332,7 +332,7 @@ class EXMS_PayPal_REST_Endpoints {
         $table_name = $wpdb->prefix . 'exms_payment_transaction';
         
         $count = $wpdb->get_var( $wpdb->prepare(
-            "SELECT COUNT(*) FROM {$table_name} WHERE paypal_order_id = %s",
+            "SELECT COUNT(*) FROM {$table_name} WHERE order_id = %s",
             $order_id
         ) );
 
@@ -367,17 +367,19 @@ class EXMS_PayPal_REST_Endpoints {
 
         // Save transaction to database
         $transaction_data = array(
-            'order_id' => $payment_data['order_id'],
-            'transaction_id' => $payment_data['transaction_id'],
-            'amount' => $payment_data['amount'],
-            'currency' => $payment_data['currency'],
+            'id' => $payment_data['order_id'],
             'status' => $payment_data['status'],
-            'payer' => array(
-                'email_address' => $payment_data['payer_email'],
-                'name' => array(
-                    'given_name' => $payment_data['payer_name']
+            'purchase_units' => array(
+                array(
+                    'payee' => array(
+                        'email_address' => $this->get_paypal_vendor_email()
+                    )
                 )
-            )
+            ),
+            'payer' => array(
+                'email_address' => $payment_data['payer_email']
+            ),
+            'create_time' => current_time( 'mysql' )
         );
 
         try {
@@ -467,5 +469,14 @@ class EXMS_PayPal_REST_Endpoints {
 
         return $user_id;
     }
-}
 
+    /**
+     * Get PayPal vendor email from settings
+     * 
+     * @return string Vendor email
+     */
+    private function get_paypal_vendor_email() {
+        $payment_settings = get_option( 'exms_payment_settings', array() );
+        return isset( $payment_settings['paypal_vender_email'] ) ? $payment_settings['paypal_vender_email'] : '';
+    }
+}
