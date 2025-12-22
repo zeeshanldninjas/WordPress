@@ -13,6 +13,7 @@ $redirect_url = isset( $paypal_settings['paypal_redirect_url'] ) ? $paypal_setti
 $currency = isset( $paypal_settings['paypal_currency'] ) ? $paypal_settings['paypal_currency'] : '';
 $vender_email = isset( $paypal_settings['paypal_vender_email'] ) ? $paypal_settings['paypal_vender_email'] : '';
 $client_id = isset( $paypal_settings['paypal_client_id'] ) ? $paypal_settings['paypal_client_id'] : '';
+$client_secret = isset( $paypal_settings['paypal_client_secret'] ) ? $paypal_settings['paypal_client_secret'] : '';
 
 ?>
 <div class="exms-email-settings-wrap form-table exms-paypal-settings-parent" data-payment="<?php echo esc_attr(json_encode($paypal_settings)); ?>">
@@ -174,9 +175,24 @@ $client_id = isset( $paypal_settings['paypal_client_id'] ) ? $paypal_settings['p
             </div>
         </div>
         <!-- End PayPal Client ID -->
+
+        <!-- PayPal Client Secret -->
+        <div class="exms-settings-row">
+            <div class="exms-settings-row-child">
+                <div class="exms-setting-lable">
+                    <label><?php _e( 'PayPal Client Secret', 'exms' ); ?></label>
+                </div>
+                <div class="exms-setting-data2">
+                    <input type="password" class="wpeq-input-field exms-paypal-client-secret" name="exms_paypal_client_secret" placeholder="<?php _e( 'PayPal Client Secret', 'exms' ); ?>" value="<?php echo $client_secret; ?>" />
+                    <p class="exms-instruction-message"><?php _e( 'Enter your PayPal Client Secret from PayPal Developer Dashboard. Required for secure server-side payments.', 'exms' ); ?></p>
+                </div>
+            </div>
+        </div>
+        <!-- End PayPal Client Secret -->
+
         <div class="exms-settings-row2 ">
             <label>
-                <?php _e( '<b>Note:</b> Please, fill in all of the mandatory fields.', 'exms' ); ?>
+                <?php _e( '<b>Note:</b> Please, fill in all of the mandatory fields. Both Client ID and Client Secret are required for secure payments.', 'exms' ); ?>
             </label>
         </div>
     </div>
