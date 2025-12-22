@@ -157,28 +157,27 @@ class EXMS_Setup_Payments {
                 if( $existing_user ) {
                     $user_id = $existing_user->ID;
                 } else {
-                    // Create new user account
+                    // Create new user account using wp_insert_user for better performance
                     $username = sanitize_user( $payer_email );
                     $password = wp_generate_password();
                     
-                    $user_id = wp_create_user( $username, $password, $payer_email );
+                    // Split name into first and last name
+                    $name_parts = explode( ' ', trim( $payer_name ), 2 );
+                    $first_name = isset( $name_parts[0] ) ? $name_parts[0] : '';
+                    $last_name = isset( $name_parts[1] ) ? $name_parts[1] : '';
                     
-                    if( !is_wp_error( $user_id ) && !empty( $payer_name ) ) {
-                        // Set display name
-                        wp_update_user( array(
-                            'ID' => $user_id,
-                            'display_name' => $payer_name
-                        ) );
-                        
-                        // Split name into first and last name
-                        $name_parts = explode( ' ', $payer_name, 2 );
-                        if( count( $name_parts ) >= 1 ) {
-                            update_user_meta( $user_id, 'first_name', $name_parts[0] );
-                        }
-                        if( count( $name_parts ) >= 2 ) {
-                            update_user_meta( $user_id, 'last_name', $name_parts[1] );
-                        }
-                    }
+                    // Use wp_insert_user to create user with all data in single query
+                    $user_data = array(
+                        'user_login'    => $username,
+                        'user_email'    => $payer_email,
+                        'user_pass'     => $password,
+                        'display_name'  => $payer_name,
+                        'first_name'    => $first_name,
+                        'last_name'     => $last_name,
+                        'role'          => 'subscriber'
+                    );
+                    
+                    $user_id = wp_insert_user( $user_data );
                 }
             }
             
