@@ -1,0 +1,3 @@
+[submodule "plugins/reset-course-progress-for-learndash"]
+	path = plugins/reset-course-progress-for-learndash
+	url = https://github.com/LDNinjas/reset-course-progress-for-learndash.git
