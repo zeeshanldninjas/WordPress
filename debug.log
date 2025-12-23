@@ -1,0 +1,351 @@
+[22-Dec-2025 08:18:02 UTC] PHP Notice:  Function wpdb::prepare was called <strong>incorrectly</strong>. Unsupported value type (array). Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 4.8.2.) in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\functions.php on line 6131
+[22-Dec-2025 08:18:02 UTC] PHP Notice:  Function wpdb::prepare was called <strong>incorrectly</strong>. Unsupported value type (array). Please see <a href="https://developer.wordpress.org/advanced-administration/debug/debug-wordpress/">Debugging in WordPress</a> for more information. (This message was added in version 4.8.2.) in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\functions.php on line 6131
+[22-Dec-2025 09:06:12 UTC] Automatic updates starting...
+[22-Dec-2025 09:06:12 UTC]   Automatic plugin updates starting...
+[22-Dec-2025 09:06:12 UTC]   Automatic plugin updates complete.
+[22-Dec-2025 09:06:12 UTC] Automatic updates complete.
+[22-Dec-2025 10:01:27 UTC] Cron reschedule event error for hook: action_scheduler_run_queue, Error code: invalid_schedule, Error message: Event schedule does not exist., Data: {"schedule":"every_minute","args":["WP Cron"],"interval":60}
+[22-Dec-2025 12:05:24 UTC] PHP Warning:  plugins_api(): An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\functions.php on line 6131
+[22-Dec-2025 12:06:15 UTC] PHP Warning:  wp_update_themes(): An unexpected error occurred. Something may be wrong with WordPress.org or this server&#8217;s configuration. If you continue to have problems, please try the <a href="https://wordpress.org/support/forums/">support forums</a>. (WordPress could not establish a secure connection to WordPress.org. Please contact your server administrator.) in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\functions.php on line 6131
+[22-Dec-2025 12:20:44 UTC] PHP Fatal error:  Uncaught TypeError: Unsupported operand types: string * int in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\settings\tabs\reports-data-table.php:819
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\settings\tabs\reports-data-table.php(53): EXMS_Reports_Data_Table->exms_quiz_reports_table_records(1, 20, 'Quizzes')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\settings\tabs\reports-data-table.php(1287): EXMS_Reports_Data_Table->prepare_items()
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\settings\tabs\reports-data-table.php(1290): exms_reports_data_table_layout()
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\settings\tabs\reports.php(59): require_once('C:\\Users\\Zeesha...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\settings\tabs\reports.php(36): EXMS_Reports->exms_report_html_content()
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\settings\tabs\reports.php(25): EXMS_Reports->hooks()
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\settings\tabs\reports.php(64): EXMS_Reports::instance()
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\settings\exms-settings-class.php(1651): require_once('C:\\Users\\Zeesha...')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): EXMS_Settings->exms_add_settings_tabs_data('reports')
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters('', Array)
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\settings\exms-settings-class.php(1684): do_action('exms_add_settin...')
+#12 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): EXMS_Settings::exms_settings_page_output('')
+#13 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters('', Array)
+#14 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#15 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-admin\admin.php(264): do_action('wp-exams_page_e...')
+#16 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\settings\tabs\reports-data-table.php on line 819
+[22-Dec-2025 13:33:51 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\templates\frontend\course\course-overview-template.php(48): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:33:51 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-canvas.php(17): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:37:27 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\templates\frontend\course\course-overview-template.php(48): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:37:27 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-canvas.php(17): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:37:53 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\templates\frontend\course\course-overview-template.php(48): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:37:53 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-canvas.php(17): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:38:13 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\templates\frontend\course\course-overview-template.php(48): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:38:13 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-canvas.php(17): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:38:19 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\templates\frontend\course\course-overview-template.php(48): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:38:19 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-canvas.php(17): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:38:24 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\templates\frontend\course\course-overview-template.php(48): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:38:24 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-canvas.php(17): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:38:31 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\templates\frontend\course\course-overview-template.php(48): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:38:31 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-canvas.php(17): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:38:38 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\templates\frontend\course\course-overview-template.php(48): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:38:39 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-canvas.php(17): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:38:44 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:132
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\templates\frontend\course\course-overview-template.php(48): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 132
+[22-Dec-2025 13:38:44 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:132
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-canvas.php(17): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 132
+[22-Dec-2025 13:40:27 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\templates\frontend\course\course-overview-template.php(48): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[22-Dec-2025 13:40:27 UTC] PHP Fatal error:  Uncaught Error: Class "WP_EXAMS" not found in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php:131
+Stack trace:
+#0 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): Exms_Enqueue_scripts->exms_templates_scripts('')
+#1 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#2 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#3 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\script-loader.php(2311): do_action('wp_enqueue_scri...')
+#4 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(341): wp_enqueue_scripts('')
+#5 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\class-wp-hook.php(365): WP_Hook->apply_filters(NULL, Array)
+#6 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\plugin.php(522): WP_Hook->do_action(Array)
+#7 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\general-template.php(3197): do_action('wp_head')
+#8 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-canvas.php(17): wp_head()
+#9 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-includes\template-loader.php(125): include('C:\\Users\\Zeesha...')
+#10 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-blog-header.php(19): require_once('C:\\Users\\Zeesha...')
+#11 C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\index.php(17): require('C:\\Users\\Zeesha...')
+#12 {main}
+  thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
+[23-Dec-2025 05:26:53 UTC] Automatic updates starting...
+[23-Dec-2025 05:26:57 UTC] Automatic updates complete.
