@@ -27,8 +27,8 @@ class EXMS_COURSE {
      */
     private function hooks() {
         add_action( 'wp_enqueue_scripts', [ $this, 'exms_enqueue_course_scripts' ] );
-        add_action( 'wp_ajax_posts_steps', [ $this, 'exms_posts_steps_call_back' ] );
-        add_action( 'wp_ajax_nopriv_posts_steps', [ $this, 'exms_posts_steps_call_back' ] );
+        //add_action( 'wp_ajax_posts_steps', [ $this, 'exms_posts_steps_call_back' ] );
+        //add_action( 'wp_ajax_nopriv_posts_steps', [ $this, 'exms_posts_steps_call_back' ] );
         add_action( 'wp_ajax_exms_enrolled_user_to_the_course', [ $this, 'exms_enrolled_user_to_the_course' ] );
         add_action( 'wp_ajax_nopriv_exms_enrolled_user_to_the_course', [ $this, 'exms_enrolled_user_to_the_course' ] );
         add_action( 'template_redirect', [ $this, 'exms_template_redirect_vars' ] );
@@ -184,8 +184,8 @@ class EXMS_COURSE {
      */
     public function render_child_steps( $wpdb, $post_id, $post_type, $assigned_types, $course_id, $final_slug ) {
         
-        foreach ( $assigned_types as $child_type ) {
-            if ( ! post_type_exists( $child_type ) ) {
+        foreach( $assigned_types as $child_type ) {
+            if( ! post_type_exists( $child_type ) ) {
                 continue;
             }
 
@@ -220,15 +220,24 @@ class EXMS_COURSE {
      * @param $course_info array()
      * @param $course_type string 
      */ 
-    public function exms_get_course_type_data( $course_info = array(), $course_type = '' ) {
+    public function exms_get_course_type_data( $course_info = array(), $course_type = '', $post_type = "" ) {
+        $is_course = ( $post_type === 'exms-courses' );
+        $pass_price = $is_course
+            ? ( $course_info['parent_post_price'] ?? 0 )
+            : ( $course_info['group_price'] ?? 0 );
 
+        $pass_label = $is_course
+            ? __( 'Paid Course', 'exms' )
+            : __( 'Paid Group', 'exms' );
         $type_data = array(
             'free' => array(
                 'label'  => __( 'Free', 'exms' ),
                 'button' => __( 'Enroll Now', 'exms' ),
             ),
             'paid' => array(
-                'label'  => isset( $course_info['parent_post_price'] ) ? sprintf( __( 'Price: $%s', 'exms' ), $course_info['parent_post_price'] ) : __( 'Paid Course', 'exms' ),
+                'label'  => $pass_price
+                    ? sprintf( __( 'Price: $%s', 'exms' ), $pass_price )
+                    : $pass_label,
                 'button' => __( 'Buy Now', 'exms' ),
             ),
             'subscribe' => array(
@@ -260,63 +269,76 @@ class EXMS_COURSE {
 
     public function exms_template_redirect_vars() {
 
-        if ( is_singular( 'exms-courses' ) ) {
-            $course_id = get_the_ID();
+        $post_id = get_the_ID();
+        $post_type = get_post_type( $post_id );
+        $title               = get_the_title( $post_id );
+        $thumbnail_url       = get_the_post_thumbnail_url( $post_id, 'full' );
+        $post_member_count = exms_get_course_member( $post_id ) ?: 0;
+        $post_instructor_ids = exms_get_assign_instructor_ids( $post_id ) ?: [0];
+        $instructor_avatars = '';
+        $instructor_names   = '';
+        if( !empty( $post_instructor_ids ) && is_array( $post_instructor_ids ) ) {
+            $display_names = [];
 
-            // prepare variables
-            $title               = get_the_title( $course_id );
-            $thumbnail_url       = get_the_post_thumbnail_url( $course_id, 'full' );
-            $course_member_count = exms_get_course_member( $course_id ) ?: 0;
-            $course_instructor_ids = exms_get_assign_instructor_ids( $course_id ) ?: [0];
-            $instructor_avatars = '';
-            $instructor_names   = '';
-            
-            if ( !empty( $course_instructor_ids ) && is_array( $course_instructor_ids ) ) {
-                $display_names = [];
+            foreach ( $post_instructor_ids as $user_id ) {
+                $user = get_userdata( $user_id );
+                if ( $user ) {
+                    $name = ucwords( strtolower( $user->display_name ) );
+                    $display_names[] = $name;
 
-                foreach ( $course_instructor_ids as $user_id ) {
-                    $user = get_userdata( $user_id );
-                    if ( $user ) {
-                        $name = ucwords( strtolower( $user->display_name ) );
-                        $display_names[] = $name;
-
-                        $instructor_avatars .= get_avatar( $user_id, 32, '', $name, ['class' => 'exms-instructor-avatar'] );
-                    }
+                    $instructor_avatars .= get_avatar( $user_id, 32, '', $name, ['class' => 'exms-instructor-avatar'] );
                 }
-
-                $instructor_names = implode( ', ', $display_names );
             }
+            $instructor_names = implode( ', ', $display_names );
+        }
 
-            $course_instructor = [
-                'avatars' => $instructor_avatars,
-                'names'   => $instructor_names,
-            ];
-            $breadcrumb = exms_course_breadcrumb( $course_id );
-            $course_lesson      = exms_get_course_lessons( $course_id ) ;
-            $course_date         = exms_get_course_last_enroll( $course_id ) ?: __( 'No enrollments', 'exms' );
-            $course_info         = exms_get_post_settings( $course_id );
-            $is_enrolled         = exms_is_user_in_post( get_current_user_id(), $course_id );
-            $structure           = get_option( 'exms_post_types', true );
-            $course_label        = get_post_type_object( get_post_type( $course_id ) )->labels->singular_name ?? 'Course';
-            $course_includes     = $structure ? exms_get_child_post_ids( $course_id, 'exms-courses', $structure ) : [];
+        $post_instructor = [
+            'avatars' => $instructor_avatars,
+            'names'   => $instructor_names,
+        ];
+        $breadcrumb = exms_course_breadcrumb( $post_id, $post_type );
+        $post_lesson      = exms_get_course_lessons( $post_id ) ;
+        $post_date         = exms_get_course_last_enroll( $post_id ) ?: __( 'No enrollments', 'exms' );
+        $post_info         = exms_get_post_settings( $post_id );
+        $is_enrolled         = exms_is_user_in_post( get_current_user_id(), $post_id );
+        $structure           = get_option( 'exms_post_types', true );
+        $video_url = isset( $post_info['video_url'] )? $post_info['video_url'] : '';
+        $total_seat = isset( $post_info['seat_limit'] )? $post_info['seat_limit'] : 0;
+        $seat_left = max( 0, $total_seat - $post_member_count );
+        $percentage = $total_seat > 0 ? min( 100, ( $post_member_count / $total_seat ) * 100 ) : 0;
+        $circumference = 2 * pi() * 35;
+        $offset = $circumference - ( $percentage / 100 ) * $circumference;
+        if( is_singular( 'exms-courses' ) ) {
 
-            $type_data = $this->exms_get_course_type_data( $course_info, $course_info['parent_post_type'] ?? 'unknown' );
-            $course_type = isset( $course_info['parent_post_type'] ) ? $course_info['parent_post_type'] : ''; 
-            $video_url = isset( $course_info['video_url'] )? $course_info['video_url'] : '';
-            $total_seat = isset( $course_info['seat_limit'] )? $course_info['seat_limit'] : 0;
-            $seat_left = max( 0, $total_seat - $course_member_count );
-
-            $percentage = $total_seat > 0 ? min( 100, ( $course_member_count / $total_seat ) * 100 ) : 0;
-            $circumference = 2 * pi() * 35;
-            $offset = $circumference - ( $percentage / 100 ) * $circumference;
+            $post_label        = get_post_type_object( get_post_type( $post_id ) )->labels->singular_name ?? 'Course';
+            $post_includes     = $structure ? exms_get_child_post_ids( $post_id, 'exms-courses', $structure ) : [];
+            $type_data = $this->exms_get_course_type_data( $post_info, $post_info['parent_post_type'] ?? 'unknown', $post_type );
+            $post_type = isset( $post_info['parent_post_type'] ) ? $post_info['parent_post_type'] : ''; 
             $type         = $type_data['label'];
             $button_text  = $type_data['button_text'];
             $dynamic_class = $type_data['class'];
             set_query_var( 'course_data', compact(
-                'course_id', 'title', 'thumbnail_url', 'course_instructor', 'course_member_count',
-                'course_date', 'course_info', 'is_enrolled', 'structure', 'course_label',
-                'course_includes', 'total_seat', 'seat_left', 'percentage', 'circumference',
-                'offset', 'type_data','type', 'button_text', 'dynamic_class', 'video_url','course_type','breadcrumb'
+                'post_id', 'title', 'thumbnail_url', 'post_instructor', 'post_member_count',
+                'post_date', 'post_info', 'is_enrolled', 'structure', 'post_label',
+                'post_includes', 'total_seat', 'seat_left', 'percentage', 'circumference',
+                'offset', 'type_data','type', 'button_text', 'dynamic_class', 'video_url','post_type','breadcrumb'
+            ) );
+        }
+        
+        if( is_singular( 'exms-groups' ) ) {
+            
+            $post_label        = get_post_type_object( get_post_type( $post_id ) )->labels->singular_name ?? 'Group';
+            $post_includes     = $structure ? exms_get_group_child_post_ids( $post_id, 'exms-groups', $structure ) : [];
+            $type_data = $this->exms_get_course_type_data( $post_info, $post_info['group_type'] ?? 'unknown', $post_type );
+            $post_type = isset( $post_info['group_type'] ) ? $post_info['group_type'] : ''; 
+            $type         = $type_data['label'];
+            $button_text  = $type_data['button_text'];
+            $dynamic_class = $type_data['class'];
+            set_query_var( 'group_data', compact(
+                'post_id', 'title', 'thumbnail_url', 'post_instructor', 'post_member_count',
+                'post_date', 'post_info', 'is_enrolled', 'structure', 'post_label',
+                'post_includes', 'total_seat', 'seat_left', 'percentage', 'circumference',
+                'offset', 'type_data','type', 'button_text', 'dynamic_class', 'video_url','post_type','breadcrumb'
             ) );
         }
     }

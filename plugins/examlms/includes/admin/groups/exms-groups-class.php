@@ -200,19 +200,28 @@ class EXMS_Groups extends EXMS_DB_Main {
             Exms_Post_Types_Functions::add_exms_meta_box( 'exms-assign-parent-post-to-group', __( 'Post Assign/Unassign to ' . $group_singular, 'exms' ), [ 'EXMS_Groups', 'exms_parent_group_metabox_html' ], 'exms-groups', 'normal', 'high', '' );
         }
 
-        
-
         /**
          * Metabox for assign quiz to the group
          */
         Exms_Post_Types_Functions::add_exms_meta_box( 'exms-assign-quizzes-to-group', $quiz_singular . __( ' Assign/Unassign to ' . $group_singular, 'exms' ), [ 'EXMS_Groups', 'exms_quizzes_group_metabox_html' ], 'exms-groups', 'normal', 'high', '' );
 
         /**
-         * Metabox for assign users to quiz
+         * Metabox for assign leader to group
          */
         Exms_Post_Types_Functions::add_exms_meta_box( 'exms-group-users', __( 'Leaders Assign/Unassign to ' . $group_singular, 'exms' ), [ 'EXMS_Groups', 'exms_user_assign_group_metabox_html' ], 'exms-groups', 'normal', 'high', '' );
-        
-        
+
+        /**
+         * Metabox for assign User to group
+         */
+        Exms_Post_Types_Functions::add_exms_meta_box(
+            'exms-assign-group-users-to-parent',
+            __( 'Users Assign/Unassign to ' . $group_singular, 'exms' ),
+            [ 'EXMS_Groups', 'exms_group_user_assign_to_parent_html' ],
+            'exms-groups',
+            'normal',
+            'high',
+            ''
+        );
     }
 
     /**
@@ -233,6 +242,16 @@ class EXMS_Groups extends EXMS_DB_Main {
     public static function exms_quizzes_group_metabox_html( $post ) {
 
         echo exms_parent_post_assign_html( $post, 'exms-quizzes' );
+    }
+
+    /**
+     * User assign to only group student metabox html
+     * 
+     * @param $post
+     */
+    public static function exms_group_user_assign_to_parent_html( $post ) {
+
+        echo exms_group_user_assign_to_post_html( $post );
     }
 
     /**
@@ -362,6 +381,56 @@ class EXMS_Groups extends EXMS_DB_Main {
                  AND user_id IN('" . implode( "', '", $unassign_ids ) . "') "
             );
 
+            $course_ids = exms_get_group_course_ids( $post_id );
+            if( ! empty( $course_ids ) ) {
+
+                $course_ids_sql = implode( ',', array_map( 'intval', $course_ids ) );
+                foreach( $unassign_ids as $uid ) {
+
+                    $uid = (int) $uid;
+                    $ud  = get_userdata( $uid );
+
+                    $is_student = ( $ud && ! empty( $ud->roles ) && is_array( $ud->roles ) ) &&
+                                ( in_array( 'exms_student', $ud->roles, true ) || in_array( 'exms-student', $ud->roles, true ) );
+
+                    if( ! $is_student ) {
+                        continue;
+                    }
+                    $wpdb->query(
+                        "DELETE FROM {$table_name}
+                        WHERE user_id = {$uid}
+                        AND post_type = 'exms-courses'
+                        AND enrolled_by = " . (int) $post_id . "
+                        AND post_id IN({$course_ids_sql})"
+                    );
+                }
+            }
+
+            $quiz_ids = exms_get_group_quiz_ids( $post_id );
+            if( ! empty( $quiz_ids ) ) {
+
+                $quiz_ids_sql = implode( ',', array_map( 'intval', $quiz_ids ) );
+                foreach( $unassign_ids as $uid ) {
+
+                    $uid = (int) $uid;
+                    $ud  = get_userdata( $uid );
+
+                    $is_student = ( $ud && ! empty( $ud->roles ) && is_array( $ud->roles ) ) &&
+                                ( in_array( 'exms_student', $ud->roles, true ) || in_array( 'exms-student', $ud->roles, true ) );
+
+                    if( ! $is_student ) {
+                        continue;
+                    }
+                    $wpdb->query(
+                        "DELETE FROM {$table_name}
+                        WHERE user_id = {$uid}
+                        AND post_type = 'exms-quizzes'
+                        AND enrolled_by = " . (int) $post_id . "
+                        AND post_id IN({$quiz_ids_sql})"
+                    );
+                }
+            }
+
             /**
              * Fires after the elements un-assigned successfully
              * 
@@ -410,6 +479,9 @@ class EXMS_Groups extends EXMS_DB_Main {
                     if( in_array( 'exms_group_leader', $ud->roles, true ) || in_array( 'exms-group-leader', $ud->roles, true ) ) {
                         $user_type = 'leader';
                     }
+                    if( in_array( 'exms_student', $ud->roles, true ) || in_array( 'exms-student', $ud->roles, true ) ) {
+                        $user_type = 'student';
+                    }
                 }
 
                 $post_type_value = get_post_type( $post_id );
@@ -436,6 +508,104 @@ class EXMS_Groups extends EXMS_DB_Main {
                  * @param true ( means user assign in the post )
                  */
                 do_action( 'exms_assign_user_on_post', $assign_id, $post_id, time(), true );
+
+                $is_student = false;
+                $ud2 = get_userdata( $assign_id );
+                if ( $ud2 && ! empty( $ud2->roles ) && is_array( $ud2->roles ) ) {
+                    if ( in_array( 'exms_student', $ud2->roles, true ) || in_array( 'exms-student', $ud2->roles, true ) ) {
+                        $is_student = true;
+                    }
+                }
+
+                if( $is_student ) {
+
+                    $course_ids = exms_get_group_course_ids( $post_id ); 
+                    $quiz_ids = exms_get_group_quiz_ids( $post_id ); 
+                    if( ! empty( $course_ids ) ) {
+                        foreach( $course_ids as $course_id ) {
+                            $exists_params = [
+                                [
+                                    'field' => 'post_id',
+                                    'value' => $course_id,
+                                    'operator' => '=',
+                                    'type' => '%d'
+                                ],
+                                [
+                                    'field' => 'user_id',
+                                    'value' => $assign_id,
+                                    'operator' => '=',
+                                    'type' => '%d'
+                                ],
+                                [
+                                    'field' => 'post_type',
+                                    'value' => 'exms-courses',
+                                    'operator' => '=',
+                                    'type' => '%s'
+                                ],
+                            ];
+
+                            $exists_cols = [ 'user_id' ];
+                            $exists = $this->exms_db_query( 'select', 'exms_user_enrollments', $exists_params, $exists_cols );
+
+                            if ( ! empty( $exists ) ) {
+                                continue;
+                            }
+
+                            $course_data = [
+                                'post_id'           => (int) $course_id,
+                                'user_id'           => (int) $assign_id,
+                                'created_timestamp' => current_time('timestamp'),
+                                'updated_timestamp' => current_time('timestamp'),
+                                'type'              => 'group-student',
+                                'post_type'         => 'exms-courses',
+                                'enrolled_by'       => (int) $post_id,
+                            ];
+                            $this->exms_db_insert( 'user_enrollments', $course_data );
+                        }
+                    }
+                    if( ! empty( $quiz_ids ) ) {
+                        foreach( $quiz_ids as $quiz_id ) {
+                            $exists_params = [
+                                [
+                                    'field' => 'post_id',
+                                    'value' => $quiz_id,
+                                    'operator' => '=',
+                                    'type' => '%d'
+                                ],
+                                [
+                                    'field' => 'user_id',
+                                    'value' => $assign_id,
+                                    'operator' => '=',
+                                    'type' => '%d'
+                                ],
+                                [
+                                    'field' => 'post_type',
+                                    'value' => 'exms-quizzes',
+                                    'operator' => '=',
+                                    'type' => '%s'
+                                ],
+                            ];
+
+                            $exists_cols = [ 'user_id' ];
+                            $exists = $this->exms_db_query( 'select', 'exms_user_enrollments', $exists_params, $exists_cols );
+
+                            if ( ! empty( $exists ) ) {
+                                continue;
+                            }
+
+                            $course_data = [
+                                'post_id'           => (int) $quiz_id,
+                                'user_id'           => (int) $assign_id,
+                                'created_timestamp' => current_time('timestamp'),
+                                'updated_timestamp' => current_time('timestamp'),
+                                'type'              => 'group-student',
+                                'post_type'         => 'exms-quizzes',
+                                'enrolled_by'       => (int) $post_id,
+                            ];
+                            $this->exms_db_insert( 'user_enrollments', $course_data );
+                        }
+                    }
+                }
             }
 
             /**
@@ -470,16 +640,31 @@ class EXMS_Groups extends EXMS_DB_Main {
         $group_data = $wpdb->get_row(
             $wpdb->prepare("
                 SELECT 
-                    g.video_url,
-                FROM $group_table q
-                WHERE g.group_id = %d
+                    video_url,
+                    group_type,
+                    group_price,
+                    subscription_days,
+                    seat_limit,
+                    redirect_url
+                FROM $group_table
+                WHERE group_id = %d
             ", $group_id),
             ARRAY_A
         );
+        
         $group_video_url         = "";
-
+        $group_type         = "";
+        $group_price         = "";
+        $subscription         = "";
+        $redirect_url         = "";
+        $seat_limit         = "";
         if ( $group_data ) {
             $group_video_url         = $group_data['video_url'];
+            $group_type         = $group_data['group_type'];
+            $group_price         = $group_data['group_price'];
+            $subscription         = $group_data['subscription_days'];
+            $redirect_url         = $group_data['redirect_url'];
+            $seat_limit         = $group_data['seat_limit'];
         }
 
 		/**
@@ -517,6 +702,11 @@ class EXMS_Groups extends EXMS_DB_Main {
         $group_table = $wpdb->prefix . 'exms_group';
 
         $group_video_url        = isset( $_POST['exms_group_video_url'] ) ? $_POST['exms_group_video_url'] : '';
+        $seat_limit        = isset( $_POST['exms_group_seat_limit'] ) ? $_POST['exms_group_seat_limit'] : '';
+        $group_type        = isset( $_POST['exms_group_type'] ) ? $_POST['exms_group_type'] : '';
+        $group_price        = isset( $_POST['exms_group_price'] ) ? $_POST['exms_group_price'] : '';
+        $group_sub_days        = isset( $_POST['exms_group_sub_days'] ) ? $_POST['exms_group_sub_days'] : '';
+        $group_close_url        = isset( $_POST['exms_group_close_url'] ) ? $_POST['exms_group_close_url'] : '';
 
         $group_params = [
             [
@@ -531,11 +721,17 @@ class EXMS_Groups extends EXMS_DB_Main {
         $existing_quiz = $this->exms_db_query( 'select', 'exms_group', $group_params, $columns );
         
         $data = [
-            'group_id'               => $post_id,
-            'video_url'             => $group_video_url,
+            'group_id'          => (int) $post_id,
+            'seat_limit'        => (int) $seat_limit,
+            'group_type'        => sanitize_text_field($group_type),
+            'group_price'       => (int) $group_price,
+            'subscription_days' => sanitize_text_field($group_sub_days),
+            'redirect_url'      => esc_url_raw($group_close_url),
+            'video_url'         => esc_url_raw($group_video_url),
         ];
+
         
-        if ( $existing_quiz ) {
+        if( $existing_quiz ) {
             $wpdb->update( $group_table, $data, [ 'group_id' => $post_id ] );
         } else {
             $this->exms_db_insert( 'group', $data );

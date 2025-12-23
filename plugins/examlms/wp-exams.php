@@ -1,8 +1,8 @@
 <?php
 /**
- * Plugin Name: WP Exams
+ * Plugin Name: Exam-LMS
  * Version: 1.0
- * Description: WP Exams allows you to create easy exam quizzes. 
+ * Description: Exam-LMS allows you to create easy exam quizzes. 
  * Author: ldninjas
  * Author URI: http://ldninjas.com/
  * Plugin URI: http://wpexams.com/
@@ -88,8 +88,10 @@ class EXMS {
         require_once EXMS_INCLUDES_DIR . 'exms-question-functions.php';
         require_once EXMS_INCLUDES_DIR . 'exms-core-functions.php';
         require_once EXMS_INCLUDES_DIR . 'exms-common.php';
+        require_once EXMS_INCLUDES_DIR . 'exms-group-functions.php';
 
         $files = [
+            EXMS_INCLUDES_DIR . 'frontend/report/exms-report.php',
             EXMS_INCLUDES_DIR . 'classes/exms-student.php',
             EXMS_INCLUDES_DIR . 'db/db.main.php',
             EXMS_INCLUDES_DIR . 'db/models/class.uploads.php',
@@ -128,6 +130,9 @@ class EXMS {
             EXMS_INCLUDES_DIR . 'frontend/course/course-page.php',
             EXMS_INCLUDES_DIR . 'frontend/lesson/lesson-overview.php',
             EXMS_INCLUDES_DIR . 'exms-lesson-overview-functions.php',
+            EXMS_INCLUDES_DIR . 'admin/exms-enqueue-scripts-styles.php',
+            EXMS_INCLUDES_DIR . 'shortcodes/exms-shortcodes.php',
+            EXMS_INCLUDES_DIR . 'frontend/attendance/exms-attendance.php'
         ];
         
         $admin_files = [
@@ -145,8 +150,6 @@ class EXMS {
             EXMS_INCLUDES_DIR . 'admin/import-export/exms-import-export-class.php',
             EXMS_INCLUDES_DIR . 'admin/edit-profile/exms-edit-profile.php',
             EXMS_INCLUDES_DIR . 'admin/edit-profile/exms-progress-detail.php',
-            EXMS_INCLUDES_DIR . 'admin/shortcodes/exms-shortcodes.php',
-            EXMS_INCLUDES_DIR . 'admin/exms-enqueue-scripts-styles.php',
             EXMS_INCLUDES_DIR . 'admin/exms-emails.php',
             EXMS_INCLUDES_DIR . 'admin/transactions/exms-transaction.php',
             EXMS_INCLUDES_DIR . 'setup-payments/setup-payments.php',

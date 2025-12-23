@@ -40,9 +40,9 @@
 
 			quizTimerField: function() {
 
-				$( '.wpeq_quiz_timer' ).on( 'change', function() {
+				$( '.exms_quiz_timer' ).on( 'change', function() {
 
-					let selectedVal = $( '.wpeq_quiz_timer:checked' ).val();
+					let selectedVal = $( '.exms_quiz_timer:checked' ).val();
 					if ( selectedVal === 'on' ) {
 						$( '.exms-quiz-timer-fields' ).slideDown().change();
 					} else {
@@ -340,7 +340,7 @@
 			 */
 			toggleQuizPriceFields: function() {
 
-				$( 'body' ).on( 'click', '.wpeq_quiz_type', function() {
+				$( 'body' ).on( 'click', '.exms_quiz_type', function() {
 
 					switch( $( this ).val() ) {
 
@@ -348,27 +348,27 @@
 							$( '.exms-quiz-price-row' ).addClass( 'exms-show' );
 							$( '.exms-quiz-subs-row' ).removeClass( 'exms-show' );
 							$( '.exms-quiz-close-row' ).removeClass( 'exms-show' );
-							$( '.wpeq_quiz_sign' ).prop( 'disabled', false );
+							$( '.exms_quiz_sign' ).prop( 'disabled', false );
 							break;
 
 						case 'subscribe':
 							$( '.exms-quiz-price-row, .exms-quiz-subs-row' ).addClass( 'exms-show' );
 							$( '.exms-quiz-close-row' ).removeClass( 'exms-show' );
-							$( '.wpeq_quiz_sign' ).prop( 'disabled', false );
+							$( '.exms_quiz_sign' ).prop( 'disabled', false );
 							break;
 
 						case 'close':
 							$( '.exms-quiz-price-row, .exms-quiz-close-row' ).addClass( 'exms-show' );
 							$( '.exms-quiz-price-row' ).removeClass( 'exms-show' );
 							$( '.exms-quiz-subs-row' ).removeClass( 'exms-show' );
-							$( '.wpeq_quiz_sign' ).prop( 'disabled', true );
+							$( '.exms_quiz_sign' ).prop( 'disabled', true );
 							break;
 
 						case 'free':
 							$( '.exms-quiz-price-row' ).removeClass( 'exms-show' );
 							$( '.exms-quiz-subs-row' ).removeClass( 'exms-show' );
 							$( '.exms-quiz-close-row' ).removeClass( 'exms-show' );
-							$( '.wpeq_quiz_sign' ).prop( 'disabled', true );
+							$( '.exms_quiz_sign' ).prop( 'disabled', true );
 							break;
 						
 						default:

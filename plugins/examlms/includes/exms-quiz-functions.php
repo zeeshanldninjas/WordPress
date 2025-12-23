@@ -474,6 +474,38 @@ function exms_post_get_post_user_ids( $post_id, $paged = '' ) {
     return $user_ids;
 }
 
+/**
+ * Get quiz user ids by quiz id
+ * 
+ * @param $post_id quiz/group
+ * @param $paged ( Optional ) paged is used to get 10 users in per page.
+ * with specfic limit like ( 0, 10 ) by default empty
+ */
+function exms_group_get_post_user_ids( $post_id, $paged = '' ) {
+    global $wpdb;
+
+    $limit = '';
+    if ( ! empty( $paged ) && $paged >= 0 ) {
+        $limit = 'LIMIT ' . intval( $paged ) . ',10';
+    }
+
+    $table_name = EXMS_PR_Fn::exms_user_post_table();
+    $user_ids = [];
+
+    $quiz_meta = $wpdb->get_results( "SELECT user_id FROM $table_name WHERE post_id = " . intval( $post_id ) . " ORDER BY ID ASC $limit" );
+
+    if ( ! empty( $quiz_meta ) ) {
+        foreach ( $quiz_meta as $meta ) {
+            $user = get_user_by( 'id', $meta->user_id );
+            if ( $user && in_array( 'exms_student', (array) $user->roles ) ) {
+                $user_ids[] = intval( $user->ID );
+            }
+        }
+    }
+
+    return $user_ids;
+}
+
 function exms_get_post_user_ids( $post_id, $roles = '', $paged = '' ) {
 
 	global $wpdb;

@@ -650,9 +650,9 @@
 					let pageNo = parseInt( pageContainer.replace( 'exms-setup-p', '' ) );
 					let nextPage = pageNo + 1;
 					if ( $( this ).attr( 'id' ) === 'exms-next-setup-wrap' && nextPage == 3 ) {
-
 						let customPostTypes = $( '.exms-post-types-html .exms-post-type-item' );
 						if ( customPostTypes.length > 0 ) {
+							alert( "greater lenght");
 							return;
 						}
 
@@ -660,7 +660,7 @@
 						let structureType = structureCard.data( 'structure' );
 						let stepsContainer = structureCard.find( '.exms-course-structure-steps' );
 						let structureSteps = stepsContainer.data( 'structure-steps' );
-						if ( !Array.isArray( structureSteps ) ) {
+						if( !Array.isArray( structureSteps ) ) {
 							structureSteps = JSON.parse( stepsContainer.attr( 'data-structure-steps' ) || '[]' );
 						}
 						let labelContainer = $('.exms-label-setup-page');
@@ -786,7 +786,21 @@
 			 * exms_custom_post_types, exms_post_types in options table
 			 */
 			addNewCustomPostType: function() {
-				
+
+				$( 'body' ).on( 'input', '.exms-custom-post-type-name-input', function () {
+					let input = $( this );
+					let newName = input.val().trim();
+					let item = input.closest( '.exms-post-type-item' );
+
+					if( !newName ) return;
+
+					let newSlug = newName.replace(/\s+/g, '-').toLowerCase();
+					item.attr( 'data-name', newName );
+					item.attr( 'data-slug', newSlug );
+					item.data( 'name', newName );
+					item.data( 'slug', newSlug );
+				});
+
 				$( 'body' ).on( 'click', '.exms-add-post-title-add', function () {
 					let self = $( this );
 					let parent = self.closest( '.exms-add-post-title-wrap' );
@@ -807,7 +821,7 @@
 					let index = $( '.exms-post-type-item' ).length - 1;
 					let marginLeft = (index === 0) ? 0 : (index * 20);
 
-					newItem.css('margin-left', marginLeft + 'px');
+					newItem.css( 'margin-left', marginLeft + 'px' );
 					parent.find( '.exms-add-post-title-input' ).val( '' );
 				});
 
@@ -887,13 +901,13 @@
 							$( '.exms-setup-course-child' ).find( '.exms-course-structure[data-structure="modular"]' ).after( html );
 							$( '#exms-course-structure-modal' ).hide().change();
 							EXMSSetupWizard.generateDynamicLabelInputs(postTypes.map(p => p.name));
-							$( '.exms-setup-report' ).attr( 'data-exms-post-types', JSON.stringify( response.post_types ) );
-							$( '#exms_quizzes' ).val( response.quiz_name );
+							$( '.exms-setup-report' ).attr( 'data-exms-post-types', JSON.stringify( resp.post_types ) );
+							$( '#exms_quizzes' ).val( resp.quiz_name );
 							let wrapper = $('.exms-dashboard-page-setting.exms-label-setup-page');
 							if ( wrapper ) {
 								let dataLabelRaw = wrapper.attr( 'data-label' ) || '{}';
 								let dataLabel = JSON.parse( dataLabelRaw );
-								dataLabel['exms_quizzes'] = response.quiz_name;
+								dataLabel['exms_quizzes'] = resp.quiz_name;
 								wrapper.attr( 'data-label', JSON.stringify( dataLabel ) );
 							}
 							
@@ -932,6 +946,7 @@
 									} else {
 										$( `.exms-course-structure[data-structure="${selectedStructure}"]` ).addClass( 'active' );
 									}
+									$( '.exms-post-types-html' ).empty();
 								} else {
 									$.alert( response.message || EXMS_SETUP_WIZARD.structureDeleteMessage );
 								}

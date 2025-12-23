@@ -139,7 +139,7 @@
 									$( '.wpeq-popup' ).css( 'display', 'none' );
 
 							    	let data = {
-							    		action 		: 'wpeq_payment_complete',
+							    		action 		: 'exms_payment_complete',
 							    		order_id	: details.id,
 							    		quizId 		: EXMS_paypal.quizId
 							    	};

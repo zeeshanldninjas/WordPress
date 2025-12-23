@@ -47,10 +47,6 @@ class EXMS_QUIZ_Shortcode {
         add_action( 'exms_quiz_expire_event', [ $this, 'exms_quiz_expire_event' ], 10, 2 );
         add_action( 'wp_ajax_exms_save_question_answer_to_transient', [ $this, 'exms_save_question_answer_to_transient' ] );
         add_action( 'wp_ajax_exms_enroll_as_an_admin', [ $this, 'exms_enroll_as_an_admin' ] );
-        add_action( 'wp', function() {
-
-            var_dump( exms_get_quiz_latest_attempt( 10, 1 ) );
-        } );
     }
 
     /**

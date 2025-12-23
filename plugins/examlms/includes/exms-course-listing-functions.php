@@ -8,6 +8,7 @@ if( ! defined( 'ABSPATH' ) ) exit;
  * Get total course members excluding administrators and exms_instructors
  */
 function exms_get_course_member( $course_id ) {
+    
     global $wpdb;
 
     if ( ! $course_id ) {
@@ -44,15 +45,30 @@ function exms_get_post_settings( $post_id ) {
         return null;
     }
 
-    $result = $wpdb->get_row(
-        $wpdb->prepare(
-            "SELECT parent_post_type, parent_post_price, subscription_days, redirect_url , seat_limit, video_url, progress_type
-                FROM {$wpdb->prefix}exms_post_settings 
-                WHERE parent_post_id = %d",
-            $post_id
-        ),
-		ARRAY_A
-    );
+    $post_type = get_post_type( $post_id);
+    $result = [];
+
+    if( $post_type != "exms-groups" ) {
+        $result = $wpdb->get_row(
+            $wpdb->prepare(
+                "SELECT parent_post_type, parent_post_price, subscription_days, redirect_url , seat_limit, video_url, progress_type
+                    FROM {$wpdb->prefix}exms_post_settings 
+                    WHERE parent_post_id = %d",
+                $post_id
+            ),
+            ARRAY_A
+        );
+    } else {
+        $result = $wpdb->get_row(
+            $wpdb->prepare(
+                "SELECT group_id, group_type, group_price, subscription_days, redirect_url , seat_limit, video_url
+                    FROM {$wpdb->prefix}exms_group 
+                    WHERE group_id = %d",
+                $post_id
+            ),
+            ARRAY_A
+        );
+    }
 
     return $result;
 }

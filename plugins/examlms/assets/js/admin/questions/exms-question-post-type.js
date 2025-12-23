@@ -353,7 +353,7 @@
 						}
 						let answerRow = `
 							<div class="wpeq-answer-row exms-ans-${rand} exms-get-value wpeq-draggable" data-id="${rand}">
-								<input type="hidden" class="wpeq-ques-ans-type" name="wpeq_ques_ans_type[]" value="wrong">
+								<input type="hidden" class="wpeq-ques-ans-type" name="exms_ques_ans_type[]" value="wrong">
 								<span class="wpeq-drag-icon">⋮⋮</span>
 								<textarea class="exms-textarea-ans" name="exms_answers[${count}]" id="exms_answers${count}" rows="1" cols="50"></textarea>
 								${ques_type !== 'sorting_choice' ? `
@@ -420,7 +420,7 @@
 						let count2 = count + 1;
 
 						$( parent_div ).append( '<div class="wpeq-answer-div">' +
-								'<input type="hidden" class="wpeq-ques-ans-type" name="wpeq_ques_ans_type[]" value="wrong" />' +
+								'<input type="hidden" class="wpeq-ques-ans-type" name="exms_ques_ans_type[]" value="wrong" />' +
 								'<span class="dashicons dashicons-arrow-up-alt2 exms-q-collapse exms-q-collapse-'+rand+' exms-icon" data-id="'+rand+'"></span>'+
 								'<span class="dashicons dashicons-no wpeq-del-ans exms-icon" data-id="'+rand+'"></span>'+
 								'<div class="exms-ans-'+rand+'">'+
@@ -462,7 +462,7 @@
 									<span>Add question with the {Blank}</span>
 								</div>
 								<div class="wpeq-answer-row exms-ans-${rand} exms-get-value" data-id="${rand}">
-									<input type="hidden" class="wpeq-ques-ans-type" name="wpeq_ques_ans_type[]" value="wrong">
+									<input type="hidden" class="wpeq-ques-ans-type" name="exms_ques_ans_type[]" value="wrong">
 									<textarea class="exms-textarea-ans" name="exms_answers[${count}]" id="exms_answers${count}" rows="1" cols="50"></textarea>
 								</div>
 							</div>

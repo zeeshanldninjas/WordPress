@@ -349,3 +349,16 @@ Stack trace:
   thrown in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\examlms\includes\admin\exms-enqueue-scripts-styles.php on line 131
 [23-Dec-2025 05:26:53 UTC] Automatic updates starting...
 [23-Dec-2025 05:26:57 UTC] Automatic updates complete.
+[23-Dec-2025 09:05:21 UTC] Automatic updates starting...
+[23-Dec-2025 09:05:21 UTC]   Automatic plugin updates starting...
+[23-Dec-2025 09:05:21 UTC]   Automatic plugin updates complete.
+[23-Dec-2025 09:05:23 UTC] Automatic updates complete.
+[23-Dec-2025 09:14:49 UTC] PHP Warning:  Undefined variable $current_user_id in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\reset-course-progress-for-learndash\includes\admin\class-rcpl-admin.php on line 193
+[23-Dec-2025 09:14:49 UTC] PHP Warning:  Undefined variable $current_user_id in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\reset-course-progress-for-learndash\includes\admin\class-rcpl-admin.php on line 193
+[23-Dec-2025 09:15:03 UTC] PHP Parse error:  syntax error, unexpected token "public" in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\reset-course-progress-for-learndash\includes\shortcodes\class-shortcodes.php on line 89
+[23-Dec-2025 09:15:05 UTC] PHP Parse error:  syntax error, unexpected token "public" in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\reset-course-progress-for-learndash\includes\shortcodes\class-shortcodes.php on line 89
+[23-Dec-2025 09:15:05 UTC] PHP Parse error:  syntax error, unexpected token "public" in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\reset-course-progress-for-learndash\includes\shortcodes\class-shortcodes.php on line 89
+[23-Dec-2025 09:16:24 UTC] PHP Warning:  Undefined variable $current_user_id in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\reset-course-progress-for-learndash\includes\admin\class-rcpl-admin.php on line 193
+[23-Dec-2025 09:16:24 UTC] PHP Warning:  Undefined variable $current_user_id in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\reset-course-progress-for-learndash\includes\admin\class-rcpl-admin.php on line 193
+[23-Dec-2025 09:22:09 UTC] PHP Warning:  Undefined variable $current_user_id in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\reset-course-progress-for-learndash\includes\admin\class-rcpl-admin.php on line 193
+[23-Dec-2025 09:22:09 UTC] PHP Warning:  Undefined variable $current_user_id in C:\Users\Zeeshan Ldninjas\Local Sites\exam-lms\app\public\wp-content\plugins\reset-course-progress-for-learndash\includes\admin\class-rcpl-admin.php on line 193

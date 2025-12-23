@@ -77,11 +77,11 @@ class EXMS_Submitted_Essays extends EXMS_DB_Main {
             return false;
         }
         
-        wp_enqueue_style( 'wpeq_submitted_essay', EXMS_ASSETS_URL . '/css/admin/submit-essay/exms_submitted_essay.css', [], EXMS_VERSION, null );
+        wp_enqueue_style( 'exms_submitted_essay', EXMS_ASSETS_URL . '/css/admin/submit-essay/exms_submitted_essay.css', [], EXMS_VERSION, null );
             
-        wp_enqueue_script( 'wpeq_submitted_essayJS', EXMS_ASSETS_URL . '/js/admin/submit-essay/wpeq_submitted_essay.js', [ 'jquery' ], false, true );
+        wp_enqueue_script( 'exms_submitted_essayJS', EXMS_ASSETS_URL . '/js/admin/submit-essay/exms_submitted_essay.js', [ 'jquery' ], false, true );
             
-        wp_localize_script( 'wpeq_submitted_essayJS', 'EXMS_SUBMIT_ESSAY', 
+        wp_localize_script( 'exms_submitted_essayJS', 'EXMS_SUBMIT_ESSAY', 
 			[ 
                 'ajaxURL'                           => admin_url( 'admin-ajax.php' ),
                 'security'                          => wp_create_nonce( 'exms_ajax_nonce' ) ,

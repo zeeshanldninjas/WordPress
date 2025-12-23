@@ -73,16 +73,21 @@ class EXMS_TEMPLATE_OVERRIDE {
         $user_id = get_current_user_id();
         $post_id = get_the_ID();
 
-        if ( $post_type === 'exms-courses' ) {
+        if( $post_type === 'exms-courses' ) {
 
-            $course_type = exms_get_post_settings( $post_id );
-            $course_type = isset( $course_type['parent_post_type'] ) ? $course_type['parent_post_type'] : '';
-            $user_is_assigned = exms_is_user_in_post( $user_id, $post_id );
+            // $course_type = exms_get_post_settings( $post_id );
+            // $course_type = isset( $course_type['parent_post_type'] ) ? $course_type['parent_post_type'] : '';
+            // $user_is_assigned = exms_is_user_in_post( $user_id, $post_id );
+
+            return EXMS_TEMPLATES_DIR . 'frontend/course/course-overview-template.php';
+        }
+        
+        if( $post_type === 'exms-groups' ) {
 
             return EXMS_TEMPLATES_DIR . 'frontend/course/course-overview-template.php';
         }
 
-        if ( strpos( $post_type, 'exms-' ) === 0 && ! in_array( $post_type, [ 'exms-courses', 'exms-quizzes' ], true ) ) {
+        if( strpos( $post_type, 'exms-' ) === 0 && ! in_array( $post_type, [ 'exms-courses', 'exms-quizzes' ], true ) ) {
             return EXMS_TEMPLATES_DIR . 'frontend/common-steps/exms-common-template.php';
         }
         

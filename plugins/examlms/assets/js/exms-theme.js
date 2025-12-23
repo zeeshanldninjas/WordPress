@@ -5,8 +5,6 @@
 		let EXMS_Theme = {
 			
 			init: function() {
-				console.log(EXMS.answer_summary);
-				console.log(EXMS.result_summary);
 				this.submitQuizAnswer();
 				this.showNextQuestion();
 				this.draggableSortingTypeAnswers();
@@ -19,7 +17,155 @@
 				this.instructorTablePaginations();
 				this.unenrollAssignQuizUsers();
 				this.exms_payment_tabs_switch();
+				this.leftSidebar();
+				this.PIimagePreview();
+				this.reportTableBtn();
+				this.attendanceTags();
 			},
+
+			attendanceTags: function() {
+				
+				let wrap   = $( '#exmsExcludeUsers' );
+				if( !wrap.length ) return;
+
+				let input  = wrap.find( '.exms-att-tag-input' );
+				let tags   = wrap.find( '.exms-att-tags' );
+				let clear  = wrap.find( '.exms-att-clear-all' );
+
+				function addTag( label ) {
+					label = $.trim( label );
+					if( !label ) return;
+
+					let key = label.toLowerCase();
+					let exists = false;
+					tags.find( '.exms-att-tag' ).each( function(){
+					if( $( this ).data( 'value' ) === key ){ exists = true; return false; }
+					});
+					if( exists ) return;
+
+					let tag = $( `
+					<span class="exms-att-tag" data-value="${key}">
+						<button type="button" class="exms-att-tag-remove" aria-label="Remove">×</button>
+						<span class="exms-att-tag-text"></span>
+						<input type="hidden" name="exms_exclude_users[]" />
+					</span>
+					` );
+
+					tag.find( '.exms-att-tag-text' ).text( label );
+					tag.find( 'input[type="hidden"]' ).val( label );
+
+					tags.append( tag );
+				}
+
+				input.on( 'keydown', function( e ){
+					if( e.key === 'Enter' || e.key === ',' ) {
+					e.preventDefault();
+					addTag( input.val() );
+					input.val( '' );
+					}
+				} );
+
+				wrap.on( 'click', '.exms-att-tag-remove', function() {
+					$( this ).closest( '.exms-att-tag' ).remove();
+				} );
+
+				clear.on( 'click', function() {
+					tags.empty();
+				} );
+			},
+
+			/**
+			 * Student dashboard report tab table action button
+			 */
+			reportTableBtn: function() {
+				$( document ).on( 'click', '.exms-row-action-btn', function ( e ) {
+					e.preventDefault();
+					e.stopPropagation();
+
+					let dropdown = $( this ).siblings( '.exms-actions-dropdown' );
+
+					$( '.exms-actions-dropdown' ).not( dropdown ).hide().change();
+					dropdown.toggle();
+				});
+
+				$( document ).on( 'click', function () {
+					$( '.exms-actions-dropdown' ).hide().change();
+				});
+
+				$( document ).on( 'click', '.exms-actions-dropdown', function ( e ) {
+					e.stopPropagation();
+				});
+
+
+// 				$(document).on('click', '.exms-accordion-head', function(e){
+//     e.preventDefault();
+
+//     const $acc = $(this).closest('.exms-accordion');
+
+//     // toggle current
+//     $acc.toggleClass('is-open');
+
+//     // icon switch
+//     const $icon = $(this).find('.exms-acc-icon');
+//     if($acc.hasClass('is-open')){
+//       $icon.removeClass('dashicons-plus').addClass('dashicons-minus');
+//     }else{
+//       $icon.removeClass('dashicons-minus').addClass('dashicons-plus');
+//     }
+//   });
+
+//   // set initial icons
+//   $('.exms-accordion').each(function(){
+//     const $icon = $(this).find('.exms-acc-icon');
+//     if($(this).hasClass('is-open')){
+//       $icon.removeClass('dashicons-plus').addClass('dashicons-minus');
+//     }
+//   });
+			},
+
+			/**
+			 * Student Dashboard left sidebar toggle button
+			 */
+			leftSidebar: function() {
+				let sidebar = $( '.exms-left-sidebar' );
+				let toggle  = $( '.exms-sidebar-toggle' );
+
+				if ( sidebar.length && toggle.length ) {
+					toggle.on( 'click', function() {
+						sidebar.toggleClass( 'exms-sidebar-open' );
+					} );
+				}
+			},
+
+			/**
+			 * Student Dashboard my account tab personal information image preview
+			 * @returns 
+			 */
+			PIimagePreview: function() {
+				const btn     = $( '#exmsProfileBtn' );
+				const input   = $( '#exmsProfileInput' );
+				const preview = $( '#exmsProfilePreview' );
+
+				if( !btn.length || !input.length || !preview.length ) {
+					return;
+				}
+
+				btn.on( 'click', function (e) {
+					e.preventDefault();
+					input.trigger( 'click' );
+				});
+
+				input.on( 'change', function () {
+					const file = this.files && this.files[0];
+					if( !file ) return;
+
+					if( !file.type || !file.type.startsWith( 'image/' ) ) return;
+
+					const imageUrl = URL.createObjectURL( file );
+					preview.attr( 'src', imageUrl );
+				} );
+			},
+			
 			/**
 			 * Expand or collape post items
 			 */

@@ -386,7 +386,7 @@ class EXMS_Quiz extends EXMS_DB_Main {
         $pass_msg          = isset( $_POST['exms_message_for_passing_quiz'] ) ? strip_tags( trim( $_POST['exms_message_for_passing_quiz'] ) ) : '';
         $fail_msg          = isset( $_POST['exms_message_for_failing_quiz'] ) ? strip_tags( trim( $_POST['exms_message_for_failing_quiz'] ) ) : '';
         $pending_msg       = isset( $_POST['exms_message_for_pending_quiz'] ) ? strip_tags( trim( $_POST['exms_message_for_pending_quiz'] ) ) : '';
-        var_dump( $pending_msg );
+        
         $point_achievement_type          = isset( $_POST['exms_points_award_type'] ) ? $_POST['exms_points_award_type'] : '';
         $achievement_point          = isset( $_POST['exms_quiz_points'] ) ? $_POST['exms_quiz_points'] : '';
         $deduct_point_type          = isset( $_POST['exms_points_deduct_type'] ) ? $_POST['exms_points_deduct_type'] : '';

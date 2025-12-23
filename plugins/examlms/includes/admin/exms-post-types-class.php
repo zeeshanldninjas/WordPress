@@ -48,17 +48,66 @@ class Exms_Post_Types {
 
         $current_permalink = exms_get_current_url();
         $current_permalink = array_filter( explode( '/', $current_permalink ) );
-        $post_slug = end( $current_permalink ); 
-        $slug_post_type = exms_get_post_type_by_slug( $post_slug );
+        $post_slug         = end( $current_permalink );
+        $slug_post_type    = exms_get_post_type_by_slug( $post_slug );
+
+        $post_types = EXMS_Setup_Functions::get_setup_post_types();
+        add_rewrite_rule(
+            '^exms-groups/([^/]+)/([^/]+)/?$',
+            'index.php?post_type=exms-courses&name=$matches[2]',
+            'top'
+        );
 
         if( 'exms-quizzes' != $slug_post_type ) {
 
-            $post_types = EXMS_Setup_Functions::get_setup_post_types();
-
-            if ( is_array( $post_types ) && ! empty( $post_types ) ) {
+            if( is_array( $post_types ) && ! empty( $post_types ) ) {
                 foreach ( $post_types as $key => $post_type ) {
 
-                    if ( in_array( $key, [ 'exms-courses', 'exms-quizzes' ] ) ) {
+                    // groups ko skip (baqi sab allow)
+                    if ( in_array( $key, [ 'exms-groups' ], true ) ) {
+                        continue;
+                    }
+
+                    // quizzes ko yahan skip rakho (quizzes else block handle karega)
+                    if ( in_array( $key, [ 'exms-quizzes' ], true ) ) {
+                        continue;
+                    }
+
+                    // Pattern starts with: exms-groups/{group}/
+                    $pattern = '^exms-groups/([^/]+)/';
+                    $depth   = 1; // group captured
+
+                    // Same chain logic as courses
+                    $parent = isset( $post_type['parent'] ) ? $post_type['parent'] : '';
+                    $chain  = [];
+
+                    while ( $parent && isset( $post_types[ $parent ] ) ) {
+                        array_unshift( $chain, $post_types[ $parent ]['slug'] );
+                        $parent = $post_types[ $parent ]['parent'];
+                    }
+
+                    foreach ( $chain as $slug ) {
+                        $pattern .= '([^/]+)/';
+                        $depth++;
+                    }
+
+                    $pattern .= '([^/]+)/?$';
+                    $depth++;
+
+                    $name_match = '$matches[' . $depth . ']';
+
+                    add_rewrite_rule(
+                        $pattern,
+                        'index.php?post_type=' . $post_type['post_type_name'] . '&name=' . $name_match,
+                        'top'
+                    );
+                }
+            }
+
+            if( is_array( $post_types ) && ! empty( $post_types ) ) {
+                foreach( $post_types as $key => $post_type ) {
+
+                    if( in_array( $key, [ 'exms-courses', 'exms-quizzes' ] ) ) {
                         continue;
                     }
 
@@ -67,9 +116,9 @@ class Exms_Post_Types {
                     $parent  = $post_type['parent'];
                     $chain   = [];
 
-                    while ( $parent && isset( $post_types[$parent] ) ) {
-                        array_unshift( $chain, $post_types[$parent]['slug'] );
-                        $parent = $post_types[$parent]['parent'];
+                    while( $parent && isset( $post_types[ $parent ] ) ) {
+                        array_unshift( $chain, $post_types[ $parent ]['slug'] );
+                        $parent = $post_types[ $parent ]['parent'];
                     }
 
                     foreach ( $chain as $slug ) {
@@ -79,7 +128,7 @@ class Exms_Post_Types {
 
                     $pattern .= '([^/]+)/?$';
                     $name_match = '$matches[' . $depth . ']';
-                    
+
                     add_rewrite_rule(
                         $pattern,
                         'index.php?post_type=' . $post_type['post_type_name'] . '&name=' . $name_match,
@@ -87,30 +136,61 @@ class Exms_Post_Types {
                     );
                 }
             }
-
         } else {
-
-            // 3. Course → Lesson → Quiz
+            /**
+             * Exms-groups rewrite rules 
+            */
+            add_rewrite_rule(
+                '^exms-groups/([^/]+)/([^/]+)/?$',
+                'index.php?post_type=exms-quizzes&name=$matches[2]',
+                'top'
+            );
+            add_rewrite_rule(
+                '^exms-groups/([^/]+)/([^/]+)/([^/]+)/?$',
+                'index.php?post_type=exms-quizzes&name=$matches[3]',
+                'top'
+            );
+            add_rewrite_rule(
+                '^exms-groups/([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$',
+                'index.php?post_type=exms-quizzes&name=$matches[4]',
+                'top'
+            );
+            add_rewrite_rule(
+                '^exms-groups/([^/]+)/([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$',
+                'index.php?post_type=exms-quizzes&name=$matches[5]',
+                'top'
+            );
+            add_rewrite_rule(
+                '^exms-groups/([^/]+)/(.+)/([^/]+)/?$',
+                'index.php?post_type=exms-quizzes&name=$matches[3]',
+                'top'
+            );
+            
+            /**
+             * Exms-courses rewrite rules 
+            */
+            add_rewrite_rule(
+                '^exms-courses/(.+)/([^/]+)/?$',
+                'index.php?post_type=exms-quizzes&name=$matches[2]',
+                'top'
+            );
             add_rewrite_rule(
                 '^exms-courses/([^/]+)/([^/]+)/([^/]+)/?$',
                 'index.php?post_type=exms-quizzes&name=$matches[3]',
                 'top'
             );
-
-            // 4. Course → Lesson → Topic → Quiz
             add_rewrite_rule(
                 '^exms-courses/([^/]+)/([^/]+)/([^/]+)/([^/]+)/?$',
                 'index.php?post_type=exms-quizzes&name=$matches[4]',
                 'top'
             );
-
-            // 5. Course → Quiz (direct quiz inside course)
             add_rewrite_rule(
                 '^exms-courses/([^/]+)/([^/]+)/?$',
                 'index.php?post_type=exms-quizzes&name=$matches[2]',
-                'bottom'
+                'top'
             );
         }
+
         flush_rewrite_rules();
     }
 

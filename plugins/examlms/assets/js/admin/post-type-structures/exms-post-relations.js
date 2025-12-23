@@ -18,10 +18,12 @@
 				this.toggleDotsDropdown();
 				this.assignUserRole();
 				this.assignParentUserRole();
+				this.assignGroupUserRole();
 				this.assignPostRelation();
 				this.iconPostRelation();
 				this.iconUser();
 				this.iconInstructorUser();
+				this.iconGroupUser();
 			},
 
 			/**
@@ -376,27 +378,27 @@
 							$( '.exms-price-row' ).addClass( 'exms-show' );
 							$( '.exms-subs-row' ).removeClass( 'exms-show' );
 							$( '.exms-close-row' ).removeClass( 'exms-show' );
-							$( '.wpeq_quiz_sign' ).prop( 'disabled', false );
+							$( '.exms_quiz_sign' ).prop( 'disabled', false );
 							break;
 
 						case 'subscribe':
 							$( '.exms-price-row, .exms-subs-row' ).addClass( 'exms-show' );
 							$( '.exms-close-row' ).removeClass( 'exms-show' );
-							$( '.wpeq_quiz_sign' ).prop( 'disabled', false );
+							$( '.exms_quiz_sign' ).prop( 'disabled', false );
 							break;
 
 						case 'close':
 							$( '.exms-price-row, .exms-close-row' ).addClass( 'exms-show' );
 							$( '.exms-price-row' ).removeClass( 'exms-show' );
 							$( '.exms-subs-row' ).removeClass( 'exms-show' );
-							$( '.wpeq_quiz_sign' ).prop( 'disabled', true );
+							$( '.exms_quiz_sign' ).prop( 'disabled', true );
 							break;
 						
 						case 'free':
 							$( '.exms-price-row' ).removeClass( 'exms-show' );
 							$( '.exms-subs-row' ).removeClass( 'exms-show' );
 							$( '.exms-close-row' ).removeClass( 'exms-show' );
-							$( '.wpeq_quiz_sign' ).prop( 'disabled', true );
+							$( '.exms_quiz_sign' ).prop( 'disabled', true );
 							break;
 						
 						default:
@@ -632,6 +634,107 @@
 					} else {
 						$( '.exms-parent-user-sortable-pagination-wrap-right' ).hide().change();
 						$( '.exms-parent-user-sortable-pagination-wrap-left' ).show().change();
+					}
+				} );
+			},
+			
+			assignGroupUserRole: function () {
+				$( '.exms-dropdown-btn[data-target="group-user"]' ).on( "click", function ( e ) {
+					e.preventDefault();
+
+					let self = $( this );
+					let type = self.data( "type" );
+					let role = self.data( "role" );
+
+					let isAssigning = type === "assigned";
+
+					let sourceWrap = isAssigning
+						? $( '.exms-group-user-sortable-items-wrap-left' )
+						: $( '.exms-group-user-sortable-items-wrap-right' );
+
+					let targetWrap = isAssigning
+						? $( '.exms-group-user-sortable-items-wrap-right' )
+						: $( '.exms-group-user-sortable-items-wrap-left' );
+
+					let items = sourceWrap.find( '.exms-sortable-item' );
+					if ( items.length === 0 ) return;
+
+					let existingTargetItems = targetWrap.find( '.exms-sortable-item' );
+
+					if ( isAssigning && existingTargetItems.length === 0 ) {
+						targetWrap.empty();
+					} else if ( !isAssigning && existingTargetItems.length === 0 ) {
+						targetWrap.empty();
+					}
+
+					items.each( function () {
+						let item = $( this );
+
+						item.attr( 'data-name', isAssigning ? 'exms_assign_items' : 'exms_unassign_items' );
+
+						let input = item.find( '.exms-assign-unassign-id' );
+						input.attr( 'name', isAssigning ? 'exms_assign_items[current][]' : 'exms_unassign_items[current][]' );
+						input.removeClass( 'exms-assign-current exms-unassign-current' )
+							.addClass( isAssigning ? 'exms-assign-current' : 'exms-unassign-current' );
+
+						let dragIcon = item.find( '.exms-drag-icon' );
+						let postTitle = item.find( '.exms-post-title' );
+						let postTitleAnchor = postTitle.find( 'a' );
+						let imgParent = item.find( '.exms-img-parent' );
+						let avatarImg = imgParent.find( 'img' );
+
+						dragIcon.detach();
+						if ( isAssigning ) {
+							dragIcon.empty().html('&#8592;');
+							postTitleAnchor.before( dragIcon );
+						} else {
+							dragIcon.empty().html('&#8594;');
+							if ( imgParent.length ) {
+								avatarImg.after( dragIcon );
+							} else {
+								postTitle.after( dragIcon );
+							}
+						}
+						existingTargetItems = targetWrap.find( '.exms-sortable-item' );
+
+						if ( existingTargetItems.length > 0 ) {
+							existingTargetItems.last().after( item );
+						} else {
+							targetWrap.append( item );
+						}
+					} );
+
+					sourceWrap.empty();
+
+					let updatedUserIds = [];
+					targetWrap.find( '.exms-assign-unassign-id' ).each( function () {
+						updatedUserIds.push( $( this ).val() );
+					} );
+
+					if ( isAssigning ) {
+						$( '.exms-dropdown-assign .exms-dropdown-btn' )
+							.data( 'users', updatedUserIds )
+							.attr( 'data-users', JSON.stringify( updatedUserIds ) );
+
+						$( '.exms-dropdown-unassign .exms-dropdown-btn' )
+							.data( 'users', [] )
+							.attr( 'data-users', [] );
+					} else {
+						$( '.exms-dropdown-unassign .exms-dropdown-btn' )
+							.data( 'users', updatedUserIds )
+							.attr( 'data-users', JSON.stringify( updatedUserIds ) );
+
+						$( '.exms-dropdown-assign .exms-dropdown-btn' )
+							.data( 'users', [] )
+							.attr( 'data-users', [] );
+					}
+
+					if ( isAssigning ) {
+						$( '.exms-group-user-sortable-pagination-wrap-left' ).hide().change();
+						$( '.exms-group-user-sortable-pagination-wrap-right' ).show().change();
+					} else {
+						$( '.exms-group-user-sortable-pagination-wrap-right' ).hide().change();
+						$( '.exms-group-user-sortable-pagination-wrap-left' ).show().change();
 					}
 				} );
 			},
@@ -991,6 +1094,92 @@
 					} else {
 						$( '.exms-parent-user-sortable-pagination-wrap-right' ).find( itemField ).hide().change();
 						$( '.exms-parent-user-sortable-pagination-wrap-left' ).show().change();
+					}
+				});
+			},
+
+			/**
+			 * Click on drag icon to move to the other side for User
+			 */
+			iconGroupUser: function () {
+				$( document ).on( 'click', '.exms-drag-icon[data-target="group-user"]', function ( e ) {
+					e.preventDefault();
+
+					let self = $( this );
+					let type = self.data( 'name' );
+					let isAssigning = type === 'exms_unassign_items';
+
+					let itemField = self.closest( '.exms-sortable-item' );
+
+					let sourceSelector = isAssigning
+						? '.exms-group-user-sortable-items-wrap-left'
+						: '.exms-group-user-sortable-items-wrap-right';
+
+					let targetSelector = isAssigning
+						? '.exms-group-user-sortable-items-wrap-right'
+						: '.exms-group-user-sortable-items-wrap-left';
+
+					let sourceWrap = $( sourceSelector );
+					let targetWrap = $( targetSelector );
+					let existingTargetItems = targetWrap.find( '.exms-sortable-item' );
+
+					itemField.attr( 'data-name', isAssigning ? 'exms_assign_items' : 'exms_unassign_items' );
+					itemField.attr( 'data-name-key', 'current' );
+
+					let iconButton = itemField.find( '.exms-drag-icon' );
+					let postTitle = itemField.find( '.exms-post-title' );
+					let postImgParent = itemField.find( '.exms-img-parent' );
+					let imgAvatar = postImgParent.find( '.exms-avatar' );
+					iconButton.detach();
+
+					if ( isAssigning ) {
+						iconButton.empty().html('&#8592;');
+						postTitle.prepend( iconButton );
+						iconButton.data( 'name', 'exms_assign_items' );
+					} else {
+						iconButton.empty().html('&#8594;');
+						imgAvatar.after( iconButton );
+						iconButton.data( 'name', 'exms_unassign_items' );
+					}
+
+					let input = itemField.find( '.exms-assign-unassign-id' );
+					input.attr( 'name', isAssigning ? 'exms_assign_items[current][]' : 'exms_unassign_items[current][]' );
+					input.removeClass( 'exms-assign-current exms-unassign-current' ).addClass( isAssigning ? 'exms-assign-current' : 'exms-unassign-current' );
+					itemField.hide().change();
+
+					if ( existingTargetItems.length === 0 ) {
+						targetWrap.empty();
+					}
+					targetWrap.append( itemField );
+					itemField.show().change();
+
+					let updatedPostIds = [];
+					targetWrap.find( '.exms-assign-unassign-id' ).each( function () {
+						updatedPostIds.push( $(this).val() );
+					});
+
+					if ( isAssigning ) {
+						$( '.exms-dropdown-assign .exms-dropdown-btn[data-post-id="' + self.data( 'post-id' ) + '"]' )
+							.data( 'users', updatedPostIds )
+							.attr( 'data-users', JSON.stringify( updatedPostIds ) );
+						$( '.exms-dropdown-unassign .exms-dropdown-btn[data-post-id="' + self.data( 'post-id' ) + '"]')
+							.data( 'users', [] )
+							.attr( 'data-users', [] );
+					} else {
+						$( '.exms-dropdown-unassign .exms-dropdown-btn[data-post-id="' + self.data( 'post-id' ) + '"]' )
+							.data('users', updatedPostIds )
+							.attr('data-users', JSON.stringify(updatedPostIds));
+						$( '.exms-dropdown-assign .exms-dropdown-btn[data-post-id="' + self.data( 'post-id' ) + '"]' )
+							.data( 'users', [] )
+							.attr( 'data-users', [] );
+					}
+
+					if ( isAssigning ) {
+						$( '.exms-group-user-sortable-pagination-wrap-left' ).find( itemField ).hide().change();
+						$( '.exms-group-user-sortable-pagination-wrap-right' ).show().change();
+					} else {
+						$( '.exms-group-user-sortable-pagination-wrap-right' ).find( itemField ).hide().change();
+						$( '.exms-group-user-sortable-pagination-wrap-left' ).show().change();
 					}
 				});
 			},

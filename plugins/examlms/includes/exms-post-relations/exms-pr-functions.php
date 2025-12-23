@@ -538,6 +538,8 @@ class EXMS_PR_Fn {
             $class = 'exms-user-sortable-pagination-wrap-left exms-parent-user-sortable-pagination-wrap-left';
         } elseif ( $user === 'post-relation' ) {
             $class = 'exms-post-sortable-pagination-wrap-left';
+        } elseif ( $user === 'group-user' ) {
+            $class = 'exms-group-user-sortable-pagination-wrap-left';
         } else {
             $class = 'exms-sortable-pagination-wrap-left';
         }
@@ -584,6 +586,8 @@ class EXMS_PR_Fn {
             $class = 'exms-user-sortable-pagination-wrap-right exms-parent-user-sortable-pagination-wrap-right';
         } elseif ( $user === 'post-relation' ) {
             $class = 'exms-post-sortable-pagination-wrap-right';
+        } elseif ( $user === 'group-user' ) {
+            $class = 'exms-group-user-sortable-pagination-wrap-right';
         } else {
             $class = 'exms-sortable-pagination-wrap-right';
         }

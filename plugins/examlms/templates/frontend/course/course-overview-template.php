@@ -2,21 +2,37 @@
 
 if( ! defined( 'ABSPATH' ) ) exit;
 
-$course_data = get_query_var( 'course_data' );
-
-if ( ! empty( $course_data ) ) {
-    extract( $course_data ); 
+$post_type_data = [];
+if( $post_type == "exms-courses" ) {
+    $post_type_data = get_query_var( 'course_data' );
+}
+if( $post_type == "exms-groups" ) {
+    $post_type_data = get_query_var( query_var: 'group_data' );
 }
 
-$course_type = exms_get_post_settings( $course_id );
-$post_type = get_post_type( $course_id );
+if ( ! empty( $post_type_data ) ) {
+    extract( $post_type_data ); 
+}
 
-if( is_array( $course_type ) && ! empty( $course_type ) ) {
-    $course_type = isset( $course_type['parent_post_type'] ) ? $course_type['parent_post_type'] : '';
+$latest_enrollment_date = exms_get_latest_enrollment_date( $post_id );
+$course_type = exms_get_post_settings( $post_id );
+$post_type = get_post_type( $post_id );
+
+if( $post_type == "exms-courses" ) {
+
+    if( is_array( $course_type ) && ! empty( $course_type ) ) {
+        $course_type = isset( $course_type['parent_post_type'] ) ? $course_type['parent_post_type'] : '';
+    }
+}
+if( $post_type == "exms-groups" ) {
+
+    if( is_array( $course_type ) && ! empty( $course_type ) ) {
+        $course_type = isset( $course_type['group_type'] ) ? $course_type['group_type'] : '';
+    }
 }
 
 $user_id = get_current_user_id();
-$enrollment_user_progress = exms_get_user_progress( $user_id, $course_id );
+$enrollment_user_progress = exms_get_user_progress( $user_id, $post_id );
 
 $status = isset( $enrollment_user_progress['status'] ) ? $enrollment_user_progress['status'] : '';
 
@@ -25,7 +41,7 @@ if ( $status == 'enrolled' ) {
     $button_text_to_show = __( 'Start learning', 'exms' );
 }
 
-$progress = exms_calculate_course_progress( $course_id, $user_id );
+$progress = exms_calculate_course_progress( $post_id, $user_id );
 
 ?>
 <!DOCTYPE html>
@@ -91,7 +107,7 @@ $progress = exms_calculate_course_progress( $course_id, $user_id );
                                     AND post_id = %d
                                     LIMIT 1",
                                     $user_id,
-                                    $course_id
+                                    $post_id
                                 )
                             );
 
@@ -109,7 +125,7 @@ $progress = exms_calculate_course_progress( $course_id, $user_id );
                                 
                                 <form class="mark-complete-wrapper" method="post">
                                     <input type="hidden" name="exms_action" value="mark_complete_course">
-                                    <input type="hidden" name="course_id" value="<?php echo esc_attr( $course_id ); ?>">
+                                    <input type="hidden" name="course_id" value="<?php echo esc_attr( $post_id ); ?>">
                                     <?php wp_nonce_field( 'exms_mark_complete_course', 'exms_nonce' ); ?>
                                     
                                     <button type="button" class="mark-complete-btn open-confirm-popup">
@@ -177,7 +193,7 @@ $progress = exms_calculate_course_progress( $course_id, $user_id );
                                     <div class="exms-course-info-tabs">
                                         <button class="course-content active-tab">
                                             <span class="dashicons dashicons-welcome-learn-more"></span>
-                                            <?php echo __( ucfirst( $course_label ) . ' Content', 'exms' ); ?>
+                                            <?php echo __( ucfirst( $post_label ) . ' Content', 'exms' ); ?>
                                         </button>
                                         <button class="course-description">
                                             <span class="dashicons dashicons-media-text"></span>
@@ -188,7 +204,7 @@ $progress = exms_calculate_course_progress( $course_id, $user_id );
                                     <!-- Course Content -->
                                     <div class="exms-course-steps course-tab-content" id="course-content-tab" style="display: block;">
                                         <?php
-                                        $steps = exms_render_all_course_steps( $course_id, $post_type );
+                                        $steps = exms_render_all_course_steps( $post_id, $post_type );
                                         echo ! empty( $steps ) ? $steps : '
                                             <div class="exms-empty-message">
                                                 <p>' . __( 'No content added yet.', 'exms' ) . '</p>
@@ -225,7 +241,7 @@ $progress = exms_calculate_course_progress( $course_id, $user_id );
                             ? ( $status === 'Not Started' ? __( 'Start learning', 'exms' ) : __( 'Continue learning', 'exms' ) )
                             : esc_html( $button_text );
                             $button_class = 'exms-start-course ' . esc_attr( $dynamic_class );
-                            $button_attrs = 'data_course_id="' . esc_attr( $course_id ) . '"';
+                            $button_attrs = 'data_course_id="' . esc_attr( $post_id ) . '"';
                             ?>
 
                             <div class="<?php echo $is_enrolled ? 'exms-course-status-wrapper' : 'exms-start-course-wrapper'; ?>">
@@ -235,7 +251,7 @@ $progress = exms_calculate_course_progress( $course_id, $user_id );
                                     <div class="exms-price-type"><?php echo esc_html( $type ); ?></div>
                                 <?php } else { ?>
                                     <div class="course-status-label">
-                                        <strong><?php echo __( ucfirst( $course_label ) . ' Status:', 'exms' ); ?></strong>
+                                        <strong><?php echo __( ucfirst( $post_label ) . ' Status:', 'exms' ); ?></strong>
                                         <span class="course-status-badge"><?php echo ucwords( $status); ?></span>
                                     </div>
                                     <div class="exms-progress-percent">
@@ -265,13 +281,13 @@ $progress = exms_calculate_course_progress( $course_id, $user_id );
                                 ?>
                             </div>
                             <div class="exms-course-detail-wrapper">
-                                <div class="exms-course-title-wrapper"><?php echo __( ucfirst( $course_label ).' Details:', 'exms'); ?></div>
+                                <div class="exms-course-title-wrapper"><?php echo __( ucfirst( $post_label ).' Details:', 'exms'); ?></div>
                                 <div class="exms-course-detail-inner-wrap">
                                     <?php
                                     $has_data = false;
 
-                                    if ( ! empty( $course_includes ) && ! empty( $structure ) ) {
-                                        foreach ( $course_includes as $post_type => $ids ) {
+                                    if ( ! empty( $post_includes ) && ! empty( $structure ) ) {
+                                        foreach ( $post_includes as $post_type => $ids ) {
                                             if ( empty( $ids ) ) {
                                                 continue;
                                             }
@@ -295,7 +311,7 @@ $progress = exms_calculate_course_progress( $course_id, $user_id );
                                     if ( ! $has_data ) {
                                         ?>
                                         <div class="exms-empty-message" style="justify-content: center;">
-                                            <p><?php _e('No '.ucfirst( $course_label ). ' details available.', 'exms'); ?></p>
+                                            <p><?php _e('No '.ucfirst( $post_label ). ' details available.', 'exms'); ?></p>
                                         </div>
                                         <?php
                                     }
@@ -321,7 +337,7 @@ $progress = exms_calculate_course_progress( $course_id, $user_id );
                                             </svg>
                                         </div>
                                         <div class="enrollment-info">
-                                            <p><?php echo __('Total student: ', 'exms') . $course_member_count; ?></p>
+                                            <p><?php echo __('Total student: ', 'exms') . $post_member_count; ?></p>
                                             <p><?php echo __('Available seat: ', 'exms') . $seat_left; ?></p>
                                         </div>
                                     </div>
@@ -343,7 +359,7 @@ $progress = exms_calculate_course_progress( $course_id, $user_id );
                                         <i class="dashicons dashicons-calendar-alt"></i>
                                         <div class="exms-course-info-text">
                                             <span class="exms-label"><?php _e( 'Last Enrollments date', 'exms' ); ?></span>
-                                            <span class="exms-value"><?php echo esc_html( $course_date ); ?></span>
+                                            <span class="exms-value"><?php echo esc_html( $latest_enrollment_date ); ?></span>
                                         </div>
                                     </div>
                                 </div>

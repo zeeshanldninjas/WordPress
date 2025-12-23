@@ -599,7 +599,7 @@ class EXMS_Questions extends EXMS_DB_Main {
 
         $question_type = sanitize_text_field( $_POST['exms_question_type'] ?? '' );
         $answers_raw   = $_POST['exms_answers'] ?? [];
-        $ans_types     = $_POST['wpeq_ques_ans_type'] ?? [];
+        $ans_types     = $_POST['exms_ques_ans_type'] ?? [];
         if ( ! is_array( $answers_raw ) ) {
             $answers_raw = [ $answers_raw ];
         }

@@ -219,13 +219,13 @@ class EXMS_certificates extends EXMS_DB_Main {
             <div class="exms-data exms-row"> 
 
                 <!-- Single type radio -->
-                <input type="radio" class="custom_radio wpeq_quiz_type" name="exms_pdf_page_type" id="rb3" value="single" <?php echo 'single' == $page_type ? 'checked="checked"' : ''; ?> />
+                <input type="radio" class="custom_radio exms_quiz_type" name="exms_pdf_page_type" id="rb3" value="single" <?php echo 'single' == $page_type ? 'checked="checked"' : ''; ?> />
                 <label class='custom_radio_label' for="rb3">
                     <?php _e( 'Single', WP_EXAMS ); ?>
                 </label>
 
                 <!-- Multiple type radio -->
-                <input type="radio" class="custom_radio wpeq_quiz_type" name="exms_pdf_page_type" id="rb4" value="multiple" <?php echo 'multiple' == $page_type ? 'checked="checked"' : ''; ?> />
+                <input type="radio" class="custom_radio exms_quiz_type" name="exms_pdf_page_type" id="rb4" value="multiple" <?php echo 'multiple' == $page_type ? 'checked="checked"' : ''; ?> />
                 <label class='custom_radio_label' for="rb4">
                     <?php _e( 'Multiple', WP_EXAMS ); ?>
                 </label>

@@ -70,7 +70,7 @@ class Exms_Enqueue_scripts {
         /**
          * JS related to admin panel
          */
-        wp_enqueue_script( 'WP_EXAMS-global-js', EXMS_ASSETS_URL . 'js/exms-global.js', [ 'jquery' ], '', true );
+        wp_enqueue_script( 'EXMS-global-js', EXMS_ASSETS_URL . 'js/exms-global.js', [ 'jquery' ], '', true );
 
         /**
          * Select2 JS
@@ -108,7 +108,7 @@ class Exms_Enqueue_scripts {
             wp_enqueue_script( 'exms-texonomy-js', EXMS_ASSETS_URL . '/js/exms-texonomy-iframe.js', [ 'jquery' ], EXMS::VERSION, true );
         }
 
-        wp_localize_script( 'WP_EXAMS-global-js', 'EXMS', 
+        wp_localize_script( 'EXMS-global-js', 'EXMS', 
             [ 
                 'ajaxURL'   => admin_url( 'admin-ajax.php' ),
                 'security'  => wp_create_nonce( 'exms_ajax_nonce' ) 
@@ -128,13 +128,12 @@ class Exms_Enqueue_scripts {
         /**
          * Add styles need for WP EXAMS templates
          */
-        wp_enqueue_style( 'WP_EXAMS-theme-css', EXMS_ASSETS_URL . 'css/exms-theme.css?thme='.time(), [], WP_EXAMS::VERSION, null );
-        wp_enqueue_style( 'WP_EXAMS-range-css', EXMS_ASSETS_URL . 'css/jquery-ui.min.css', [], WP_EXAMS::VERSION, null );
-
+        wp_enqueue_style( 'EXMS-theme-css', EXMS_ASSETS_URL . 'css/exms-theme.css', [], EXMS::VERSION, null );
+        wp_enqueue_style( 'EXMS-range-css', EXMS_ASSETS_URL . 'css/jquery-ui.min.css', [], EXMS::VERSION, null );
         /**
          * Select2 CSS
          */
-        wp_enqueue_style( 'WP_EXAMS-select2-css', EXMS_ASSETS_URL . 'css/select2.min.css', [], '', '' );
+        wp_enqueue_style( 'EXMS-select2-css', EXMS_ASSETS_URL . 'css/select2.min.css', [], '', '' );
 
         /**
          * Enqueue Paypal SDK
@@ -151,44 +150,44 @@ class Exms_Enqueue_scripts {
         $stripe_api_key         = isset( $exms_options['stripe_api_key'] ) ? $exms_options['stripe_api_key'] : '';
         $stripe_client_secret   = isset( $exms_options['stripe_client_secret'] ) ? $exms_options['stripe_client_secret'] : '';
 
-        wp_enqueue_script( 'WP_EXAMS-paypal-sdk', 'https://www.paypal.com/sdk/js?disable-funding=credit,bancontact,blik,eps,giropay,ideal,mercadopago,mybank,p24,sepa,sofort,venmo,card&client-id='.$paypal_client_id.'&currency='.$paypal_currency.'', [], NULL, false );
-        wp_enqueue_script( 'WP_EXAMS-exms-stripe-js', 'https://js.stripe.com/v3/', [ 'jquery' ], WP_EXAMS::VERSION, true );
-        wp_enqueue_script( 'WP_EXAMS-exms-stripe-custom-js', EXMS_ASSETS_URL . 'js/exms_stripe.js', [ 'jquery' ], WP_EXAMS::VERSION, true );
-        wp_enqueue_script( 'WP_EXAMS-exms-paypal-js', EXMS_ASSETS_URL . 'js/exms_paypal.js', [ 'jquery' ], WP_EXAMS::VERSION, true );
+        wp_enqueue_script( 'EXMS-paypal-sdk', 'https://www.paypal.com/sdk/js?disable-funding=credit,bancontact,blik,eps,giropay,ideal,mercadopago,mybank,p24,sepa,sofort,venmo,card&client-id='.$paypal_client_id.'&currency='.$paypal_currency.'', [], NULL, false );
+        wp_enqueue_script( 'EXMS-exms-stripe-js', 'https://js.stripe.com/v3/', [ 'jquery' ], EXMS::VERSION, true );
+        wp_enqueue_script( 'EXMS-exms-stripe-custom-js', EXMS_ASSETS_URL . 'js/exms_stripe.js', [ 'jquery' ], EXMS::VERSION, true );
+        wp_enqueue_script( 'EXMS-exms-paypal-js', EXMS_ASSETS_URL . 'js/exms_paypal.js', [ 'jquery' ], EXMS::VERSION, true );
 
 
         /**
          * Select2 JS
          */
-        wp_enqueue_script( 'WP_EXAMS-select2-js', EXMS_ASSETS_URL . 'js/select2.min.js', [ 'jquery' ], '', true );
+        wp_enqueue_script( 'EXMS-select2-js', EXMS_ASSETS_URL . 'js/select2.min.js', [ 'jquery' ], '', true );
 
         /**
          * JS related to WP EXAMS templates
          */
-        wp_enqueue_script( 'WP_EXAMS-global-js', EXMS_ASSETS_URL . 'js/exms-global.js', [ 'jquery' ], '', true );
-        wp_enqueue_script( 'WP_EXAMS-range-js', EXMS_ASSETS_URL . 'js/jquery-ui.min.js', [ 'jquery' ], '', true );
+        wp_enqueue_script( 'EXMS-global-js', EXMS_ASSETS_URL . 'js/exms-global.js', [ 'jquery' ], '', true );
+        wp_enqueue_script( 'EXMS-range-js', EXMS_ASSETS_URL . 'js/jquery-ui.min.js', [ 'jquery' ], '', true );
 
         /**
          * JS UI for draggable elements
          */
-        wp_enqueue_script( 'WP-EXAMS-jquery-ui', EXMS_ASSETS_URL . 'js/jquery-ui.js', [], WP_EXAMS::VERSION, true );
+        wp_enqueue_script( 'WP-EXAMS-jquery-ui', EXMS_ASSETS_URL . 'js/jquery-ui.js', [], EXMS::VERSION, true );
 
         /**
          * JS related to WP EXAMS templates
          */
-        wp_enqueue_script( 'WP-EXAMS-theme-js', EXMS_ASSETS_URL . 'js/exms-theme.js?thme='.time(), ['jquery'], WP_EXAMS::VERSION, true );
+        wp_enqueue_script( 'WP-EXAMS-theme-js', EXMS_ASSETS_URL . 'js/exms-theme.js?thme='.time(), ['jquery'], EXMS::VERSION, true );
 
         /**
          * Display chart on WP EXAMS templates
          */
-        wp_enqueue_script( 'exms-chart-js', EXMS_ASSETS_URL . 'js/chart.min.js', [], WP_EXAMS::VERSION, true );
+        wp_enqueue_script( 'exms-chart-js', EXMS_ASSETS_URL . 'js/chart.min.js', [], EXMS::VERSION, true );
 
         /**
          * Enqueue post completion js file
          */
-        wp_enqueue_style( 'exms-custom-popup-css-link', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css', [], WP_EXAMS::VERSION, null );
-        wp_enqueue_script( 'exms-custom-bootstrap-pop-up-js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js', ['jquery'], WP_EXAMS::VERSION, true );
-        wp_enqueue_script( 'exms-post-completion-js', EXMS_ASSETS_URL . 'js/exms-post-completion.js', [], WP_EXAMS::VERSION, true );
+        wp_enqueue_style( 'exms-custom-popup-css-link', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.css', [], EXMS::VERSION, null );
+        wp_enqueue_script( 'exms-custom-bootstrap-pop-up-js', 'https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.3.2/jquery-confirm.min.js', ['jquery'], EXMS::VERSION, true );
+        wp_enqueue_script( 'exms-post-completion-js', EXMS_ASSETS_URL . 'js/exms-post-completion.js', [], EXMS::VERSION, true );
  
         $stripe_enable          = isset( $exms_options['stripe_enable'] ) ? $exms_options['stripe_enable'] : "";
         $stripe_currency        = isset( $exms_options['stripe_currency'] ) ? $exms_options['stripe_currency'] : "";
@@ -196,7 +195,7 @@ class Exms_Enqueue_scripts {
         $stripe_api_key         = isset( $exms_options['stripe_api_key'] ) ? $exms_options['stripe_api_key'] : "";
         $stripe_client_secret   = isset( $exms_options['stripe_client_secret'] ) ? $exms_options['stripe_client_secret'] : "";
 
-        wp_localize_script( 'WP_EXAMS-exms-stripe-custom-js', 'EXMSS', [ 
+        wp_localize_script( 'EXMS-exms-stripe-custom-js', 'EXMSS', [ 
             'ajaxURL'   => admin_url( 'admin-ajax.php' ),
             'security'  => wp_create_nonce( 'exms_ajax_nonce' ) ,
             'stripe_enable'  => $stripe_enable,

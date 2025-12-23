@@ -150,7 +150,7 @@ $query = get_posts( $args );
 	}
 ?>
 	</table>
-	<div class="wpeq_export_button_div">
+	<div class="exms_export_button_div">
 		<button class="button button-primary" type="submit" name="exms_export"> 
 			<?php _e( 'Export', 'exms' ); ?> 
 			<span class="dashicons dashicons-upload"></span>
@@ -160,7 +160,7 @@ $query = get_posts( $args );
 </form>
 
 <form method="post" enctype="multipart/form-data">
-	<div class="wpeq_import_div">
+	<div class="exms_import_div">
 	
 	<input type="file" name="csv_file"  required="required" class="imp_file" />
 	<br/>

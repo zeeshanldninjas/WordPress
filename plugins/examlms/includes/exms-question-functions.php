@@ -191,7 +191,7 @@ function exms_get_question_answers( $ques_id ) {
     $ques_type = isset( $opts['exms_question_type'] ) ? $opts['exms_question_type'] : false;
     $answers = isset( $opts['exms_answers'] ) ? $opts['exms_answers'] : [];
     $points = isset( $opts['exms_ques_ans_points'] ) ? $opts['exms_ques_ans_points'] : [];
-    $types = isset( $opts['wpeq_ques_ans_type'] ) ? $opts['wpeq_ques_ans_type'] : [];
+    $types = isset( $opts['exms_ques_ans_type'] ) ? $opts['exms_ques_ans_type'] : [];
 
     /**
      * Single/Multiple/Sorting answers

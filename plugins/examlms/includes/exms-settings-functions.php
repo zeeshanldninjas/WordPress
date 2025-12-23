@@ -150,7 +150,7 @@ function exms_show_success_notice() {
  */
 function exms_get_enabled_payment_modes() {
 
-	return isset( get_option( 'wpeq_settings' )->payment_integration->payment_methods ) ? get_option( 'wpeq_settings' )->payment_integration->payment_methods : null;
+	return isset( get_option( 'exms_settings' )->payment_integration->payment_methods ) ? get_option( 'exms_settings' )->payment_integration->payment_methods : null;
 }
 
 /**
@@ -158,7 +158,7 @@ function exms_get_enabled_payment_modes() {
  */
 function exms_get_paypal_settings() {
 
-	return get_option( 'wpeq_settings' ) && isset( get_option( 'wpeq_settings' )->payment_integration->paypal ) ? get_option( 'wpeq_settings' )->payment_integration->paypal : null;
+	return get_option( 'exms_settings' ) && isset( get_option( 'exms_settings' )->payment_integration->paypal ) ? get_option( 'exms_settings' )->payment_integration->paypal : null;
 }
 
 /**
@@ -166,7 +166,7 @@ function exms_get_paypal_settings() {
  */
 function exms_get_stripe_settings() {
 
-	return get_option( 'wpeq_settings' ) && isset( get_option( 'wpeq_settings' )->payment_integration->stripe ) ? get_option( 'wpeq_settings' )->payment_integration->stripe : null;
+	return get_option( 'exms_settings' ) && isset( get_option( 'exms_settings' )->payment_integration->stripe ) ? get_option( 'exms_settings' )->payment_integration->stripe : null;
 }
 
 /**
@@ -176,7 +176,7 @@ function exms_get_stripe_settings() {
  */
 function exms_get_quiz_settings( $quiz_id ) { 
 
-	$quiz_type = get_post_meta( $quiz_id, 'wpeq_quiz_settings_' . $quiz_id, true );
+	$quiz_type = get_post_meta( $quiz_id, 'exms_quiz_settings_' . $quiz_id, true );
 	if( !empty( $quiz_type ) ) {
 
 		return $quiz_type;
@@ -190,7 +190,7 @@ function exms_get_quiz_settings( $quiz_id ) {
  */
 // function exms_get_quiz_type( $quiz_id ) { 
 
-// 	$quiz_type = get_post_meta( $quiz_id, 'wpeq_quiz_settings_' . $quiz_id, true );
+// 	$quiz_type = get_post_meta( $quiz_id, 'exms_quiz_settings_' . $quiz_id, true );
 // 	return ( isset( $quiz_type['quiz_type'] ) ) ? $quiz_type['quiz_type'] : '';
 // }
 

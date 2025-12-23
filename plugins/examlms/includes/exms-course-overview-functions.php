@@ -58,6 +58,62 @@ function exms_get_child_post_ids( $parent_id, $parent_type, $structure, &$result
 }
 
 /**
+ * Recursively fetches all child post IDs for a given parent based on structure.
+ */
+function exms_get_group_child_post_ids( $parent_id, $parent_type, $structure, &$result = [], $depth = 0, &$visited = [] ) {
+	global $wpdb;
+	$key = $parent_type . ':' . (int) $parent_id;
+	if( isset( $visited[ $key ] ) ) {
+        return $result;
+	}
+	$visited[ $key ] = true;
+    
+	foreach( (array) $structure as $child_slug => $item ) {
+
+		$allowed_parents = is_array( $item['parent'] ) ? $item['parent'] : [ $item['parent'] ];
+		if( $child_slug === 'exms-quizzes' && ! in_array( 'exms-courses', $allowed_parents, true ) ) {
+			$allowed_parents[] = 'exms-courses';
+		}
+		if( $child_slug === 'exms-courses' && ! in_array( 'exms-groups', $allowed_parents, true ) ) {
+			$allowed_parents[] = 'exms-groups';
+		}
+
+		if( in_array( $parent_type, $allowed_parents, true ) ) {
+            
+			$sql = $wpdb->prepare(
+				"SELECT child_post_id
+				 FROM {$wpdb->prefix}exms_post_relationship
+				 WHERE parent_post_id = %d
+				   AND parent_post_type = %s
+				   AND assigned_post_type = %s",
+				(int) $parent_id,
+				(string) $parent_type,
+				(string) $child_slug
+			);
+
+			$child_posts = (array) $wpdb->get_col( $sql );
+
+			if( ! isset( $result[ $child_slug ] ) ) {
+				$result[ $child_slug ] = [];
+			}
+
+			$result[ $child_slug ] = array_merge( $result[ $child_slug ], $child_posts );
+
+			foreach( $child_posts as $child_id ) {
+				exms_get_child_post_ids( (int) $child_id, $child_slug, $structure, $result, $depth + 1, $visited );
+			}
+		}
+	}
+
+	foreach( $result as $pt => $ids ) {
+		$result[ $pt ] = array_values( array_unique( array_map( 'intval', (array) $ids ) ) );
+	}
+
+	return $result;
+}
+
+
+/**
  * Get user progress and status for a specific post (course, lesson, assignment, etc.).
  *
  * This function retrieves the enrollment status and progress percentage
@@ -251,24 +307,46 @@ function exms_get_first_step_url( $course_id ) {
     return get_permalink( $course_id );
 }
 
-function exms_course_breadcrumb( $course_id ) {
+function exms_course_breadcrumb( $course_id, $post_type ) {
 
-    $courses_archive_link = site_url( '/courses' ); 
+    $req_uri = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
+    $path    = trim( parse_url( $req_uri, PHP_URL_PATH ), '/' );
+    $is_group_context = ( strpos( $path, 'exms-groups/' ) === 0 );
+
     $breadcrumb = [];
-    $breadcrumb[] = [
-        'url'   => $courses_archive_link,
-        'title' => __( 'Courses', 'wp-exam' ),
-    ];
-
-    if ( $course_id ) {
+    if( $is_group_context ) {
         $breadcrumb[] = [
-            'url'   => get_permalink( $course_id ),
-            'title' => get_the_title( $course_id ),
+            'url'   => site_url( '/exms-groups' ),
+            'title' => __( 'Groups', 'exms' ),
+        ];
+    } else {
+        $breadcrumb[] = [
+            'url'   => site_url( '/exms-courses' ),
+            'title' => __( 'Courses', 'exms' ),
         ];
     }
 
+    if( $course_id ) {
+
+        if( $is_group_context ) {
+            
+            $parts = array_values( array_filter( explode( '/', $path ) ) );
+            $group_slug  = isset($parts[1]) ? $parts[1] : '';
+            $course_slug = isset($parts[2]) ? $parts[2] : '';
+
+            $url = site_url( '/exms-groups/' . $group_slug . '/' . $course_slug . '/' );
+        } else {
+            $url = get_permalink( $course_id );
+        }
+
+        $breadcrumb[] = [
+            'url'   => $url,
+            'title' => get_the_title( $course_id ),
+        ];
+    }
     return $breadcrumb;
 }
+
 
 /**
  * Get the assigned instructor IDs for a course
@@ -300,7 +378,6 @@ function exms_get_assign_instructor_ids( $course_id ) {
     return $instructor_ids;
 }
 
-
 /**
  * Get course latest Enrollment date
  */
@@ -326,4 +403,22 @@ function exms_get_course_last_enroll( $course_id ) {
         return null;
     }
     return date( 'd F Y', strtotime( $result->created_timestamp ) );
+}
+
+
+function exms_get_latest_enrollment_date( $course_id ) {
+    global $wpdb;
+
+    $table = $wpdb->prefix . 'exms_user_enrollments';
+
+    $timestamp = $wpdb->get_var(
+        $wpdb->prepare(
+            "SELECT MAX(created_timestamp)
+             FROM {$table}
+             WHERE post_id = %d",
+            $course_id
+        )
+    );
+
+    return $timestamp ? date( "l j F Y", $timestamp ) : false;
 }

@@ -651,6 +651,11 @@
 				
 				if ($('.exms-tab-title.exms-active-tab').val() === 'quiz-video-url') {
 					$('.exms-course-video-content').show().change();
+					$('.exms-group-type-content').hide().change();
+				}
+				if ($('.exms-tab-title.exms-active-tab').val() === 'group-type') {
+					$('.exms-group-type-content').show().change();
+					$('.exms-course-video-content').hide().change();
 				}
 
 				if( $( '.exms-tab-title' ).length > 0 ) {
@@ -665,6 +670,10 @@
 
 						switch ( self.val() ) {
 
+							case 'group-type':
+								$('.exms-group-type-content').show().change();
+								$('.exms-course-video-content').hide().change();
+							break;
 							case 'quiz-type':
 								$( '.exms-quiz-type-content' ).show().change();
 								$( '.exms-quiz-setting-content, .exms-quiz-achievement-content, .exms-quiz-message-content, .exms-quiz-result-content, .exms-course-video-content, .exms-progress-type-content' ).hide().change();
@@ -698,7 +707,7 @@
 							break;
 							case 'quiz-video-url':
 								$( '.exms-course-video-content' ).show().change();;
-								$( '.exms-quiz-type-content, .exms-quiz-setting-content, .exms-quiz-achievement-content, .exms-quiz-result-content, .exms-progress-type-content' ).hide().change();
+								$( '.exms-quiz-type-content, .exms-group-type-content, .exms-quiz-setting-content, .exms-quiz-achievement-content, .exms-quiz-result-content, .exms-progress-type-content' ).hide().change();
 							break;
 							case 'progress-settings':
 								$( '.exms-progress-type-content' ).show().change();;

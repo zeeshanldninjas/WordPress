@@ -23,7 +23,6 @@ $video_url = isset( $legacy_info['video_url'] ) ? $legacy_info['video_url'] : ''
 $current_page_url = exms_get_current_url();
 $legacy_progress = exms_calculate_progress($legacy_id, $user_id, $course_id, $current_page_url);
 
-
 ?>
 <!DOCTYPE html>
 <html <?php language_attributes(); ?>>

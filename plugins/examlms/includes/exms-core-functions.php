@@ -383,106 +383,6 @@ function exms_render_child_step_html( $post_id, $course_id, $class = '', $final_
 }
 
 /**
- * Render Step Html
- *
- * Generates the markup for a step/module including progress,
- * enrollment checks, and child step handling.
- *
- * @param int     $post_id            The step/post ID.
- * @param string  $class              Additional CSS classes for wrapper.
- * @param bool    $is_course_progress Whether we are rendering inside course progress view.
- * @param int     $parent_id          The parent step ID (used when course progress view).
- *
- * @return string Rendered HTML for the step.
- */
-function exms_render_step_html( $post_id, $class = '', $is_course_progress = false, $parent_id = 0 ) {
-    global $wpdb;
-
-    if ( ! $post_id ) {
-        return '';
-    }
-
-    $post_type  = get_post_type( $post_id );
-    $course_id  = exms_get_course_id();
-    $course_post_type = get_post_type( $course_id );
-    $course_slug_without_prefix = str_replace( "exms-", "", $course_post_type );
-    $post_slug_without_prefix   = str_replace( "exms-", "", $post_type );
-    $title      = get_the_title( $post_id );
-    $course_slug = get_post_field( 'post_name', $course_id );
-    $post_slug   = get_post_field( 'post_name', $post_id );
-    $current_page_url = exms_get_current_url();
-    $permalink   = $current_page_url.$post_slug;
-    $permalink   = preg_replace('#/([^/]+)/\1(/|$)#', '/$1$2', $permalink);
-
-    if ( $is_course_progress == true ) {
-        $parent_slug = get_post_field( 'post_name', $parent_id );
-        $permalink = home_url( $course_slug_without_prefix.'/'.$parent_slug. '/'. $post_slug);              
-    }
-
-    $structure   = get_option( 'exms_post_types', true );
-    $label       = isset( $structure[ $post_type ]['plural_name'] ) ? $structure[ $post_type ]['plural_name'] : ucfirst( $post_type );
-    $icon_label  = strtoupper( substr( $label, 0, 1 ) );
-
-    $children = $wpdb->get_col(
-        $wpdb->prepare(
-            "SELECT child_post_id 
-             FROM {$wpdb->prefix}exms_post_relationship
-             WHERE parent_post_id = %d AND parent_post_type = %s",
-            $post_id,
-            $post_type
-        )
-    );
-
-    $has_children = ! empty( $children );
-    $clean_type   = str_replace( 'exms-', '', $post_type );
-
-    $is_enrolled = exms_is_user_in_post( get_current_user_id(), $course_id );
-    $wrapper_class = 'exms-' . $clean_type . '-wrapper';
-    $active_class  = ( get_the_ID() == $post_id ) ? 'exms-active' : '';
-
-    $user_id  = get_current_user_id();
-    $progress = exms_calculate_progress( $post_id, $user_id, $course_id, $permalink );
-
-    ob_start();
-    ?>
-    <div data-course_id = "<?php echo $course_id; ?>" class="exms-course-module js-exms-course-module <?php echo esc_attr( $wrapper_class . ' ' . $class . ' ' . $active_class ); ?>" data-post-id="<?php echo esc_attr( $post_id ); ?>">
-        <div class="exms-course-module__header">
-            <div class="exms-legacy-course__lesson-status <?php echo $progress >= 100 ? 'complete' : ''; ?>"
-                 style="--percent: <?php echo esc_attr( round( $progress ) ); ?>;">
-                <?php if ( $progress >= 100 ) { ?>
-                    <span class="dashicons dashicons-yes"></span>
-                <?php } ?>
-            </div>
-            <span class="exms-course-module__icon"><?php echo esc_html( $icon_label ); ?></span>
-
-            <?php if ( $is_enrolled ) { ?>
-                <a href="<?php echo esc_url( $permalink ); ?>" class="exms-course-module__title">
-                    <?php echo esc_html( $title ); ?>
-                </a>
-            <?php } else { ?>
-                <span class="exms-course-module__lock exms-tooltip-parent">
-                    <span class="dashicons dashicons-lock"></span>
-                    <span class="exms-tooltip"><?php echo __( 'You don’t have access to this content yet. Please enroll in the course to unlock this step.', 'exms'); ?></span>
-                </span>
-                <span class="exms-course-module__title exms-disabled"><?php echo esc_html( $title ); ?></span>
-            <?php } ?>
-
-            <?php if ( $has_children ) { ?>
-                <span class="exms-course-module__toggle-icon js-exms-toggle-step">
-                    <span class="dashicons dashicons-arrow-down-alt2"></span>
-                </span>
-            <?php } ?>
-        </div>
-
-        <?php if ( $has_children ) { ?>
-            <div class="exms-course-module__lessons js-exms-child-container"></div>
-        <?php } ?>
-    </div>
-    <?php
-    return ob_get_clean();
-}
-
-/**
  * Calculate progress percentage for a step (skip post & page types)
  */
 function exms_calculate_progress( $post_id, $user_id, $course_id, $final_slug = '', $existing_chain = [] ) {
@@ -819,8 +719,20 @@ function exms_find_path_to_course( $node_id, $course_id, &$visited, &$memo ) {
  * @return string
  */
 function exms_build_nested_permalink_for_chain( array $ids ) {
+
     $ids = array_map( 'intval', $ids );
     $ids = array_values( array_unique( $ids ) );
+    $base_segment = 'exms-courses';
+    foreach( $ids as $first_id ) {
+        if( $first_id ) {
+            $first_type = get_post_type( $first_id );
+            if ( $first_type === 'exms-groups' ) {
+                $base_segment = 'exms-groups';
+            }
+            break;
+        }
+    }
+
     $slugs = array();
     foreach( $ids as $id ) {
         if( ! $id ) {
@@ -836,12 +748,8 @@ function exms_build_nested_permalink_for_chain( array $ids ) {
         return '';
     }
 
-    $base_segment = 'exms-courses';
-
     return trailingslashit(
-        site_url(
-            '/' . $base_segment . '/' . implode( '/', $slugs )
-        )
+        site_url( '/' . $base_segment . '/' . implode( '/', $slugs ) )
     );
 }
 
@@ -948,10 +856,12 @@ function exms_render_step_html_recursive( $post_id, $is_course_progress = false,
         return '';
     }
 
+    $current_post_type_id = get_the_ID();
+    $current_post_type = get_post_type( $current_post_type_id );
     $post_type  = get_post_type( $post_id );
-    $course_id  = exms_get_course_id();
+    $course_id = exms_get_course_id();
+    $group_id  = exms_get_group_id();
     $title      = get_the_title( $post_id );
-
     if( ! empty( $chain ) ) {
         $permalink = exms_build_nested_permalink_for_chain( $chain );
     } else {
@@ -968,8 +878,9 @@ function exms_render_step_html_recursive( $post_id, $is_course_progress = false,
         $post_id, $post_type
     ) );
 
+    $passing_id = $current_post_type == "exms-groups" ? $group_id : $course_id;
     $has_children = ! empty( $children );
-    $is_enrolled  = exms_is_user_in_post( get_current_user_id(), $course_id );
+    $is_enrolled  = exms_is_user_in_post( get_current_user_id(), $passing_id );
     $progress     = exms_calculate_progress(
         $post_id,
         get_current_user_id(),
@@ -1227,6 +1138,26 @@ function exms_get_current_url() {
 }
 
 /**
+ * create a function to get group id
+ */
+function exms_get_group_id() {
+
+    $current_permalink = exms_get_current_url();
+    $replaced_url = str_replace( site_url(), '', $current_permalink );
+    $group_id = 0;
+
+    if( strpos( $replaced_url, '/groups/' ) !== false || strpos( $replaced_url, '/exms-groups/' ) !== false ) {
+        $url_array = array_filter( explode( '/', str_replace( '/groups/', '', $replaced_url ) ) );
+        if( strpos( $replaced_url, '/exms-groups/' ) !== false ) {
+            $url_array = array_filter( explode( '/', str_replace( '/exms-groups/', '', $replaced_url ) ) );
+        }
+        $course_slug = isset( $url_array[0] ) ? $url_array[0] : 0;
+        $post = get_page_by_path( $course_slug, OBJECT, 'exms-groups' );
+        $group_id = isset( $post->ID ) ? $post->ID : 0;
+    }
+    return $group_id;
+}
+/**
  * create a function to get course id
  */
 function exms_get_course_id() {
@@ -1243,6 +1174,21 @@ function exms_get_course_id() {
         $course_slug = isset( $url_array[0] ) ? $url_array[0] : 0;
         $post = get_page_by_path( $course_slug, OBJECT, 'exms-courses' );
         $course_id = isset( $post->ID ) ? $post->ID : 0;
+    }
+
+     if ( strpos( $replaced_url, '/exms-groups/' ) !== false ) {
+
+        $url_array = array_values(
+            array_filter( explode( '/', str_replace( '/exms-groups/', '', $replaced_url ) ) )
+        );
+        
+        $course_slug = isset( $url_array[1] ) ? $url_array[1] : 0;
+        
+        if( $course_slug ) {
+            $post      = get_page_by_path( $course_slug, OBJECT, 'exms-courses' );
+            $course_id = isset( $post->ID ) ? (int) $post->ID : 0;
+        }
+        return $course_id;
     }
     return $course_id;
 }
@@ -1307,4 +1253,62 @@ function exms_get_skeleton_loader() {
     $content = ob_get_contents();
     ob_get_clean();
     return $content;
+}
+
+/**
+ * create a function to get user enrolled courses
+ */
+function exms_get_user_enrolled_post_ids( $user_id, $post_type, $type, $limit = 0 ) {
+
+    global $wpdb;
+
+    if ( empty( $user_id ) || empty( $post_type ) || empty( $type ) ) {
+        return [];
+    }
+
+    $table = $wpdb->prefix . 'exms_user_enrollments';
+
+    $sql    = "SELECT post_id
+    FROM {$table}
+    WHERE user_id = %d
+    AND post_type = %s
+    AND type = %s";
+
+    $params = [ $user_id, $post_type, $type ];
+
+    if ( ! empty( $limit ) && intval( $limit ) > 0 ) {
+        $sql     .= " LIMIT %d";
+        $params[] = intval( $limit );
+    }
+
+    return $wpdb->get_col(
+        $wpdb->prepare( $sql, $params )
+    );
+
+    // return $wpdb->get_col(
+    //     $wpdb->prepare(
+    //         "SELECT post_id
+    //          FROM {$table}
+    //          WHERE user_id = %d
+    //            AND post_type = %s
+    //            AND type = %s",
+    //         $user_id,
+    //         $post_type,
+    //         $type
+    //     )
+    // );
+    // return $wpdb->get_col(
+    //     $wpdb->prepare(
+    //         "SELECT post_id
+    //         FROM {$table}
+    //         WHERE user_id = %d
+    //         AND post_type = %s
+    //         AND type = %s
+    //         LIMIT %d",
+    //         $user_id,
+    //         $post_type,
+    //         $type,
+    //         $limit
+    //     )
+    // );
 }

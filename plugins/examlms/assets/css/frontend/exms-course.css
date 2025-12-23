@@ -525,21 +525,6 @@
     font-size: 14px;
 }
 
-.exms-submit-btn {
-    background-color: #7a24e2;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 6px;
-    font-size: 16px;
-    font-weight: 600;
-    cursor: pointer;
-}
-
-.exms-submit-btn:hover {
-    background-color: #5a1cb3;
-}
-
 /*empty message*/
 .exms-empty-message {
     background-color: #e6f9ec;

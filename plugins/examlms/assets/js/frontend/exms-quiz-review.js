@@ -609,7 +609,6 @@
                         console.error( 'Error submitting quiz:', error , xhr, status );
                     }
                 } )
-
             },
 
             /**

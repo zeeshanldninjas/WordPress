@@ -22,7 +22,6 @@
 .exms-line.exms-short {
     width: 60%;
 }
-
 .exms-line::after {
     content: "";
     position: absolute;
@@ -124,4 +123,52 @@
     }
 }
 /** end popup css **/
+
+/** start loader css **/
+.exms-loader {
+  display: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border-top: 4px solid #FFF;
+  border-right: 4px solid transparent;
+  box-sizing: border-box;
+  animation: rotation 1s linear infinite;
+  vertical-align: sub;
+}
+.exms-loader::after {
+  content: '';  
+  box-sizing: border-box;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border-left: 4px solid #FFF;
+  border-bottom: 4px solid transparent;
+  animation: rotation 0.5s linear infinite reverse;
+}
+@keyframes rotation {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+} 
+/** end loader css **/ 
+
+/** start button styling css **/
+.exms-submit-btn {
+    background-color: #552CA8;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+}
+/** end button styling css **/
 

@@ -9,7 +9,43 @@
 			 */
 			init: function() {
 				this.createTable();
+                this.groupType();
 			},
+
+            groupType: function() {
+                $( 'body' ).on( 'click', '.exms_group_type', function() {
+
+					switch( $( this ).val() ) {
+
+						case 'paid':
+							$( '.exms-price-row' ).addClass( 'exms-show' );
+							$( '.exms-subs-row' ).removeClass( 'exms-show' );
+							$( '.exms-close-row' ).removeClass( 'exms-show' );
+							break;
+
+						case 'subscribe':
+							$( '.exms-price-row, .exms-subs-row' ).addClass( 'exms-show' );
+							$( '.exms-close-row' ).removeClass( 'exms-show' );
+							break;
+
+						case 'close':
+							$( '.exms-price-row, .exms-close-row' ).addClass( 'exms-show' );
+							$( '.exms-price-row' ).removeClass( 'exms-show' );
+							$( '.exms-subs-row' ).removeClass( 'exms-show' );
+							break;
+
+						case 'free':
+							$( '.exms-price-row' ).removeClass( 'exms-show' );
+							$( '.exms-subs-row' ).removeClass( 'exms-show' );
+							$( '.exms-close-row' ).removeClass( 'exms-show' );
+							break;
+						
+						default:
+							$( '.exms-price-row, .exms-subs-row, .exms-close-row' ).removeClass( 'exms-show' );
+							break;
+					}
+				} );
+            },
 
 			/**
              * Create table if not exist

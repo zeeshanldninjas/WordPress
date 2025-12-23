@@ -70,7 +70,7 @@ class Exms_Admin_Menus {
         /**
          * Add Admin main page
          */
-        add_menu_page( __( 'WP Exams', 'exms' ), __( 'WP Exams', 'exms' ), 'manage_options', EXMS_MENU, false, 'dashicons-welcome-learn-more', 10 );
+        add_menu_page( __( 'Exam-LMS', 'exms' ), __( 'Exam-LMS', 'exms' ), 'manage_options', EXMS_MENU, false, 'dashicons-welcome-learn-more', 10 );
 
         $post_types = EXMS_Setup_Functions::get_setup_post_types();
         $exms_quizzes  = isset( $labels[ 'exms_quizzes' ] ) ?     $labels[ 'exms_quizzes' ]  : __( 'Quizzes', 'wp_exams' );

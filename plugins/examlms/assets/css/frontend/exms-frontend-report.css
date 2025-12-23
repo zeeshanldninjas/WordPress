@@ -1,0 +1,18 @@
+.exms-dropdown-error {
+	color: red;
+	text-align: center;
+}
+.exms-std-report-data,
+.exms-std-report-detail-content {
+	display: none;
+}
+.exms-add-new-academic-comment textarea,
+.exms-add-new-behaviour-comment textarea {
+	width: 100%;
+    margin: 10px 0;
+    border: none;
+    border-radius: 6px;
+}
+.exms-student-col {
+	cursor: pointer;
+}

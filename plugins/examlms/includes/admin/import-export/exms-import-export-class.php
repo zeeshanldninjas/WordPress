@@ -50,7 +50,7 @@ class EXMS_Import_Export {
             return false;
         }
         
-		wp_enqueue_style( 'exms-import-export-css', EXMS_ASSETS_URL . '/css/admin/import-export/wpeq_import_export.css', [], EXMS_VERSION, null );
+		wp_enqueue_style( 'exms-import-export-css', EXMS_ASSETS_URL . '/css/admin/import-export/exms_import_export.css', [], EXMS_VERSION, null );
     }
 
 	/**

@@ -28,6 +28,11 @@ class EXMS_DB_GROUP extends EXMS_DB_Main {
 	 */
 	private $table_script = "id BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
 		group_id BIGINT UNSIGNED NOT NULL,
+		seat_limit int(55) NOT NULL,
+		group_type varchar(30) NOT NULL,
+		group_price int(55) NOT NULL,
+		subscription_days varchar(55) NOT NULL,
+		redirect_url varchar(255) NOT NULL,
 		video_url varchar(255) NOT NULL";
 
 	/**

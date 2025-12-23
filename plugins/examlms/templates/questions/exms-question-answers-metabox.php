@@ -107,7 +107,7 @@ if ( is_array( $existing_labels ) && array_key_exists( 'exms_questions', $existi
 
 
                     <div class="wpeq-answer-row exms-ans-<?php echo esc_attr( $inner_rand ); ?> exms-get-value wpeq-draggable" data-id="<?php echo esc_attr( $inner_rand ); ?>">
-                        <input type="hidden" class="wpeq-ques-ans-type" name="wpeq_ques_ans_type[]" value="<?php echo esc_attr( isset( $answer['correct_answer'] ) && $answer['correct_answer'] === 'correct' ? 'correct' : 'wrong' ); ?>" />
+                        <input type="hidden" class="wpeq-ques-ans-type" name="exms_ques_ans_type[]" value="<?php echo esc_attr( isset( $answer['correct_answer'] ) && $answer['correct_answer'] === 'correct' ? 'correct' : 'wrong' ); ?>" />
                     <span class="wpeq-drag-icon">⋮⋮</span>
 
                     <textarea class="exms-textarea-ans"
@@ -150,7 +150,7 @@ if ( is_array( $existing_labels ) && array_key_exists( 'exms_questions', $existi
             }
             ?>
             <div class="wpeq-answer-div" style="border: none;">
-                <textarea class="exms-free-choice-ans" name="wpeq_ques_ans[]" rows="10" cols="50" placeholder="Write answer"><?php echo esc_textarea( $textarea_value ); ?></textarea>
+                <textarea class="exms-free-choice-ans" name="exms_ques_ans[]" rows="10" cols="50" placeholder="Write answer"><?php echo esc_textarea( $textarea_value ); ?></textarea>
                 <br>
                 <b><?php _e( 'Points', 'exms' ); ?></b>
                 <input type="number" name="exms_ques_ans_points[]" class="wpeq-ques-ans-points" value="<?php echo esc_attr( $ans_points[$k] ?? '' ); ?>" />

@@ -595,7 +595,7 @@ class EXMS_Template {
 		/**
 		 * Verify paypal
 		 */
-		if( isset( $_GET['tx'] ) && ! empty( $_GET['tx'] ) || isset( $_POST['action'] ) && $_POST['action'] == 'wpeq_payment_complete' ) {
+		if( isset( $_GET['tx'] ) && ! empty( $_GET['tx'] ) || isset( $_POST['action'] ) && $_POST['action'] == 'exms_payment_complete' ) {
 			
 			$paypal_settings = exms_get_paypal_settings() ? exms_get_paypal_settings() : null;
 			$access_token = isset( $paypal_settings->client_id ) && isset( $paypal_settings->client_secret ) ? exms_create_new_access_token( $paypal_settings->client_id, $paypal_settings->client_secret ): '';
@@ -605,7 +605,7 @@ class EXMS_Template {
 			/**
 			 * if response is from paypal express  
 			 */
-			if( isset( $_POST['action'] ) && $_POST['action'] == 'wpeq_payment_complete' ) {
+			if( isset( $_POST['action'] ) && $_POST['action'] == 'exms_payment_complete' ) {
 				$paypal_checking_url = isset( $paypal_settings->transaction_mode ) && $paypal_settings->transaction_mode == 'live' ? 'https://api.paypal.com/v2/checkout/orders/' . $_POST['order_id'] : 'https://api.sandbox.paypal.com/v2/checkout/orders/' . $_POST['order_id'];
 				$quiz_id = isset( $_POST['quizId'] ) && ! empty( $_POST['quizId'] ) ? $_POST['quizId'] : '';
 			}
@@ -640,14 +640,14 @@ class EXMS_Template {
 			  	 * if quiz already unlocked then prevent unlock time conflict
 			  	 */
 
-			  	if( get_user_meta( wp_get_current_user()->ID, 'wpeq_unlocked_' . $quiz_id, true ) ) {
+			  	if( get_user_meta( wp_get_current_user()->ID, 'exms_unlocked_' . $quiz_id, true ) ) {
 			  		return;
 			  	}
 
 			  	/**
 			  	 * update quiz unlock time
 			  	 */
-			  	update_user_meta( wp_get_current_user()->ID, 'wpeq_unlocked_' . $quiz_id, time() );
+			  	update_user_meta( wp_get_current_user()->ID, 'exms_unlocked_' . $quiz_id, time() );
 			  	
 			  	/**
 			  	 * save subscription days if quiz type is subscribe
@@ -658,7 +658,7 @@ class EXMS_Template {
 
 			  		$subs_days = isset( $settings['quiz_sub_days'] ) && ! empty( $settings['quiz_sub_days'] ) ? $settings['quiz_sub_days'] : 1;
 
-			  		update_user_meta( wp_get_current_user()->ID, 'wpeq_subscription_' . $quiz_id, $subs_days );
+			  		update_user_meta( wp_get_current_user()->ID, 'exms_subscription_' . $quiz_id, $subs_days );
 			  	}
 			  }
 			}
@@ -694,14 +694,14 @@ class EXMS_Template {
 				/**
 			  	 * if quiz already unlocked then prevent unlock time conflict
 			  	 */
-			  	if( get_user_meta( wp_get_current_user()->ID, 'wpeq_unlocked_' . $res->client_reference_id , true ) ) {
+			  	if( get_user_meta( wp_get_current_user()->ID, 'exms_unlocked_' . $res->client_reference_id , true ) ) {
 			  		return;
 			  	}
 
 			  	/**
 			  	 * update quiz unlock time
 			  	 */
-				update_user_meta( wp_get_current_user()->ID, 'wpeq_unlocked_' . $res->client_reference_id , time() );
+				update_user_meta( wp_get_current_user()->ID, 'exms_unlocked_' . $res->client_reference_id , time() );
 
 				/**
 			  	 * save subscription days if quiz type is subscribe
@@ -712,7 +712,7 @@ class EXMS_Template {
 
 			  		$subs_days = isset( $settings['quiz_sub_days'] ) && ! empty( $settings['quiz_sub_days'] ) ? $settings['quiz_sub_days'] : 1;
 
-			  		update_user_meta( wp_get_current_user()->ID, 'wpeq_subscription_' . $res->client_reference_id, $subs_days );
+			  		update_user_meta( wp_get_current_user()->ID, 'exms_subscription_' . $res->client_reference_id, $subs_days );
 			  	}
 			}
 		}

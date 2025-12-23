@@ -57,9 +57,8 @@ class EXMS_Parent_Settings {
         $exms_points = isset( $options['exms_'.$post_name.'_points'] ) ? $options['exms_'.$post_name.'_points'] : '';
 
         $stripe_settings = Exms_Core_Functions::get_options( 'settings' );
-        $paypal_settings = Exms_Core_Functions::get_options( 'settings' );
         $stripe_on = isset( $stripe_settings['stripe_enable'] ) ? $stripe_settings['stripe_enable'] : 'off';
-        $paypal_on = isset( $paypal_settings['paypal_enable'] ) ? $paypal_settings['paypal_enable'] : 'off';
+        $paypal_on = isset( $stripe_settings['paypal_enable'] ) ? $stripe_settings['paypal_enable'] : 'off';
         
         ?>
         <div class="exms-setting-tab-wrapper">
@@ -78,7 +77,7 @@ class EXMS_Parent_Settings {
                             </div>
 
                             <div class="exms-data quiz_sign_up">  
-                                <input type="number" min="0" class="wpeq_quiz_sign settings_input_field exms-main-field" name="exms_<?php echo $post_name; ?>_sign_up"  placeholder="<?php echo __( 'Sign up Fee', 'exms' ); ?>" value="<?php echo $sign_up; ?>"/>
+                                <input type="number" min="0" class="exms_quiz_sign settings_input_field exms-main-field" name="exms_<?php echo $post_name; ?>_sign_up"  placeholder="<?php echo __( 'Sign up Fee', 'exms' ); ?>" value="<?php echo $sign_up; ?>"/>
                                 <?php exms_add_info_title( 'Add quiz sign up fee.' ); ?>
                             </div>
                         </div>
@@ -159,7 +158,7 @@ class EXMS_Parent_Settings {
                             </div>
 
                             <div class="exms-quiz-points-rows">
-                                <?php WP_EXAMS_Point_Type::exms_get_all_point_type( $post_name, $options, true ); ?>
+                                <?php EXMS_Point_Type::exms_get_all_point_type( $post_name, $options, true ); ?>
                             </div>
 
                             <?php

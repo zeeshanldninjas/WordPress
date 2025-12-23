@@ -174,7 +174,7 @@ $progress_type = isset( $data->progress_type ) ? $data->progress_type : '';
                 </div>
                 <div class="toggle-switch wpeq-course-progress-switch">
                     <input type="radio" 
-                           class="toggle_radio wpeq_course_progress" 
+                           class="toggle_radio exms_course_progress" 
                            name="exms_<?php echo esc_attr( $post_name ); ?>_progress_type" 
                            id="progress_auto_on_<?php echo esc_attr( $post_name ); ?>" 
                            value="on" 
@@ -184,7 +184,7 @@ $progress_type = isset( $data->progress_type ) ? $data->progress_type : '';
                     </label>
 
                     <input type="radio" 
-                           class="toggle_radio wpeq_course_progress" 
+                           class="toggle_radio exms_course_progress" 
                            name="exms_<?php echo esc_attr( $post_name ); ?>_progress_type" 
                            id="progress_auto_off_<?php echo esc_attr( $post_name ); ?>" 
                            value="off" 

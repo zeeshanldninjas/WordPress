@@ -85,22 +85,22 @@ if ( is_array( $existing_labels ) && array_key_exists( 'exms_quizzes', $existing
 				</div>
 				<div class="exms-data">
 					<div class="wpeq-quiz-type-group">
-						<input type="radio" class="custom_radio wpeq_quiz_type" name="exms_quiz_type" id="rb1" value="free" <?php echo $quiz_type == 'free' ? 'checked="checked"' : ''; ?> />
+						<input type="radio" class="custom_radio exms_quiz_type" name="exms_quiz_type" id="rb1" value="free" <?php echo $quiz_type == 'free' ? 'checked="checked"' : ''; ?> />
 						<label class='custom_radio_label' for="rb1">
 							<?php _e( 'Free', 'exms' ); ?>
 						</label>
 
-						<input type="radio" class="custom_radio wpeq_quiz_type" name="exms_quiz_type" id="rb2" value="paid" <?php echo $quiz_type == 'paid' ? 'checked="checked"' : ''; ?> />
+						<input type="radio" class="custom_radio exms_quiz_type" name="exms_quiz_type" id="rb2" value="paid" <?php echo $quiz_type == 'paid' ? 'checked="checked"' : ''; ?> />
 						<label class='custom_radio_label' for="rb2">
 							<?php _e( 'Paid', 'exms' ); ?>
 						</label>
 
-						<input type="radio" class="custom_radio wpeq_quiz_type" name="exms_quiz_type" id="rb3" value="subscribe" <?php echo $quiz_type == 'subscribe' ? 'checked="checked"' : ''; ?> />
+						<input type="radio" class="custom_radio exms_quiz_type" name="exms_quiz_type" id="rb3" value="subscribe" <?php echo $quiz_type == 'subscribe' ? 'checked="checked"' : ''; ?> />
 						<label class='custom_radio_label' for="rb3">
 							<?php _e( 'Subscribe', 'exms' ); ?>
 						</label>
 
-						<input type="radio" class="custom_radio wpeq_quiz_type" name="exms_quiz_type" id="rb4" value="close" <?php echo $quiz_type == 'close' ? 'checked="checked"' : ''; ?> />
+						<input type="radio" class="custom_radio exms_quiz_type" name="exms_quiz_type" id="rb4" value="close" <?php echo $quiz_type == 'close' ? 'checked="checked"' : ''; ?> />
 						<label class='custom_radio_label' for="rb4">
 							<?php _e( 'Close', 'exms' ); ?>
 						</label>
@@ -148,12 +148,12 @@ if ( is_array( $existing_labels ) && array_key_exists( 'exms_quizzes', $existing
 					<div id="div_timing_opts">
 					<div class="input-group clockpicker">
 						<div class="toggle-switch wpeq-quiz-timer-switch">
-							<input type="radio" class="toggle_radio wpeq_quiz_timer" name="exms_quiz_timer_toggle" id="rb10" value="on" <?php echo $is_quiz_timer_disabled == 'on' ? 'checked' : ''; ?> />
+							<input type="radio" class="toggle_radio exms_quiz_timer" name="exms_quiz_timer_toggle" id="rb10" value="on" <?php echo $is_quiz_timer_disabled == 'on' ? 'checked' : ''; ?> />
 							<label class="toggle_label" for="rb10">
 							<?php _e( 'On', 'exms' ); ?>
 							</label>
 
-							<input type="radio" class="toggle_radio wpeq_quiz_timer" name="exms_quiz_timer_toggle" id="rb11" value="off" <?php echo $is_quiz_timer_disabled == 'off' ? 'checked' : ''; ?> <?php echo $is_quiz_timer_disabled == '' ? 'checked' : ''; ?> />
+							<input type="radio" class="toggle_radio exms_quiz_timer" name="exms_quiz_timer_toggle" id="rb11" value="off" <?php echo $is_quiz_timer_disabled == 'off' ? 'checked' : ''; ?> <?php echo $is_quiz_timer_disabled == '' ? 'checked' : ''; ?> />
 							<label class="toggle_label" for="rb11">
 								<?php _e( 'Off', 'exms' ); ?>
 							</label>
@@ -192,12 +192,12 @@ if ( is_array( $existing_labels ) && array_key_exists( 'exms_quizzes', $existing
 					<?php _e( 'Shuffle Questions' , 'exms' ); ?>
 				</div>
 				<div class="toggle-switch">
-				  <input type="radio" class="toggle_radio wpeq_show_ans" name="exms_shuffle_ques" id="rb06" value="on" <?php echo $shuffle == 'on' ? 'checked="checked"' : ''; ?> />
+				  <input type="radio" class="toggle_radio exms_show_ans" name="exms_shuffle_ques" id="rb06" value="on" <?php echo $shuffle == 'on' ? 'checked="checked"' : ''; ?> />
 				  <label class='toggle_label' for="rb06">
 				  	<?php _e( 'On', 'exms' ); ?>
 				  </label>
 
-				  <input type="radio" class="toggle_radio wpeq_show_ans" name="exms_shuffle_ques" id="rb07" value="off" <?php echo $shuffle == 'off' ? 'checked="checked"' : ''; ?> <?php echo $shuffle == '' ? 'checked="checked"' : ''; ?> />
+				  <input type="radio" class="toggle_radio exms_show_ans" name="exms_shuffle_ques" id="rb07" value="off" <?php echo $shuffle == 'off' ? 'checked="checked"' : ''; ?> <?php echo $shuffle == '' ? 'checked="checked"' : ''; ?> />
 				  <label class='toggle_label' for="rb07">
 				  	<?php _e( 'Off', 'exms' ); ?>
 				  </label>
@@ -328,7 +328,7 @@ if ( is_array( $existing_labels ) && array_key_exists( 'exms_quizzes', $existing
 
 				<div class="exms-data quiz_passing_per">
 				  
-			  		<input type="number" class="wpeq_pass_per settings_input_field exms-main-field" name="exms_passing_per"  placeholder="<?php __( 'passing %', 'exms' ); ?>" <?php echo ! empty( $quiz_passing_per ) ? 'value='.$quiz_passing_per : 'value="50"'; ?> />
+			  		<input type="number" class="exms_pass_per settings_input_field exms-main-field" name="exms_passing_per"  placeholder="<?php __( 'passing %', 'exms' ); ?>" <?php echo ! empty( $quiz_passing_per ) ? 'value='.$quiz_passing_per : 'value="50"'; ?> />
 				  	<p class="exms-instruction-message"><?php echo sprintf( __( 'Passing percentage for this %s.', 'exms' ), $quiz_singular ); ?></p>
 				</div>
 			</div>
