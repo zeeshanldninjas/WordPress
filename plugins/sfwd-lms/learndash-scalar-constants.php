@@ -763,7 +763,7 @@ if ( ! defined( 'LEARNDASH_QUIZ_RESUME_COOKIE_SEND_TIMER_DEFAULT' ) ) {
 	 *
 	 * @since 3.6.1
 	 *
-	 * @var int $value Default is 5.
+	 * @var int $value Default is 20.
 	 */
 	define( 'LEARNDASH_QUIZ_RESUME_COOKIE_SEND_TIMER_DEFAULT', 20 );
 }

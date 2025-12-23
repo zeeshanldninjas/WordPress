@@ -89,7 +89,7 @@ if ( ( class_exists( 'LearnDash_Settings_Fields' ) ) && ( ! class_exists( 'Learn
 				if ( empty( $form_id ) ) {
 					$form_id = '';
 				}
-				$html .= '	<td>' . esc_attr( $form_id ) . '</td>';
+				$html .= '	<td class="form_id">' . esc_attr( $form_id ) . '</td>';
 				$html .= '	<td>';
 				$html .= '		<input type="text" name="form[][fieldname]" value="' . esc_attr( $form->getFieldname() ) . '" class="regular-text"/>
 							</td>';

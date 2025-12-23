@@ -504,6 +504,10 @@ function learndash_get_user_course_exam_activity( $user_id = 0, $course_id = 0, 
  * @since 4.0.0
  **/
 function learndash_exam_deregister_post_type_blocks() {
+	if ( ! is_admin() ) {
+		return;
+	}
+
 	$post_type = get_post_type( get_the_ID() );
 	if ( learndash_get_post_type_slug( 'exam' ) !== $post_type ) {
 		wp_enqueue_script(
@@ -515,7 +519,7 @@ function learndash_exam_deregister_post_type_blocks() {
 		);
 	}
 }
-add_action( 'enqueue_block_editor_assets', 'learndash_exam_deregister_post_type_blocks' );
+add_action( 'enqueue_block_assets', 'learndash_exam_deregister_post_type_blocks' );
 
 /**
  * Returns message if current active theme is set to Legacy

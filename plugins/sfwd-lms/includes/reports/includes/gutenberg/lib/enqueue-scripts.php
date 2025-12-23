@@ -12,9 +12,13 @@ defined( 'ABSPATH' ) || exit;
 /**
  * Enqueues block editor styles and scripts.
  *
- * Fires on `enqueue_block_editor_assets` hook.
+ * Fires on `enqueue_block_assets` hook.
  */
 function learndash_propanel_editor_scripts() {
+	if ( ! is_admin() ) {
+		return;
+	}
+
 	// Make paths variables so we don't write em twice ;).
 	$learndash_block_path         = '../assets/js/index.js';
 	$learndash_editor_style_path  = '../assets/js/index.css';
@@ -62,7 +66,7 @@ function learndash_propanel_editor_scripts() {
 	wp_style_add_data( 'ld-propanel-blocks-editor-css', 'rtl', 'replace' );
 }
 // Hook scripts function into block editor hook.
-add_action( 'enqueue_block_editor_assets', 'learndash_propanel_editor_scripts', 11 );
+add_action( 'enqueue_block_assets', 'learndash_propanel_editor_scripts', 11 );
 
 /**
  * Registers a custom block category.

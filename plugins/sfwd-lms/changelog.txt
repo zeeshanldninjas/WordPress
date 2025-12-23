@@ -1,3 +1,70 @@
+= [4.25.7] 2025-12-08 =
+
+* Fix - Fixed a PHP warning when accessing post content in contexts where the global `$post` variable is null.
+* Fix - Fixed the WP logo in the fullscreen mode on post editing page.
+* Fix - Resolved an issue where the Course Builder would not be visible if meta boxes are hidden in WP 6.9+.
+* Fix - Resolved an issue where the Course CSV Export on the LearnDash LMS -> Reports page would sometimes get stuck at 50% complete.
+* Fix - Resolved an issue where the export buttons on the LearnDash LMS -> Reports page would not initialize properly in some circumstances.
+* Tweak - Improved Block compatibility with WordPress 6.9.
+* Tweak - Improved `get_comments_number` filter return type to match WordPress core behavior for strict type comparison compatibility.
+* Tweak - LearnDash Cloud: removed the LearnDash Cloud menu and standardized the LearnDash help page.
+* Tweak - Removed the "new" tag from Presenter Mode.
+
+= [4.25.6] 2025-10-27 =
+
+* Fix - Fixed `e(...).dialog is not a function` console error. This was due to a missing dependency on some pages.
+* Fix - Fixed a style conflict for Kadence Gallery and other related blocks on the Course pages when in focus mode.
+* Fix - Orders with a discount that reduces the price to 0 will now show on the Orders page.
+* Fix - Resolved an issue where the Reporting block Download button would not return the same results as displayed on the page.
+* Fix - Resolved issue with `[learndash_course_grid]` shortcode loading styles when rendered from an Elementor or Divi template.
+* Fix - Resolves issue where the first comment would sometimes be cropped off at the top.
+
+= [4.25.5] 2025-10-23 =
+
+* Tweak - Added notice linking to documentation for v5.0.0. This notice will be displayed once v5.0.0 is available.
+* Tweak - Added filters: `learndash_location_is_plugins_page`, `learndash_location_is_updates_page`.
+
+= [4.25.4] 2025-10-13 =
+
+* Fix - Authentication files that were automatically included in ZIPs downloaded from account.learndash.com will now be deleted when deauthenticating a site.
+* Fix - Fixed a broken layout issue of the `OpenAI API Key` field's input note.
+* Fix - Fixed a conflict with Divi theme builder when course reviews module was active.
+* Fix - Fixed a fatal error with 3rd party plugins that was caused by an explicit return type on a filter.
+* Fix - Fixed an issue where essays that were in draft, trashed or deleted appeared on user profile page.
+* Fix - Fixed an issue where updating a quiz post after previously adding a custom field would create a duplicate custom field.
+* Fix - Fixed missing LearnDash reports widgets titles.
+* Fix - Resolved an issue when rendering free choice quiz question answers with angle brackets.
+* Fix - Resolved an issue where disabling the quiz custom field setting would not keep it disabled after the editor page was reloaded.
+* Fix - Resolved an issue where the "Save Quiz data to the server every" setting was not respected and instead always used the default value.
+* Fix - Resolved an issue where the `LEARNDASH_QUIZ_RESUME_COOKIE_SEND_TIMER_DEFAULT` constant was not respected by the "Save Quiz data to the server every" quiz setting. The default value is now 20 seconds instead of 5.
+* Fix - Restored the Question Overview Legend when enabled.
+* Tweak - Added course and group type enrollment statistics to Site Health.
+* Tweak - Added temporary seasonal UI enhancement.
+* Tweak - Improved accessibility for the Question Overview Legend.
+* Tweak - Modern Course Pages are no longer automatically enabled for new installs.
+* Tweak - Added filters: `learndash_admin_banners`.
+* Tweak - Added templates: `themes/ld30/templates/quiz/partials/show_quiz_review_legend.php`, `themes/ld30/templates/quiz/partials/show_quiz_review_questions.php`.
+* Tweak - Updated templates: `includes/reports/templates/ld-propanel-full-page.php`, `themes/ld30/templates/shortcodes/profile/quiz-row.php`.
+
+= [4.25.3] 2025-10-06 =
+
+* Feature - Added a migration guide to the PayPal Standard settings page to help users update subscriptions and switch to PayPal Checkout.
+* Feature - Added a new `[ld_migrate_paypal_subscription]` shortcode to help migrate PayPal Standard subscriptions to PayPal Checkout.
+* Feature - Added a new mechanism to retry payments for failed PayPal Checkout subscriptions.
+* Fix - Fixed an issue where limited subscriptions were charging one extra billing cycle when paid with PayPal Checkout.
+* Fix - Fixed the OpenAPI security schemes array and empty properties.
+* Fix - Removed an extra div element inside the Profile block.
+* Tweak - Added PayPal Checkout Status to Site Health.
+* Tweak - Display the "Saved Cards" section inside the Profile block only when a compatible payment gateway is enabled.
+* Tweak - Enhanced PayPal Checkout onboarding with increased connection timeouts and improved error messaging to provide a smoother setup experience.
+* Tweak - Improved checkout display by hiding the PayPal button and card fields when the selected payment method is not eligible.
+* Tweak - Improved the LearnDash Orders Edit Page and the Profile shortcode to include the reason why a subscription was canceled.
+* Tweak - Prevented the Telemetry Opt-in modal from showing during the onboarding wizard when setting up PayPal.
+* Tweak - When a PayPal Standard subscription is cancelled, a user is unenrolled from a course or a group automatically.
+* Tweak - Added actions: `learndash_paypal_standard_migration_shortcode_after`.
+* Tweak - Added filters: `learndash_profile_show_saved_cards`, `learndash_show_telemetry_modal`, `learndash_subscription_max_retries`, `learndash_subscription_payment_retry_email_message`, `learndash_subscription_payment_retry_email_placeholders`, `learndash_subscription_payment_retry_email_subject`, `learndash_subscription_retry_intervals`.
+* Tweak - Updated templates: `src/admin_views/modules/payments/orders/edit/subscription/details/cells/status.php`, `themes/ld30/templates/shortcodes/profile/saved-cards/index.php`, `themes/ld30/templates/shortcodes/profile/subscriptions/canceled/cancellation-date.php`.
+
 = [4.25.2] 2025-09-15 =
 
 * Feature - Added OpenAPI documentation for Course-related `ldlms/v2` endpoints to `/wp-json/learndash/v1/docs/openapi`.

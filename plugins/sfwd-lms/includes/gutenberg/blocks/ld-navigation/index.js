@@ -51,6 +51,7 @@ registerBlockType(block_key, {
 	supports: {
 		customClassName: false,
 	},
+	apiVersion: 3,
 	attributes: {
 		course_id: {
 			type: "string",

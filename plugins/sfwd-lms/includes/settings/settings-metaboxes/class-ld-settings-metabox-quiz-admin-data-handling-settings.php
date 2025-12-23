@@ -6,6 +6,9 @@
  * @package LearnDash\Settings\Metaboxes
  */
 
+use LearnDash\Core\Utilities\Cast;
+use PhpParser\Node\Stmt\Catch_;
+
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
@@ -131,12 +134,6 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 						$this->setting_option_values['custom_fields_forms'] = $this->quiz_edit['forms'];
 					} else {
 						$this->setting_option_values['custom_fields_forms'] = array();
-					}
-
-					if ( empty( $this->setting_option_values['custom_fields_forms'] ) ) {
-						$this->setting_option_values['formActivated'] = '';
-					} else {
-						$this->setting_option_values['formActivated'] = 'on';
 					}
 
 					$this->setting_option_values['formShowPosition'] = $this->quiz_edit['quiz']->getFormShowPosition();
@@ -503,6 +500,46 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 					'input_full'     => true,
 					'value'          => $this->setting_option_values['custom_fields_forms'],
 					'parent_setting' => 'formActivated',
+					'rest'                => array(
+						'show_in_rest' => LearnDash_REST_API::enabled(),
+						'rest_args'    => array(
+							'get_callback' => [ $this, 'custom_fields_forms_get_callback' ],
+							'schema' => [
+								'field_key' => 'custom_fields_forms',
+								'default'   => [],
+								'type'      => 'array',
+								'items'     => [
+									'type'       => 'object',
+									'properties' => [
+										'name'     => [
+											'type'        => 'string',
+											'description' => esc_html__( 'Field name.', 'learndash' ),
+										],
+										'type'     => [
+											'type'        => 'string',
+											'description' => esc_html__( 'Field type.', 'learndash' ),
+										],
+										'sort'     => [
+											'type'        => 'integer',
+											'description' => esc_html__( 'Field sort order.', 'learndash' ),
+										],
+										'data'     => [
+											'type'        => 'array',
+											'description' => esc_html__( 'Field data.', 'learndash' ),
+										],
+										'id'       => [
+											'type'        => 'integer',
+											'description' => esc_html__( 'Field ID.', 'learndash' ),
+										],
+										'required' => [
+											'type'        => 'boolean',
+											'description' => esc_html__( 'Whether the field is required.', 'learndash' ),
+										],
+									],
+								],
+							],
+						),
+					),
 				),
 				'formShowPosition'            => array(
 					'name'           => 'formShowPosition',
@@ -949,12 +986,10 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 			// If the Real Simple CAPTCHA is not installed then clear and disable the checkbox.
 			if ( ! class_exists( 'ReallySimpleCaptcha' ) ) {
-				if ( isset( $this->setting_option_fields['toplistDataCaptcha'] ) ) {
-					$this->setting_option_fields['toplistDataCaptcha']['value'] = '';
-					$this->setting_option_fields['toplistDataCaptcha']['attrs'] = array(
-						'disabled' => 'disabled',
-					);
-				}
+				$this->setting_option_fields['toplistDataCaptcha']['value'] = '';
+				$this->setting_option_fields['toplistDataCaptcha']['attrs'] = array(
+					'disabled' => 'disabled',
+				);
 			}
 
 			/** This filter is documented in includes/settings/settings-metaboxes/class-ld-settings-metabox-course-access-settings.php */
@@ -1132,6 +1167,53 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 			}
 
 			return $settings_values;
+		}
+
+		/**
+		 * Get Pro Quiz custom fields data for REST API.
+		 *
+		 * @since 4.25.4
+		 *
+		 * @param array<string, mixed> $post Post data array.
+		 *
+		 * @return array<array<string, mixed>> Custom fields data.
+		 */
+		public function custom_fields_forms_get_callback( $post ) {
+			$custom_fields = [];
+
+			// Get the quiz pro ID from post meta.
+			if ( ! isset( $post['id'] ) ) {
+				return $custom_fields;
+			}
+
+			$quiz_pro_id = Cast::to_int(
+				get_post_meta( Cast::to_int( $post['id'] ), 'quiz_pro_id', true )
+			);
+
+			// If Quiz pro ID not set, return empty array.
+			if ( empty( $quiz_pro_id ) ) {
+				return $custom_fields;
+			}
+
+			// Fetch the latest custom fields from the database.
+
+			$quiz_form_mapper = new WpProQuiz_Model_FormMapper();
+			$forms            = $quiz_form_mapper->fetch( $quiz_pro_id );
+
+			foreach ( $forms as $field ) {
+				if ( $field instanceof WpProQuiz_Model_Form ) {
+					$custom_fields[] = [
+						'name'     => $field->getFieldname(),
+						'type'     => $field->getType(),
+						'required' => $field->isRequired(),
+						'id'       => $field->getFormId(),
+						'sort'     => $field->getSort(),
+						'data'     => $field->getData(),
+					];
+				}
+			}
+
+			return $custom_fields;
 		}
 
 		// End of functions.

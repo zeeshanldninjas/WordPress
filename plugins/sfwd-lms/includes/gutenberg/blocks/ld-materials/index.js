@@ -37,6 +37,7 @@ registerBlockType(block_key, {
 	supports: {
 		customClassName: false,
 	},
+	apiVersion: 3,
 	attributes: {
 		post_id: {
 			type: "string",

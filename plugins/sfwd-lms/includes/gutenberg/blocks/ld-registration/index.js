@@ -40,6 +40,7 @@ registerBlockType(
 		supports: {
 			customClassName: false,
 		},
+		apiVersion: 3,
 		attributes: {
 			width: {
 				type: 'string',

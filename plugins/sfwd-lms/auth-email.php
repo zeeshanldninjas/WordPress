@@ -1,1 +1,1 @@
-<?php return 'wabuzent@gmail.com';
+<?php return 'sammyfankah@yahoo.com';

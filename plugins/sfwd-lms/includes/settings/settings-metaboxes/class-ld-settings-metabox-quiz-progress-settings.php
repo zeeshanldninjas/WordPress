@@ -10,6 +10,8 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use LearnDash\Core\Utilities\Cast;
+
 if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'LearnDash_Settings_Metabox_Quiz_Progress_Settings' ) ) ) {
 	/**
 	 * Class LearnDash Settings Metabox for Quiz Progress Settings.
@@ -125,7 +127,8 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 
 				if ( ( isset( $this->setting_option_values['quiz_resume_cookie_send_timer'] ) ) && ( '' !== $this->setting_option_values['quiz_resume_cookie_send_timer'] ) ) {
 					$this->setting_option_values['quiz_resume_cookie_send_timer'] = absint( $this->setting_option_values['quiz_resume_cookie_send_timer'] );
-					if ( LEARNDASH_QUIZ_RESUME_COOKIE_SEND_TIMER_MIN > $this->setting_option_values['quiz_resume_cookie_send_timer'] ) {
+
+					if ( $this->setting_option_values['quiz_resume_cookie_send_timer'] < LEARNDASH_QUIZ_RESUME_COOKIE_SEND_TIMER_MIN ) {
 						$this->setting_option_values['quiz_resume_cookie_send_timer'] = LEARNDASH_QUIZ_RESUME_COOKIE_SEND_TIMER_MIN;
 					}
 				} else {

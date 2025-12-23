@@ -56,6 +56,7 @@ registerBlockType( 'learndash/ld-course-grid', {
 	supports: {
 		customClassName: true,
 	},
+	apiVersion: 3,
 	attributes: {
 		// Query
 		post_type: {

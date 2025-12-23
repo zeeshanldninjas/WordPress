@@ -46,6 +46,7 @@ registerBlockType(
 		supports: {
 			customClassName: false,
 		},
+		apiVersion: 3,
 		attributes: {
 			orderby: {
 				type: 'string',

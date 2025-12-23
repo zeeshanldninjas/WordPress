@@ -42,6 +42,7 @@ registerBlockType( 'learndash/ld-course-grid-filter', {
 	supports: {
 		customClassName: false,
 	},
+	apiVersion: 3,
 	attributes: {
 		course_grid_id: {
 			type: 'string',

@@ -43,6 +43,7 @@ registerBlockType(
 		supports: {
 			customClassName: false,
 		},
+		apiVersion: 3,
 		attributes: {
 			user_id: {
 				type: 'string',

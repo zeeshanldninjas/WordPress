@@ -303,7 +303,14 @@ learndash.forms.sortable = learndash.forms.sortable || {};
 						.addClass('wpProQuiz_reviewQuestionTarget');
 					//updateItemsStatus();
 
-					scroll(e.values.index);
+					if (e.values.item.length > 0) {
+						window.scroll({
+							top: $(e.values.item).offset().top,
+						});
+					}
+
+					// Attempt to focus the question text and let screen readers read it.
+					$(e.values.item).find('.wpProQuiz_question_text').focus();
 				});
 
 				$e.on('skipQuestion', function (e) {
@@ -469,24 +476,67 @@ learndash.forms.sortable = learndash.forms.sortable || {};
 				}
 
 				let css_class = '';
+				let statusText = $('learndash-quiz-review-legend-item-current').text();
 
 				if (itemStatus.correct) {
 					css_class = 'wpProQuiz_reviewQuestionSolvedCorrect';
+					statusText = $(
+						'.learndash-quiz-review-legend-item-correct'
+					).text();
 				} else if (itemStatus.incorrect) {
 					css_class = 'wpProQuiz_reviewQuestionSolvedIncorrect';
+					statusText = $(
+						'.learndash-quiz-review-legend-item-incorrect'
+					).text();
 				} else if (
 					itemStatus.solved === true ||
 					itemStatus.solved === false
 				) {
 					css_class = 'wpProQuiz_reviewQuestionSolved';
+					statusText = $(
+						'.learndash-quiz-review-legend-item-answered'
+					).text();
 				} else if (itemStatus.review) {
 					css_class = 'wpProQuiz_reviewQuestionReview';
+					statusText = $(
+						'.learndash-quiz-review-legend-item-review'
+					).text();
 				} else if (itemStatus.skip) {
 					css_class = 'wpProQuiz_reviewQuestionSkip';
+					statusText = $(
+						'.learndash-quiz-review-legend-item-review'
+					).text();
 				}
 
 				if (css_class != '') {
 					$items.eq(index).addClass(css_class);
+
+					let $status = $items
+						.eq(index)
+						.find('.learndash-quiz-review__item-status');
+
+					if (!$status.length) {
+						$items
+							.eq(index)
+							.append(
+								$(
+									'<span class="learndash-quiz-review__item-status screen-reader-text">'
+								)
+							);
+
+						$status = $items
+							.eq(index)
+							.find('.learndash-quiz-review__item-status');
+					}
+
+					$status.text(
+						'. ' +
+							wp.i18n.sprintf(
+								// translators: placeholder: Status text.
+								wp.i18n.__('Status: %s', 'learndash'),
+								statusText
+							)
+					);
 				}
 			}
 
@@ -1905,6 +1955,7 @@ learndash.forms.sortable = learndash.forms.sortable || {};
 						currentQuestion
 					);
 				}
+
 				if (config.mode != 3) {
 					$e.trigger({
 						type: 'changeQuestion',
@@ -3308,7 +3359,19 @@ learndash.forms.sortable = learndash.forms.sortable || {};
 
 							// If the answer is incorrect, show the correct answer message.
 							if (!result.c) {
-								let message = WpProQuizGlobal.incorrectAnswer.replace('@@LearnDash_Incorrect@@', result.e.c.join(', '));
+								// Escape the correct answer text to ensure that it is not interpreted as HTML.
+								const escapedAnswers = result.e.c
+									.map((answer) =>
+										$('<div>').text(answer).html()
+									)
+									.join(', ');
+
+								const message =
+									WpProQuizGlobal.incorrectAnswer.replace(
+										'@@LearnDash_Incorrect@@',
+										escapedAnswers
+									);
+
 								$question
 									.find('span.wpProQuiz_freeCorrect')
 									.html(message)
@@ -5106,9 +5169,9 @@ learndash.forms.sortable = learndash.forms.sortable || {};
 
 	/**
 	 * Autosize the input field.
-	 * 
+	 *
 	 * @since 4.21.4
-	 * 
+	 *
 	 * @param {jQuery} $input       - The input field to autosize.
 	 * @param {number} [$padding=0] - The padding to add to the input field.
 	 */
@@ -5119,12 +5182,12 @@ learndash.forms.sortable = learndash.forms.sortable || {};
 			whiteSpace: 'pre',
 			font: $input.css('font'),
 		}).appendTo('body');
-		
+
 		function update() {
 			$sizer.text($input.val() || $input.attr('placeholder') || '');
 			$input.width($sizer.width() + 6 + $padding);
 		}
-		
+
 		$input.on('input', update);
 		update();
 	}

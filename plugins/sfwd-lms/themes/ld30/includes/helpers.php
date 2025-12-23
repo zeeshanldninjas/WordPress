@@ -1326,15 +1326,19 @@ function learndash_30_template_assets() {
 	}
 }
 
-add_action( 'enqueue_block_editor_assets', 'learndash_30_editor_scripts' );
+add_action( 'enqueue_block_assets', 'learndash_30_editor_scripts' );
 /**
  * Enqueues the ld30 theme editor scripts.
  *
- * Fires on `enqueue_block_editor_assets` hook.
+ * Fires on `enqueue_block_assets` hook.
  *
  * @since 3.0.0
  */
 function learndash_30_editor_scripts() {
+	if ( ! is_admin() ) {
+		return;
+	}
+
 	learndash_30_template_assets();
 }
 

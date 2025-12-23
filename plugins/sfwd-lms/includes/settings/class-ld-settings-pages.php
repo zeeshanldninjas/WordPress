@@ -997,7 +997,7 @@ function learndash_admin_settings_page_assets() {
 		wp_enqueue_script(
 			'learndash-admin-settings-page',
 			LEARNDASH_LMS_PLUGIN_URL . 'assets/js/learndash-admin-settings-page' . learndash_min_asset() . '.js',
-			array( 'jquery', 'wp-color-picker' ),
+			array( 'jquery', 'jquery-ui-dialog', 'wp-color-picker' ),
 			LEARNDASH_SCRIPT_VERSION_TOKEN,
 			true
 		);

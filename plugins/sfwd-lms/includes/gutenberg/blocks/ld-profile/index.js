@@ -44,6 +44,7 @@ registerBlockType(
 		supports: {
 			customClassName: false,
 		},
+		apiVersion: 3,
 		attributes: {
 			per_page: {
 				type: 'string',

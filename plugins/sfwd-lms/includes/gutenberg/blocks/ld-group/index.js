@@ -39,6 +39,7 @@ registerBlockType(
 		supports: {
 			customClassName: false,
 		},
+		apiVersion: 3,
 		attributes: {
 			group_id: {
 				type: 'string',

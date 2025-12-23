@@ -25,6 +25,7 @@ if ( ( class_exists( 'LearnDash_Settings_Metabox' ) ) && ( ! class_exists( 'Lear
 		 */
 		public function __construct() {
 			// What screen ID are we showing on.
+
 			$this->settings_screen_id = 'sfwd-lessons';
 
 			// Used within the Settings API to uniquely identify this section.

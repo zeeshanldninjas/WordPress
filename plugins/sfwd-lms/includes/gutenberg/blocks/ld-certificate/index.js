@@ -44,6 +44,7 @@ registerBlockType(block_key, {
 	supports: {
 		customClassName: false,
 	},
+	apiVersion: 3,
 	example: {
 		attributes: {
 			example_show: 1,

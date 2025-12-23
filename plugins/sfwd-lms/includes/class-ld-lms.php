@@ -5464,10 +5464,9 @@ if ( ! class_exists( 'SFWD_LMS' ) ) {
 		 * @return void
 		 */
 		public function add_telemetry_modal( WP_Screen $current_screen ): void {
-			if (
-				(
-					! empty( $current_screen->post_type )
-					&& in_array( $current_screen->post_type, learndash_get_post_types(), true )
+			$should_show = (
+				! empty( $current_screen->post_type )
+				&& in_array( $current_screen->post_type, learndash_get_post_types(), true )
 				)
 				|| (
 					! empty( $current_screen->parent_file )
@@ -5479,37 +5478,50 @@ if ( ! class_exists( 'SFWD_LMS' ) ) {
 					&& false !== strpos( sanitize_text_field( wp_unslash( $_GET['page'] ) ), 'learndash' )
 					&& $_GET['page'] !== 'learndash-setup-wizard'
 					&& $_GET['page'] !== 'learndash-design-wizard'
-				)
-			) {
-				add_filter(
-					'stellarwp/telemetry/learndash/optin_args', // cspell:disable-line.
-					function( $args ) {
-						$args['plugin_logo']        = LEARNDASH_LMS_PLUGIN_URL . 'assets/images/logo_black.svg';
-						$args['plugin_logo_width']  = 205;
-						$args['plugin_logo_height'] = 33;
-						$args['plugin_logo_alt']    = 'LearnDash Logo';
-
-						$args['heading'] = esc_html__( 'We hope you love LearnDash.', 'learndash' );
-
-						$args['intro'] = sprintf(
-							// translators: placeholder: username.
-							esc_html__(
-								'Hi, %1$s! This is an invitation to help us improve LearnDash products by sharing product usage data with StellarWP. LearnDash is part of the StellarWP family of brands. If you opt-in we\'ll share some helpful WordPress and StellarWP product info with you from time to time. And if you skip this, that\'s okay! Our products will continue to work.',
-								'learndash'
-							),
-							$args['user_name']
-						);
-
-						$args['permissions_url'] = 'https://www.learndash.com/telemetry-tracking/';
-						$args['tos_url']         = 'https://www.learndash.com/terms-and-conditions/';
-
-						return $args;
-					}
 				);
 
-				// cspell:disable-next-line.
-				do_action( 'stellarwp/telemetry/learndash/optin' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound,WordPress.NamingConventions.ValidHookName.UseUnderscores
+			/**
+			 * Whether to show the telemetry modal.
+			 *
+			 * @since 4.25.3
+			 *
+			 * @param bool      $should_show Whether to show the telemetry modal.
+			 * @param WP_Screen $current_screen Current screen.
+			 *
+			 * @return bool Whether to show the telemetry modal.
+			 */
+			if ( ! apply_filters( 'learndash_show_telemetry_modal', $should_show, $current_screen ) ) {
+				return;
 			}
+
+			add_filter(
+				'stellarwp/telemetry/learndash/optin_args', // cspell:disable-line.
+				function ( $args ) {
+					$args['plugin_logo']        = LEARNDASH_LMS_PLUGIN_URL . 'assets/images/logo_black.svg';
+					$args['plugin_logo_width']  = 205;
+					$args['plugin_logo_height'] = 33;
+					$args['plugin_logo_alt']    = 'LearnDash Logo';
+
+					$args['heading'] = esc_html__( 'We hope you love LearnDash.', 'learndash' );
+
+					$args['intro'] = sprintf(
+						// translators: placeholder: username.
+						esc_html__(
+							'Hi, %1$s! This is an invitation to help us improve LearnDash products by sharing product usage data with StellarWP. LearnDash is part of the StellarWP family of brands. If you opt-in we\'ll share some helpful WordPress and StellarWP product info with you from time to time. And if you skip this, that\'s okay! Our products will continue to work.',
+							'learndash'
+						),
+						$args['user_name']
+					);
+
+					$args['permissions_url'] = 'https://www.learndash.com/telemetry-tracking/';
+					$args['tos_url']         = 'https://www.learndash.com/terms-and-conditions/';
+
+					return $args;
+				}
+			);
+
+			// cspell:disable-next-line.
+			do_action( 'stellarwp/telemetry/learndash/optin' ); // phpcs:ignore WordPress.NamingConventions.PrefixAllGlobals.NonPrefixedHooknameFound,WordPress.NamingConventions.ValidHookName.UseUnderscores
 		}
 	}
 }

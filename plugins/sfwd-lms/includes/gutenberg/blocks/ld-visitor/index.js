@@ -47,6 +47,7 @@ registerBlockType(block_key, {
 		customClassName: false,
 	},
 	category: "learndash-blocks",
+	apiVersion: 3,
 	attributes: {
 		display_type: {
 			type: "string",

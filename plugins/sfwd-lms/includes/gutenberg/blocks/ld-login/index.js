@@ -33,6 +33,7 @@ registerBlockType(
 		supports: {
 			customClassName: false,
 		},
+		apiVersion: 3,
 		attributes: {
 			login_url: {
 				type: 'string',
