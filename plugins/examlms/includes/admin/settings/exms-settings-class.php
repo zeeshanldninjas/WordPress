@@ -1407,6 +1407,12 @@ class EXMS_Settings {
                     if( isset( $_POST['exms_paypal_payee_email'] ) ) {
                         $payment_data['paypal_vender_email'] = sanitize_email( $_POST['exms_paypal_payee_email'] );
                     }
+                    if( isset( $_POST['exms_paypal_client_id'] ) ) {
+                        $payment_data['paypal_client_id'] = sanitize_text_field( $_POST['exms_paypal_client_id'] );
+                    }
+                    if( isset( $_POST['exms_paypal_client_secret'] ) ) {
+                        $payment_data['paypal_client_secret'] = sanitize_text_field( $_POST['exms_paypal_client_secret'] );
+                    }
                 } else {
                     $payment_data['paypal_transaction_mode'] = 'sandbox';
                     $payment_data['checkour_mode'] = '';
@@ -1681,7 +1687,7 @@ class EXMS_Settings {
 				do_action( 'exms_add_settings_tabs_data' ); ?>
                 
 			</div>
-			<?php wp_nonce_field( 'wpeq_save_settings_form', 'wpeq_save_form' ); ?>
+			<?php wp_nonce_field( 'exms_save_settings_form', 'exms_save_form' ); ?>
 			<input type="hidden" id="exms_tab_form" name="exms_tab" value="<?php echo isset( $_GET['tab'] ) ? $_GET['tab'] : 'general'; ?>" />
             <input type="hidden" id="exms_tab_type" name="exms_tab_type" value="<?php echo isset( $_GET['tab_type'] ) ? $_GET['tab_type'] : ''; ?>" />
 			<input type="hidden" name="action" value="wpeq_save_settings" />

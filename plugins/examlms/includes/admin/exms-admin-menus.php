@@ -147,9 +147,9 @@ class Exms_Admin_Menus {
         add_submenu_page( EXMS_MENU, $exms_report, $exms_report, 'manage_options', 'exms-reports', [ EXMS_All_Reports::instance() , 'exms_report_html_content' ] );
 
         /**
-         * Add transaction page unser main menu
+         * Add transaction page under main menu
          */
-        // add_submenu_page( EXMS_MENU, $exms_transactions, $exms_transactions, 'manage_options', 'exms-transaction', [ 'EXMS_Transactions', 'exms_transaction_page_html' ] );
+        add_submenu_page( EXMS_MENU, $exms_transactions, $exms_transactions, 'manage_options', 'exms-transaction', [ 'EXMS_Transactions', 'exms_transaction_page_html' ] );
         
         /**
          * Add import/export page under main menu
