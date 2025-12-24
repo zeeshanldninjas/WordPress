@@ -8,99 +8,7 @@
 				this.createOrderWithPaypal();
 			},
 
-			/**
-			 * Create order with PayPal for Course purchases (Secure Server-Side Implementation)
-			 */
-			createCourseOrderWithPaypal: function() {
 
-				// Check if PayPal button container exists
-				if( ! $( '#exms-paypal-button-container' ).length ) {
-					return false;
-				}
-
-				let courseID = $( '#exms-course-id' ).val();
-				let userID = EXMS.user_id || 0;
-
-				if( ! courseID ) {
-					console.error( 'Missing course ID for PayPal payment' );
-					return false;
-				}
-
-				paypal.Buttons( {
-					createOrder: ( data, actions ) => {
-						// Call server-side endpoint to create order
-						return fetch( '/wp-json/paypal/v1/create-order', {
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/json',
-							},
-							body: JSON.stringify( {
-								course_id: courseID,
-								nonce: EXMS.security
-							} )
-						} )
-						.then( response => response.json() )
-						.then( data => {
-							if( ! data.success ) {
-								throw new Error( data.message || 'Failed to create order' );
-							}
-							console.log( 'Order created:', data );
-							return data.order_id;
-						} )
-						.catch( error => {
-							console.error( 'Create order error:', error );
-							alert( 'Failed to create payment order: ' + error.message );
-							throw error;
-						} );
-					},
-
-					onApprove: ( data, actions ) => {
-						// Show loading state
-						$( '#exms-paypal-button-container' ).html( '<div style="text-align: center; padding: 20px;">Processing payment...</div>' );
-
-						// Call server-side endpoint to capture order
-						return fetch( '/wp-json/paypal/v1/capture-order', {
-							method: 'POST',
-							headers: {
-								'Content-Type': 'application/json',
-							},
-							body: JSON.stringify( {
-								order_id: data.orderID,
-								course_id: courseID,
-								nonce: EXMS.security
-							} )
-						} )
-						.then( response => response.json() )
-						.then( result => {
-							if( ! result.success ) {
-								throw new Error( result.message || 'Payment processing failed' );
-							}
-							
-							console.log( 'Payment captured:', result );
-							alert( 'Payment completed successfully! You are now enrolled in the course.' );
-							location.reload( true );
-						} )
-						.catch( error => {
-							console.error( 'Capture order error:', error );
-							alert( 'Payment processing failed: ' + error.message );
-							
-							// Restore PayPal button
-							$( '#exms-paypal-button-container' ).empty();
-							EXMSpaypal.createCourseOrderWithPaypal();
-						} );
-					},
-
-					onError: function( err ) {
-						console.error( 'PayPal error:', err );
-						alert( 'Payment failed. Please try again or contact support.' );
-					},
-
-					onCancel: function( data ) {
-						console.log( 'Payment cancelled by user' );
-						// PayPal button will remain available for retry
-					}
-				} ).render( '#exms-paypal-button-container' );
-			},
 
 			/**
 			 * Create order with paypal
@@ -251,24 +159,6 @@
 		}
 		EXMSpaypal.init();
 
-		// Make EXMSpaypal available globally for course PayPal button
-		window.EXMSpaypal = EXMSpaypal;
 	});
 
 } )( jQuery );
-
-// Expose course PayPal initialization globally (completely outside IIFE)
-window.initCoursePayPalButton = function() {
-	// Check if PayPal SDK is loaded
-	if (typeof paypal === 'undefined') {
-		console.error('PayPal SDK not loaded yet');
-		return false;
-	}
-	
-	// Check if EXMSpaypal is available
-	if (typeof window.EXMSpaypal !== 'undefined' && typeof window.EXMSpaypal.createCourseOrderWithPaypal === 'function') {
-		window.EXMSpaypal.createCourseOrderWithPaypal();
-	} else {
-		console.error('EXMSpaypal.createCourseOrderWithPaypal not available');
-	}
-};

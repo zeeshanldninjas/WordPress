@@ -195,3 +195,12 @@ class EXMS {
  * Initialize class
  */
 EXMS::instance();
+
+/**
+ * Initialize secure PayPal REST endpoints
+ */
+add_action( 'init', function() {
+    if ( class_exists( 'EXMS_PayPal_REST_Endpoints' ) ) {
+        EXMS_PayPal_REST_Endpoints::instance();
+    }
+} );

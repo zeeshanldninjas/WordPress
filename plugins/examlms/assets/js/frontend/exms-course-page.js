@@ -266,10 +266,10 @@
                                     $( '#exms-paypal-payee' ).val( response.paypal_payee );
                                 }
 
-                                // Initialize PayPal button directly
-                                console.log('Attempting to initialize PayPal button...');
+                                // Initialize secure PayPal button
+                                console.log('Attempting to initialize secure PayPal button...');
                                 console.log('PayPal SDK available:', typeof paypal !== 'undefined');
-                                initCoursePayPalButton();
+                                initSecurePayPalButton();
                             }
 
                             else {
@@ -319,13 +319,13 @@
 
         };
 
-        // PayPal course payment function
-        function initCoursePayPalButton() {
+        // Secure PayPal course payment function (Server-Side Implementation)
+        function initSecurePayPalButton() {
             // Check if PayPal SDK is loaded
             if (typeof paypal === 'undefined') {
                 console.log('PayPal SDK not loaded yet, retrying in 1 second...');
                 setTimeout(function() {
-                    initCoursePayPalButton();
+                    initSecurePayPalButton();
                 }, 1000);
                 return false;
             }
@@ -337,62 +337,85 @@
             }
 
             let courseID = $('#exms-course-id').val();
-            let price = $('#exms-course-price').val();
-            let courseTitle = $('#exms-course-title').val();
-            let payeeEmail = $('#exms-paypal-payee').val();
             let userID = EXMS.user_id || 0;
 
-            if (!courseID || !price || !payeeEmail) {
-                console.error('Missing required data for PayPal payment');
+            if (!courseID) {
+                console.error('Missing course ID for secure PayPal payment');
                 return false;
             }
 
             paypal.Buttons({
                 createOrder: (data, actions) => {
-                    return actions.order.create({
-                        purchase_units: [{
-                            amount: {
-                                value: price
-                            },
-                            payee: {
-                                email_address: payeeEmail
-                            },
-                            description: 'Purchase of ' + courseTitle
-                        }]
+                    // Call secure server-side endpoint to create order
+                    return fetch('/wp-json/paypal/v1/create-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            course_id: courseID,
+                            nonce: EXMS.security
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (!data.success) {
+                            throw new Error(data.message || 'Failed to create order');
+                        }
+                        console.log('Secure order created:', data);
+                        return data.order_id;
+                    })
+                    .catch(error => {
+                        console.error('Create order error:', error);
+                        alert('Failed to create payment order: ' + error.message);
+                        throw error;
                     });
                 },
 
                 onApprove: (data, actions) => {
-                    return actions.order.capture().then(function(orderData) {
+                    // Show loading state
+                    $('#exms-paypal-button-container').html('<div style="text-align: center; padding: 20px;">Processing payment...</div>');
 
-                        let ajaxData = {
-                            'action': 'exms_save_course_paypal_transactions',
-                            'security': EXMS.security,
-                            'user_id': userID,
-                            'course_id': courseID,
-                            'price': price,
-                            'order_data': orderData
-                        };
-
-                        jQuery.post(EXMS.ajaxURL, ajaxData, function(resp) {
-
-                            let response = JSON.parse(resp);
-                            if (response.status == 'false' || response.status == 'error') {
-                                alert(response.message || 'Payment failed. Please try again.');
-                            } else {
-                                alert('Payment completed successfully! You are now enrolled in the course.');
-                                location.reload(true);
-                            }
-                        }).fail(function() {
-                            alert('Payment processing failed. Please contact support.');
-                        });
-
+                    // Call secure server-side endpoint to capture order
+                    return fetch('/wp-json/paypal/v1/capture-order', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            order_id: data.orderID,
+                            course_id: courseID,
+                            nonce: EXMS.security
+                        })
+                    })
+                    .then(response => response.json())
+                    .then(result => {
+                        if (!result.success) {
+                            throw new Error(result.message || 'Payment processing failed');
+                        }
+                        
+                        console.log('Payment captured securely:', result);
+                        alert('Payment completed successfully! You are now enrolled in the course.');
+                        location.reload(true);
+                    })
+                    .catch(error => {
+                        console.error('Capture order error:', error);
+                        alert('Payment processing failed: ' + error.message);
+                        
+                        // Restore PayPal button
+                        $('#exms-paypal-button-container').empty();
+                        initSecurePayPalButton();
                     });
                 },
 
                 onError: function(err) {
                     console.error('PayPal error:', err);
                     alert('Payment failed. Please try again or contact support.');
+                },
+
+                onCancel: function(data) {
+                    console.log('Payment cancelled by user');
+                    // PayPal button will remain available for retry
                 }
             }).render('#exms-paypal-button-container');
         }
