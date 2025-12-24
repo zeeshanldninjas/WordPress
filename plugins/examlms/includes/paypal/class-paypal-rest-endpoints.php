@@ -108,8 +108,16 @@ class EXMS_PayPal_REST_Endpoints {
             }
         }
         
+        // Debug logging
+        error_log( 'PayPal REST API - Nonce received: ' . $nonce );
+        error_log( 'PayPal REST API - Request body: ' . $request->get_body() );
+        
         // Verify nonce for security
-        if( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'exms_ajax_nonce' ) ) {
+        $nonce_valid = wp_verify_nonce( $nonce, 'exms_ajax_nonce' );
+        error_log( 'PayPal REST API - Nonce valid: ' . ( $nonce_valid ? 'YES' : 'NO' ) );
+        
+        if( empty( $nonce ) || ! $nonce_valid ) {
+            error_log( 'PayPal REST API - Permission denied. Nonce: ' . $nonce . ', Valid: ' . ( $nonce_valid ? 'YES' : 'NO' ) );
             return new WP_Error( 'invalid_nonce', 'Security verification failed. Please refresh the page and try again.', array( 'status' => 401 ) );
         }
 
