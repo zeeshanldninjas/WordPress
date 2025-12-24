@@ -147,9 +147,25 @@ class EXMS_PayPal_REST_Endpoints {
 
         if( is_wp_error( $paypal_response ) ) {
             error_log( 'PayPal Create Order Error: ' . $paypal_response->get_error_message() );
+            
+            // Provide specific error messages based on error code
+            $error_code = $paypal_response->get_error_code();
+            $error_message = $paypal_response->get_error_message();
+            
+            if( $error_code === 'missing_credentials' ) {
+                $user_message = 'PayPal configuration missing. Please configure PayPal Client ID and Secret in settings.';
+            } elseif( strpos( $error_message, 'Client Authentication failed' ) !== false ) {
+                $user_message = 'PayPal authentication failed. Please check your PayPal Client ID and Secret in settings.';
+            } elseif( strpos( $error_message, 'oauth_failed' ) !== false ) {
+                $user_message = 'PayPal connection failed. Please verify your PayPal credentials and try again.';
+            } else {
+                $user_message = 'PayPal error: ' . $error_message;
+            }
+            
             return new WP_REST_Response( array(
                 'success' => false,
-                'message' => 'Failed to create PayPal order'
+                'message' => $user_message,
+                'error_code' => $error_code
             ), 500 );
         }
 

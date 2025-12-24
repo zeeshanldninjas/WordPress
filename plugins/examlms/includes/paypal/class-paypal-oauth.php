@@ -38,14 +38,21 @@ class EXMS_PayPal_OAuth {
     private function load_settings() {
         $payment_settings = get_option( 'exms_payment_settings', array() );
         
-        $this->client_id = isset( $payment_settings['paypal_client_id'] ) ? $payment_settings['paypal_client_id'] : '';
-        $this->client_secret = isset( $payment_settings['paypal_client_secret'] ) ? $payment_settings['paypal_client_secret'] : '';
+        $this->client_id = isset( $payment_settings['paypal_client_id'] ) ? trim( $payment_settings['paypal_client_id'] ) : '';
+        $this->client_secret = isset( $payment_settings['paypal_client_secret'] ) ? trim( $payment_settings['paypal_client_secret'] ) : '';
         $this->sandbox_mode = isset( $payment_settings['paypal_sandbox'] ) && $payment_settings['paypal_sandbox'] === 'on';
         
         // Set base URL based on sandbox mode
         $this->base_url = $this->sandbox_mode 
             ? 'https://api-m.sandbox.paypal.com' 
             : 'https://api-m.paypal.com';
+            
+        // Debug logging
+        error_log( 'PayPal Settings Debug:' );
+        error_log( '- Client ID: ' . ( ! empty( $this->client_id ) ? 'SET (' . strlen( $this->client_id ) . ' chars)' : 'EMPTY' ) );
+        error_log( '- Client Secret: ' . ( ! empty( $this->client_secret ) ? 'SET (' . strlen( $this->client_secret ) . ' chars)' : 'EMPTY' ) );
+        error_log( '- Sandbox Mode: ' . ( $this->sandbox_mode ? 'YES' : 'NO' ) );
+        error_log( '- Base URL: ' . $this->base_url );
     }
 
     /**
@@ -235,4 +242,3 @@ class EXMS_PayPal_OAuth {
         );
     }
 }
-
