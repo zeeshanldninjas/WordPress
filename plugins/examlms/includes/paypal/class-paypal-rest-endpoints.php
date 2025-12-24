@@ -94,10 +94,23 @@ class EXMS_PayPal_REST_Endpoints {
      */
     public function check_permissions( $request ) {
         
-        // Verify nonce for security
+        // Get nonce from JSON body or regular parameter
         $nonce = $request->get_param( 'nonce' );
-        if( ! wp_verify_nonce( $nonce, 'exms_ajax_nonce' ) ) {
-            return false;
+        
+        // If not found in params, try to get from JSON body
+        if( empty( $nonce ) ) {
+            $body = $request->get_body();
+            if( ! empty( $body ) ) {
+                $json_data = json_decode( $body, true );
+                if( isset( $json_data['nonce'] ) ) {
+                    $nonce = $json_data['nonce'];
+                }
+            }
+        }
+        
+        // Verify nonce for security
+        if( empty( $nonce ) || ! wp_verify_nonce( $nonce, 'exms_ajax_nonce' ) ) {
+            return new WP_Error( 'invalid_nonce', 'Security verification failed. Please refresh the page and try again.', array( 'status' => 401 ) );
         }
 
         // Allow both logged-in and guest users (for guest checkout)
@@ -112,7 +125,19 @@ class EXMS_PayPal_REST_Endpoints {
      */
     public function create_order( $request ) {
         
+        // Get course_id from JSON body or regular parameter
         $course_id = $request->get_param( 'course_id' );
+        
+        // If not found in params, try to get from JSON body
+        if( empty( $course_id ) ) {
+            $body = $request->get_body();
+            if( ! empty( $body ) ) {
+                $json_data = json_decode( $body, true );
+                if( isset( $json_data['course_id'] ) ) {
+                    $course_id = absint( $json_data['course_id'] );
+                }
+            }
+        }
 
         // Validate course exists and is paid
         $course_validation = $this->validate_course( $course_id );
@@ -187,8 +212,23 @@ class EXMS_PayPal_REST_Endpoints {
      */
     public function capture_order( $request ) {
         
+        // Get parameters from JSON body or regular parameters
         $order_id = $request->get_param( 'order_id' );
         $course_id = $request->get_param( 'course_id' );
+        
+        // If not found in params, try to get from JSON body
+        if( empty( $order_id ) || empty( $course_id ) ) {
+            $body = $request->get_body();
+            if( ! empty( $body ) ) {
+                $json_data = json_decode( $body, true );
+                if( empty( $order_id ) && isset( $json_data['order_id'] ) ) {
+                    $order_id = sanitize_text_field( $json_data['order_id'] );
+                }
+                if( empty( $course_id ) && isset( $json_data['course_id'] ) ) {
+                    $course_id = absint( $json_data['course_id'] );
+                }
+            }
+        }
 
         // Validate course
         $course_validation = $this->validate_course( $course_id );
