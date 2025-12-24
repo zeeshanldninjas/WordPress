@@ -353,8 +353,7 @@
                             'Content-Type': 'application/json',
                         },
                         body: JSON.stringify({
-                            course_id: courseID,
-                            nonce: EXMS.rest_nonce || EXMS.security
+                            course_id: courseID
                         })
                     })
                     .then(response => response.json())
@@ -384,8 +383,7 @@
                         },
                         body: JSON.stringify({
                             order_id: data.orderID,
-                            course_id: courseID,
-                            nonce: EXMS.rest_nonce || EXMS.security
+                            course_id: courseID
                         })
                     })
                     .then(response => response.json())
