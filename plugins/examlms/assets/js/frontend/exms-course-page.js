@@ -344,10 +344,33 @@
                 return false;
             }
 
-            paypal.Buttons({
-                createOrder: (data, actions) => {
-                    // Call secure server-side endpoint to create order
-                    return fetch('/wp-json/paypal/v1/create-order', {
+            // TESTING MODE: Create mock PayPal button instead of real PayPal SDK
+            console.log('🧪 TESTING MODE: Creating mock PayPal button');
+            
+            // Create a mock PayPal button
+            const mockButton = $('<button>')
+                .addClass('mock-paypal-button')
+                .css({
+                    'background-color': '#0070ba',
+                    'color': 'white',
+                    'border': 'none',
+                    'border-radius': '4px',
+                    'padding': '12px 24px',
+                    'font-size': '16px',
+                    'font-weight': 'bold',
+                    'cursor': 'pointer',
+                    'width': '100%',
+                    'margin': '10px 0'
+                })
+                .text('🧪 Pay with PayPal (TEST MODE)')
+                .on('click', function() {
+                    console.log('🧪 Mock PayPal button clicked - starting test payment flow');
+                    
+                    // Simulate PayPal payment flow
+                    $(this).prop('disabled', true).text('Creating order...');
+                    
+                    // Step 1: Create order
+                    fetch('/wp-json/paypal/v1/create-order', {
                         method: 'POST',
                         headers: {
                             'Content-Type': 'application/json',
@@ -361,61 +384,60 @@
                         if (!data.success) {
                             throw new Error(data.message || 'Failed to create order');
                         }
-                        console.log('Secure order created:', data);
-                        return data.order_id;
+                        console.log('✅ Mock order created:', data);
+                        
+                        // Step 2: Simulate user approval (auto-approve in test mode)
+                        $(this).text('Processing payment...');
+                        
+                        setTimeout(() => {
+                            // Step 3: Capture payment
+                            fetch('/wp-json/paypal/v1/capture-order', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/json',
+                                },
+                                body: JSON.stringify({
+                                    order_id: data.order_id,
+                                    course_id: courseID
+                                })
+                            })
+                            .then(response => response.json())
+                            .then(captureData => {
+                                if (!captureData.success) {
+                                    throw new Error(captureData.message || 'Failed to capture payment');
+                                }
+                                console.log('✅ Mock payment captured:', captureData);
+                                
+                                // Show success
+                                $('#exms-paypal-button-container').html(
+                                    '<div style="text-align: center; padding: 20px; color: green; font-weight: bold; border: 2px solid green; border-radius: 8px; background-color: #f0fff0;">' +
+                                    '🎉 Payment Successful!<br>' +
+                                    '<small>Order ID: ' + data.order_id + '</small><br>' +
+                                    '<small>Redirecting...</small>' +
+                                    '</div>'
+                                );
+                                
+                                // Redirect after success
+                                setTimeout(() => {
+                                    window.location.reload();
+                                }, 3000);
+                            })
+                            .catch(error => {
+                                console.error('❌ Capture payment error:', error);
+                                alert('Failed to process payment: ' + error.message);
+                                $(this).prop('disabled', false).text('🧪 Pay with PayPal (TEST MODE)');
+                            });
+                        }, 1500); // Simulate processing time
                     })
                     .catch(error => {
-                        console.error('Create order error:', error);
+                        console.error('❌ Create order error:', error);
                         alert('Failed to create payment order: ' + error.message);
-                        throw error;
+                        $(this).prop('disabled', false).text('🧪 Pay with PayPal (TEST MODE)');
                     });
-                },
-
-                onApprove: (data, actions) => {
-                    // Show loading state
-                    $('#exms-paypal-button-container').html('<div style="text-align: center; padding: 20px;">Processing payment...</div>');
-
-                    // Call secure server-side endpoint to capture order
-                    return fetch('/wp-json/paypal/v1/capture-order', {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json',
-                        },
-                        body: JSON.stringify({
-                            order_id: data.orderID,
-                            course_id: courseID
-                        })
-                    })
-                    .then(response => response.json())
-                    .then(result => {
-                        if (!result.success) {
-                            throw new Error(result.message || 'Payment processing failed');
-                        }
-                        
-                        console.log('Payment captured securely:', result);
-                        alert('Payment completed successfully! You are now enrolled in the course.');
-                        location.reload(true);
-                    })
-                    .catch(error => {
-                        console.error('Capture order error:', error);
-                        alert('Payment processing failed: ' + error.message);
-                        
-                        // Restore PayPal button
-                        $('#exms-paypal-button-container').empty();
-                        initSecurePayPalButton();
-                    });
-                },
-
-                onError: function(err) {
-                    console.error('PayPal error:', err);
-                    alert('Payment failed. Please try again or contact support.');
-                },
-
-                onCancel: function(data) {
-                    console.log('Payment cancelled by user');
-                    // PayPal button will remain available for retry
-                }
-            }).render('#exms-paypal-button-container');
+                });
+            
+            // Add the mock button to the container
+            $('#exms-paypal-button-container').html(mockButton);
         }
 
         EXMSCoursePage.init();
