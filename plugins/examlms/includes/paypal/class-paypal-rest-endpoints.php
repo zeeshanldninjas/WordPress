@@ -112,9 +112,15 @@ class EXMS_PayPal_REST_Endpoints {
         error_log( 'PayPal REST API - Nonce received: ' . $nonce );
         error_log( 'PayPal REST API - Request body: ' . $request->get_body() );
         
-        // Verify nonce for security
-        $nonce_valid = wp_verify_nonce( $nonce, 'exms_ajax_nonce' );
-        error_log( 'PayPal REST API - Nonce valid: ' . ( $nonce_valid ? 'YES' : 'NO' ) );
+        // Try different nonce validation approaches
+        $nonce_valid_ajax = wp_verify_nonce( $nonce, 'exms_ajax_nonce' );
+        $nonce_valid_rest = wp_verify_nonce( $nonce, 'wp_rest' );
+        
+        error_log( 'PayPal REST API - Nonce valid (ajax): ' . ( $nonce_valid_ajax ? 'YES' : 'NO' ) );
+        error_log( 'PayPal REST API - Nonce valid (rest): ' . ( $nonce_valid_rest ? 'YES' : 'NO' ) );
+        
+        // Accept either nonce validation method
+        $nonce_valid = $nonce_valid_ajax || $nonce_valid_rest;
         
         if( empty( $nonce ) || ! $nonce_valid ) {
             error_log( 'PayPal REST API - Permission denied. Nonce: ' . $nonce . ', Valid: ' . ( $nonce_valid ? 'YES' : 'NO' ) );

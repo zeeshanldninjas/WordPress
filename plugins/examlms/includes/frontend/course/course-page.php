@@ -62,6 +62,7 @@ class EXMS_COURSE {
         wp_localize_script( 'wp-exams-course-js', 'EXMS', [ 
             'ajaxURL'                       => admin_url( 'admin-ajax.php' ),
             'security'                      => wp_create_nonce( 'exms_ajax_nonce' ),
+            'rest_nonce'                    => wp_create_nonce( 'wp_rest' ),
             'user_id'                       => get_current_user_id(),
             'course_detail_icon_right'            => EXMS_ASSETS_URL . 'imgs/rightbar-right-arrow.svg',            
             'course_detail_icon_left'            => EXMS_ASSETS_URL . 'imgs/rightbar-left-arrow.svg',            

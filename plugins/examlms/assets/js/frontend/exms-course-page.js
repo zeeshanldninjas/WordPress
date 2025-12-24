@@ -354,7 +354,7 @@
                         },
                         body: JSON.stringify({
                             course_id: courseID,
-                            nonce: EXMS.security
+                            nonce: EXMS.rest_nonce || EXMS.security
                         })
                     })
                     .then(response => response.json())
@@ -385,7 +385,7 @@
                         body: JSON.stringify({
                             order_id: data.orderID,
                             course_id: courseID,
-                            nonce: EXMS.security
+                            nonce: EXMS.rest_nonce || EXMS.security
                         })
                     })
                     .then(response => response.json())
