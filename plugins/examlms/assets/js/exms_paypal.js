@@ -8,6 +8,8 @@
 				this.createOrderWithPaypal();
 			},
 
+
+
 			/**
 			 * Create order with paypal
 			 */
@@ -156,5 +158,7 @@
 			}
 		}
 		EXMSpaypal.init();
+
 	});
+
 } )( jQuery );

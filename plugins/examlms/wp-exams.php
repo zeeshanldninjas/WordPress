@@ -118,6 +118,9 @@ class EXMS {
             // EXMS_INCLUDES_DIR . 'exms-core-functions.php',
             EXMS_INCLUDES_DIR . 'user-functions.php',
             EXMS_INCLUDES_DIR . 'exms-paypal-functions.php',
+            EXMS_INCLUDES_DIR . 'paypal/class-paypal-oauth.php',
+            EXMS_INCLUDES_DIR . 'paypal/class-paypal-api.php',
+            EXMS_INCLUDES_DIR . 'paypal/class-paypal-rest-endpoints.php',
             EXMS_INCLUDES_DIR . 'exms-stripe-functions.php',
             EXMS_INCLUDES_DIR . 'exms-shortcodes.php',
             EXMS_TEMPLATES_DIR . 'template-hooks.php',
@@ -195,3 +198,12 @@ class EXMS {
  * Initialize class
  */
 EXMS::instance();
+
+/**
+ * Initialize secure PayPal REST endpoints
+ */
+add_action( 'init', function() {
+    if ( class_exists( 'EXMS_PayPal_REST_Endpoints' ) ) {
+        EXMS_PayPal_REST_Endpoints::instance();
+    }
+} );
