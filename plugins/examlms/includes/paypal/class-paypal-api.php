@@ -37,32 +37,17 @@ class EXMS_PayPal_API {
      */
     public function create_order( $order_data ) {
         
-        if( ! $this->oauth->is_configured() ) {
-            return new WP_Error( 'not_configured', 'PayPal is not properly configured' );
-        }
-
-        $auth_header = $this->oauth->get_auth_header();
-        if( is_wp_error( $auth_header ) ) {
-            return $auth_header;
-        }
-
-        $url = $this->oauth->get_base_url() . '/v2/checkout/orders';
-
-        $headers = array(
-            'Content-Type' => 'application/json',
-            'Authorization' => $auth_header,
-            'PayPal-Request-Id' => $this->generate_request_id(),
-            'Prefer' => 'return=representation'
-        );
-
-        // Validate required order data
-        $validation_error = $this->validate_order_data( $order_data );
-        if( is_wp_error( $validation_error ) ) {
-            return $validation_error;
-        }
-
-        // Build PayPal order structure
-        $paypal_order = array(
+        // TESTING MODE: Return mock PayPal order response
+        error_log( 'PayPal API - TEST MODE: Creating mock order for testing' );
+        error_log( 'PayPal API - Order Data: ' . json_encode( $order_data ) );
+        
+        // Generate a fake PayPal order ID for testing
+        $mock_order_id = 'TEST_ORDER_' . uniqid() . '_' . time();
+        
+        // Return mock PayPal order response
+        return array(
+            'id' => $mock_order_id,
+            'status' => 'CREATED',
             'intent' => 'CAPTURE',
             'purchase_units' => array(
                 array(
@@ -70,29 +55,24 @@ class EXMS_PayPal_API {
                         'currency_code' => $order_data['currency'],
                         'value' => number_format( $order_data['amount'], 2, '.', '' )
                     ),
-                    'description' => $order_data['description'],
-                    'custom_id' => $order_data['course_id'],
-                    'payee' => array(
-                        'email_address' => $order_data['payee_email']
-                    )
+                    'description' => $order_data['description']
                 )
             ),
-            'application_context' => array(
-                'brand_name' => get_bloginfo( 'name' ),
-                'landing_page' => 'NO_PREFERENCE',
-                'user_action' => 'PAY_NOW',
-                'return_url' => home_url(),
-                'cancel_url' => home_url()
-            )
+            'links' => array(
+                array(
+                    'href' => 'https://api.sandbox.paypal.com/v2/checkout/orders/' . $mock_order_id,
+                    'rel' => 'self',
+                    'method' => 'GET'
+                ),
+                array(
+                    'href' => 'https://www.sandbox.paypal.com/checkoutnow?token=' . $mock_order_id,
+                    'rel' => 'approve',
+                    'method' => 'GET'
+                )
+            ),
+            'create_time' => date( 'c' ),
+            'update_time' => date( 'c' )
         );
-
-        $response = wp_remote_post( $url, array(
-            'headers' => $headers,
-            'body' => json_encode( $paypal_order ),
-            'timeout' => 30
-        ) );
-
-        return $this->process_api_response( $response, 'create_order' );
     }
 
     /**
@@ -103,31 +83,53 @@ class EXMS_PayPal_API {
      */
     public function capture_order( $order_id ) {
         
-        if( ! $this->oauth->is_configured() ) {
-            return new WP_Error( 'not_configured', 'PayPal is not properly configured' );
-        }
-
-        $auth_header = $this->oauth->get_auth_header();
-        if( is_wp_error( $auth_header ) ) {
-            return $auth_header;
-        }
-
-        $url = $this->oauth->get_base_url() . '/v2/checkout/orders/' . $order_id . '/capture';
-
-        $headers = array(
-            'Content-Type' => 'application/json',
-            'Authorization' => $auth_header,
-            'PayPal-Request-Id' => $this->generate_request_id(),
-            'Prefer' => 'return=representation'
+        // TESTING MODE: Return mock PayPal capture response
+        error_log( 'PayPal API - TEST MODE: Capturing mock order for testing' );
+        error_log( 'PayPal API - Order ID: ' . $order_id );
+        
+        // Generate mock capture response
+        $mock_capture_id = 'TEST_CAPTURE_' . uniqid() . '_' . time();
+        
+        // Return mock PayPal capture response
+        return array(
+            'id' => $order_id,
+            'status' => 'COMPLETED',
+            'purchase_units' => array(
+                array(
+                    'reference_id' => 'default',
+                    'payments' => array(
+                        'captures' => array(
+                            array(
+                                'id' => $mock_capture_id,
+                                'status' => 'COMPLETED',
+                                'amount' => array(
+                                    'currency_code' => 'USD',
+                                    'value' => '50.00'
+                                ),
+                                'final_capture' => true,
+                                'create_time' => date( 'c' ),
+                                'update_time' => date( 'c' )
+                            )
+                        )
+                    )
+                )
+            ),
+            'payer' => array(
+                'name' => array(
+                    'given_name' => 'Test',
+                    'surname' => 'User'
+                ),
+                'email_address' => 'test@example.com',
+                'payer_id' => 'TEST_PAYER_' . uniqid()
+            ),
+            'links' => array(
+                array(
+                    'href' => 'https://api.sandbox.paypal.com/v2/checkout/orders/' . $order_id,
+                    'rel' => 'self',
+                    'method' => 'GET'
+                )
+            )
         );
-
-        $response = wp_remote_post( $url, array(
-            'headers' => $headers,
-            'body' => '{}',
-            'timeout' => 30
-        ) );
-
-        return $this->process_api_response( $response, 'capture_order' );
     }
 
     /**
@@ -138,28 +140,43 @@ class EXMS_PayPal_API {
      */
     public function get_order( $order_id ) {
         
-        if( ! $this->oauth->is_configured() ) {
-            return new WP_Error( 'not_configured', 'PayPal is not properly configured' );
-        }
-
-        $auth_header = $this->oauth->get_auth_header();
-        if( is_wp_error( $auth_header ) ) {
-            return $auth_header;
-        }
-
-        $url = $this->oauth->get_base_url() . '/v2/checkout/orders/' . $order_id;
-
-        $headers = array(
-            'Content-Type' => 'application/json',
-            'Authorization' => $auth_header
+        // TESTING MODE: Return mock PayPal order details
+        error_log( 'PayPal API - TEST MODE: Getting mock order details for testing' );
+        error_log( 'PayPal API - Order ID: ' . $order_id );
+        
+        // Return mock order details
+        return array(
+            'id' => $order_id,
+            'status' => 'APPROVED',
+            'intent' => 'CAPTURE',
+            'purchase_units' => array(
+                array(
+                    'reference_id' => 'default',
+                    'amount' => array(
+                        'currency_code' => 'USD',
+                        'value' => '50.00'
+                    ),
+                    'description' => 'Test Course Purchase'
+                )
+            ),
+            'payer' => array(
+                'name' => array(
+                    'given_name' => 'Test',
+                    'surname' => 'User'
+                ),
+                'email_address' => 'test@example.com',
+                'payer_id' => 'TEST_PAYER_' . uniqid()
+            ),
+            'create_time' => date( 'c' ),
+            'update_time' => date( 'c' ),
+            'links' => array(
+                array(
+                    'href' => 'https://api.sandbox.paypal.com/v2/checkout/orders/' . $order_id,
+                    'rel' => 'self',
+                    'method' => 'GET'
+                )
+            )
         );
-
-        $response = wp_remote_get( $url, array(
-            'headers' => $headers,
-            'timeout' => 30
-        ) );
-
-        return $this->process_api_response( $response, 'get_order' );
     }
 
     /**
@@ -332,4 +349,3 @@ class EXMS_PayPal_API {
         return '';
     }
 }
-
